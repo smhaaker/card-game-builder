@@ -5,12 +5,12 @@ let json = {
 }
 
 // name of the game, amount of cards
-function setupGame(nameOfGame, numberOfCards){
+function setupGame(nameOfGame, numberOfCards, maxPlayers){
   let cardArray = []
   for (let i = 0; i < numberOfCards; i++){
     cardArray.push(i)
   }
-  return {nameOfGame, numberOfCards, cardArray}
+  return {nameOfGame, numberOfCards, cardArray, maxPlayers}
 }
 
 // sets amount of colors in card deck.
@@ -57,10 +57,10 @@ function createColors (options) {
   return colors
 }
 
-// creates a list of total attributes for card type
-function createAttributes(jsonLenght, name, value, color, three, optional, more) {
+// creates a list of total attributes for card type use ...args for adding the last argumetns
+function createAttributes(firstCardInSequence, lastCardInSequence, name, value, color, three, ...more) {
   let jsonArray = []
-  for (let i = 0; i < jsonLenght; i++){
+  for (let i = firstCardInSequence; i < lastCardInSequence; i++){
     let element = {
       cards: {
         id: i,
@@ -68,13 +68,40 @@ function createAttributes(jsonLenght, name, value, color, three, optional, more)
         value: value,
         color: color,
         powers: three,
-        optional: optional
+        additional: more
       }
     }
     jsonArray.push(element)
   }
   return jsonArray
 }
+
+// merging all card sets to a deck
+function mergeSets () {
+  let completeset;
+  for (let i = 0; i < arguments.length; i++) {
+    if (arguments[i+1]) {
+      completeset = arguments[i].concat(arguments[i+1])
+    }
+  }
+  // if (arguments[2]){
+  //   console.log('there is an arugment')
+  // }
+  // else {
+  //   console.log('there is NOT an arugment')
+  // }
+  // let completeset = set1.concat(set2);
+  return completeset
+}
+
+
+// this is how we utilize unimited arguments
+function manyArgs() {
+  for (var i = 0; i < arguments.length; ++i)
+    console.log(arguments[i]);
+    console.log(arguments)
+}
+
 
 module.exports = {
   config: config,
@@ -85,5 +112,7 @@ module.exports = {
   createAttribute: createAttribute,
   createAttributes: createAttributes,
   createPowers: createPowers,
-  createColors: createColors
+  createColors: createColors,
+  mergeSets: mergeSets,
+  manyArgs: manyArgs
 }
