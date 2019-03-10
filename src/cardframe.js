@@ -5,12 +5,12 @@ let json = {
 }
 
 // name of the game, amount of cards
-function setupGame(nameOfGame, numberOfCards, maxPlayers){
-  let cardArray = []
-  for (let i = 0; i < numberOfCards; i++){
-    cardArray.push(i)
+function setupGame(nameOfGame, numberOfDecks, maxPlayers, description){
+  let deckArray = []
+  for (let i = 0; i < numberOfDecks; i++){
+    deckArray.push(i)
   }
-  return {nameOfGame, numberOfCards, cardArray, maxPlayers}
+  return {nameOfGame, numberOfDecks, deckArray, maxPlayers, description}
 }
 
 // sets amount of colors in card deck.
@@ -47,14 +47,12 @@ function createAttribute(one, two, three, optional) {
 
 // creates a general list of powers that can be assigned to card based on array
 function createPowers (options) {
-  let powers = options
-  return powers
+  return options
 }
 
 // sets colors that can be used in cards to identify factions / types
 function createColors (options) {
-  let colors = options
-  return colors
+  return options
 }
 
 // creates a list of total attributes for card type use ...args for adding the last argumetns
@@ -79,10 +77,23 @@ function createAttributes(firstCardInSequence, lastCardInSequence, name, value, 
 // merging all card sets to a deck
 function mergeSets () {
   let completeset;
+  if (arguments.length > 0)
+  {
+    completeset = arguments[0].concat(arguments[1])
+  }
+  if (arguments) {
+    completeset = arguments[0]
+  }
+  else {
+    console.log('no arguments')
+  }
   for (let i = 0; i < arguments.length; i++) {
-    if (arguments[i+1]) {
-      completeset = arguments[i].concat(arguments[i+1])
-    }
+    console.log('arguments length ' + i)
+    completeset = completeset.concat(arguments[i])
+    // if (arguments[i+1]) {
+    //   completeset = completeset.concat(arguments[i])
+    //   // console.log('arguments length ' + i)
+    // }
   }
   // if (arguments[2]){
   //   console.log('there is an arugment')
