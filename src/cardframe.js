@@ -1,22 +1,78 @@
-let config = {"test": "test"}
-
 let json = {
   "gameName": "SteffenCards",
 }
 
-// name of the game, amount of cards
-function setupGame(nameOfGame, numberOfDecks, maxPlayers, description){
+/**
+ * Setting Baseline For Game
+ * @param {string} nameOfGame - The name of the game
+ * @param {Number} numberOfDecks - The total number of complete decks in the game
+ (prior to playerDecks, i.e. adding up these decks gives total cards in game at start)
+ * @param {Number} minPlayers - The min amount of players allowed
+ * @param {Number} maxPlayers - The max amount of players allowed
+ * @param {string} description - Game description
+ * @returns {Object}
+ */
+function setupGame(nameOfGame, numberOfDecks, minPlayers, maxPlayers, description){
   let deckArray = []
   for (let i = 0; i < numberOfDecks; i++){
-    deckArray.push(i)
+    let element = {id : i}
+    deckArray.push(element)
   }
-  return {nameOfGame, numberOfDecks, deckArray, maxPlayers, description}
+  return {nameOfGame, numberOfDecks, deckArray, minPlayers, maxPlayers, description}
 }
 
-// sets amount of colors in card deck.
-function createDeck(numberOfColors){
-  return {numberOfColors}
+
+
+
+
+
+// // this could probably be in setupGame.
+// /**
+//  * Setting Colors or Factions
+//  * @param {Number} numberOfColors - Amount of different colors of cards
+//  * @returns {Number} numberOfColors
+//  */
+// function createDeck(numberOfColors){
+//   return {numberOfColors}
+// }
+
+
+/**
+ * Creating list of powers of the card
+ * @param {Array} options - array or object of powers
+ * @returns {Array}
+ */
+function createPowers (options) {
+  return options
 }
+
+/**
+ * Creating list of colors of the cards in deck
+ * @param {Array} options - array or object of colors
+ * @returns {Array}
+ */
+function createColors (options) {
+  return options
+}
+
+
+function createPlayer(name) {
+
+}
+// create player -- this is where we create individual players
+
+
+// playersSetup. -- this is where we load in the created Players.
+// pass in create players values
+function playerSetup(numberOfPlayers, minCardsInHand, maxCardsInHand) {
+
+}
+
+// also where we set allowed cards in hand, drawable cards, moves allowed.
+
+// tablesetup -- allowed cards on table. Max / mins.
+
+
 
 // setting attributes
 function setAttributes(numberOfCards, options){
@@ -45,15 +101,7 @@ function createAttribute(one, two, three, optional) {
   return attributeJson
 }
 
-// creates a general list of powers that can be assigned to card based on array
-function createPowers (options) {
-  return options
-}
 
-// sets colors that can be used in cards to identify factions / types
-function createColors (options) {
-  return options
-}
 
 // creates a list of total attributes for card type use ...args for adding the last argumetns
 function createAttributes(firstCardInSequence, lastCardInSequence, name, value, color, three, ...more) {
@@ -66,7 +114,10 @@ function createAttributes(firstCardInSequence, lastCardInSequence, name, value, 
         value: value,
         color: color,
         powers: three,
-        additional: more
+        additional: more,
+        inplay: false,
+        picked: false,
+        discarded: false
       }
     }
     jsonArray.push(element)
@@ -79,7 +130,7 @@ function mergeSets () {
   let completeset;
   if (arguments.length > 0)
   {
-    completeset = arguments[0].concat(arguments[1])
+    // completeset = arguments[0].concat(arguments[1])
   }
   if (arguments) {
     completeset = arguments[0]
@@ -87,8 +138,8 @@ function mergeSets () {
   else {
     console.log('no arguments')
   }
-  for (let i = 0; i < arguments.length; i++) {
-    console.log('arguments length ' + i)
+  for (let i = 1; i < arguments.length; i++) {
+    // console.log('arguments length ' + i)
     completeset = completeset.concat(arguments[i])
     // if (arguments[i+1]) {
     //   completeset = completeset.concat(arguments[i])
@@ -105,6 +156,25 @@ function mergeSets () {
   return completeset
 }
 
+// sets true or false if card is in play
+function inPlay (cardID, status) {
+  // console.log(cardID)
+  if (checkCardPlayable(cardID))
+    {return cardID.cards.picked = status;}
+}
+
+// runs a check to see if card has been played, discarded or just in hand
+function checkCardPlayable (cardID) {
+  console.log('checking if cards is playable')
+  if (cardID.cards.picked == true || cardID.cards.discarded) {
+    console.log('card is not playable')
+    return false
+  }
+  else {
+    console.log('card is playable')
+    return true
+  }
+}
 
 // this is how we utilize unimited arguments
 function manyArgs() {
@@ -115,15 +185,15 @@ function manyArgs() {
 
 
 module.exports = {
-  config: config,
   setupGame: setupGame,
-  createDeck: createDeck,
+  // createDeck: createDeck,
   setAttributes: setAttributes,
-  json: json,
+  // json: json,
   createAttribute: createAttribute,
   createAttributes: createAttributes,
   createPowers: createPowers,
   createColors: createColors,
   mergeSets: mergeSets,
-  manyArgs: manyArgs
+  manyArgs: manyArgs,
+  inPlay: inPlay
 }

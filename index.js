@@ -1,38 +1,27 @@
 // import the library
 let cardframe = require('./src/cardframe');
 console.log('====================================')
-// console.log(cardframe)
+// output cardFrame api functions
+console.log(cardframe)
 console.log('====================================')
 
-// set up the game info
-let config = cardframe.setupGame('SteffenCards', 12, 4, 'a sample deck builder')
-
-// todos:
-/*
-  setupGame: name, numberOfDecks, maxPlayers, description.
-  playerSetup:
-*/
-
-
-
+/* Sets up the game,
+ * example: name.setupGame(nameofGame, numberOfCardDecks, minPlayers, maxPlayers, description)
+ */
+let config = cardframe.setupGame('SteffenCards', 2, 1, 4, 'a sample deck builder')
+// output the config
+console.log(config)
+// output specific item of config
+// console.log(config.nameOfGame)
+console.log('====================================')
 
 
-let newDeck = cardframe.createDeck(4)
-
-
+// let newDeck = cardframe.createDeck(4)
 // console.log('name of game is: ' +  config.nameOfGame)
 // console.log('Total cards: ' +  config.numberOfCards)
-console.log('CardList: '+ config.deckArray)
-console.log('====================================')
 
-console.log(config)
-// console.log(config.cardArray[1])
-console.log('====================================')
+// console.log(newDeck)
 
-console.log(newDeck)
-
-console.log('====================================')
-console.log('====================================')
 
 // let setAttributes = cardframe.setAttributes(config.numberOfCards)
 // let setAttributes2 = cardframe.setAttributes(config.numberOfCards/2, 50)
@@ -50,7 +39,7 @@ let newCard = cardframe.createAttribute(1, "mr badass", "nr 2", "falcon fury")
 // console.log(newCard.cards)
 
 
-// create powers. or whatever we want to call them. 
+// create powers. or whatever we want to call them.
 let powers = cardframe.createPowers(['superpunch', 'tickle machine', 'farts'])
 let powers2 = cardframe.createPowers(['balk', 'walk', 'talk', 'chalk?'])
 
@@ -80,26 +69,30 @@ let deck = cardframe.mergeSets(set1, set2, set3)
 // let deck2 = cardframe.mergeSets()
 
 
-// var children = set1.concat(set2);
-// let merged = {...set1, ...set2};
-
-
 console.log('====================================')
 console.log('====================================')
 // console.log(merged)
 
 // last card in deck, card one would be deck[0]
-console.log(deck)
-
-console.log(deck[deck.length-1])
-// see one power from the list.
-console.log(deck[0])
-
-console.log(deck[deck.length-1].cards.powers[2])
+// console.log(deck)
+// //
+// console.log(deck[deck.length-1])
+// // // see one power from the list.
+// console.log(deck[0])
 //
+// console.log(deck[deck.length-1].cards.powers[2])
+// //
 // console.log(children[7])
 // change a cardname:
 // children[7].cards.cardName = 'NewName'
+cardframe.inPlay(deck[10], false)
+console.log(deck[10])
+
+cardframe.inPlay(deck[10], true)
+let played = deck[7].cards.picked = true;
+console.log(deck[10])
+cardframe.inPlay(deck[10], false)
+console.log(deck[10])
 
 
 // console.log(children[7])
@@ -117,9 +110,6 @@ console.log('====================================')
 // testArray(1,2,3,4,56,6)
 // console.log(cardframe.setup)
 
-// console.log(cardframe.json)
-//
-// console.log(cardframe.json.gameName)
 
 
 // setattributes(number of cards to set, type of attribute, (value)(faction))
@@ -139,3 +129,21 @@ console.log('====================================')
 // set up types of cards.
 // amount of cards need to return a list / array / object
 // something like setTypeOfCards(number of cards, attributes: HP: 4, stuff:5)
+
+
+
+// todos:
+/*
+  setupGame: name, numberOfDecks, maxPlayers, description.
+  playerSetup: the ID of the player.
+  totalCardPool: somehow.
+
+
+  functions to add :
+    shufflecards:
+    drawcards: (playerNumber, number of cards) // this then gives x cards and sets them ouf of the total pool.
+    Shuffleddeck?. Need to set drawn cards to inPool: false? all cards to inPool: true
+    Discarded Cards:
+    Playerdeck: ?
+    // add description on card. Tagline. Special Power / notes. Instructions.
+*/

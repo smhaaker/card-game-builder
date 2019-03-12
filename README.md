@@ -1,5 +1,6 @@
 # deck-builder
 Very early commit to get going.
+Intent is to create a framework to prototype card-builder games such as netrunner / star realms
 index.js is just an example file of usage
 
 ## usage:
