@@ -52,9 +52,16 @@ console.log(colors)
 
 // Creating sets of cards from our options.
 // first card, last card, name, value, color / faction, powers, more stuff
-let set1 = cardframe.createAttributes(0, 4, "SuperKiller", 10, colors[1], powers, "upgrades"+[4])
-let set2 = cardframe.createAttributes(4, 8, "Mr badass", 30, "red", "falcon fury", "cool stuff")
-let set3 = cardframe.createAttributes(8, 12, "SteffenBot", 10, colors[2], powers2, "upgrades"+[4])
+let set1 = cardframe.createAttributes(0, 4, "SuperKiller", 10, colors[1], powers, "base card, goof for something", "upgrades"+[4])
+let set2 = cardframe.createAttributes(4, 8, "Mr badass", 30, "red", "not a very good card", "falcon fury", "cool stuff")
+
+// adding additional object
+let additional = {
+  More: "Things", 
+  Work: "works!"
+};
+
+let set3 = cardframe.createAttributes(8, 12, "SteffenBot", 10, colors[2], powers2, "really strong card", additional)
 
 // console.log(newCards.cards.id)
 // console.log(set1)
@@ -74,7 +81,8 @@ console.log('====================================')
 // console.log(merged)
 
 // last card in deck, card one would be deck[0]
-// console.log(deck)
+console.log(deck)
+console.log(deck[10].cards)
 // //
 // console.log(deck[deck.length-1])
 // // // see one power from the list.
@@ -85,14 +93,15 @@ console.log('====================================')
 // console.log(children[7])
 // change a cardname:
 // children[7].cards.cardName = 'NewName'
-cardframe.inPlay(deck[10], false)
-console.log(deck[10])
 
-cardframe.inPlay(deck[10], true)
-let played = deck[7].cards.picked = true;
-console.log(deck[10])
-cardframe.inPlay(deck[10], false)
-console.log(deck[10])
+
+// cardframe.inPlay(deck[1], false)
+// console.log(deck[1])
+
+// cardframe.inPlay(deck[1], true)
+// console.log(deck[1])
+// cardframe.inPlay(deck[1], false)
+// console.log(deck[1])
 
 
 // console.log(children[7])
@@ -101,6 +110,42 @@ console.log('====================================')
 
 // let testargs = cardframe.manyArgs(23,33,6234,234,123563)
 
+
+// var shuffled = shuffle(deck);
+// console.log(shuffled)
+
+function shuffle(deckToShuffle) {
+    for (let i = 0; i < deckToShuffle.length - 1; i++) {
+        let j = i + Math.floor(Math.random() * (deckToShuffle.length - i));
+
+        let temp = deckToShuffle[j];
+        deckToShuffle[j] = deckToShuffle[i];
+        deckToShuffle[i] = temp;
+    }
+    return deckToShuffle;
+}
+
+
+// dealing function. needs to do amount of players annd amount of cards to deal
+
+function deal(source, cardsToDeal) {
+  // this works for 2 players. Need to fix for multiple players. Or just one
+  let playerArr = []
+  let playerArr2 = []
+  for (let i = 0; i < cardsToDeal; i += 2){
+    // playerArr gets evens, playerarr2 get odds? so just do i+1 and 
+    playerArr.push(source[i])
+    playerArr2.push(source[i+1])
+    }
+  console.log(playerArr2)
+  return playerArr
+}
+
+// deals 4 cards to player 1 from the shuffled deck. 
+// let dealtToPlayer1 = deal(shuffled, 4)
+// console.log(dealtToPlayer1)
+// // cardframe.dealCards(4)
+// console.log(dealtToPlayer1[1])
 
 // rest of args, when we need that.
 // const testArray = (...args) => {

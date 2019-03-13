@@ -24,8 +24,6 @@ function setupGame(nameOfGame, numberOfDecks, minPlayers, maxPlayers, descriptio
 
 
 
-
-
 // // this could probably be in setupGame.
 // /**
 //  * Setting Colors or Factions
@@ -104,7 +102,7 @@ function createAttribute(one, two, three, optional) {
 
 
 // creates a list of total attributes for card type use ...args for adding the last argumetns
-function createAttributes(firstCardInSequence, lastCardInSequence, name, value, color, three, ...more) {
+function createAttributes(firstCardInSequence, lastCardInSequence, name, value, color, abilities, description, ...additional) {
   let jsonArray = []
   for (let i = firstCardInSequence; i < lastCardInSequence; i++){
     let element = {
@@ -113,11 +111,14 @@ function createAttributes(firstCardInSequence, lastCardInSequence, name, value, 
         cardName: name,
         value: value,
         color: color,
-        powers: three,
-        additional: more,
+        abilities: abilities,
+        description: description,
+        additional,
+        cardstatus: {
         inplay: false,
         picked: false,
         discarded: false
+        }
       }
     }
     jsonArray.push(element)
@@ -141,32 +142,22 @@ function mergeSets () {
   for (let i = 1; i < arguments.length; i++) {
     // console.log('arguments length ' + i)
     completeset = completeset.concat(arguments[i])
-    // if (arguments[i+1]) {
-    //   completeset = completeset.concat(arguments[i])
-    //   // console.log('arguments length ' + i)
-    // }
+
   }
-  // if (arguments[2]){
-  //   console.log('there is an arugment')
-  // }
-  // else {
-  //   console.log('there is NOT an arugment')
-  // }
-  // let completeset = set1.concat(set2);
   return completeset
 }
 
-// sets true or false if card is in play
-function inPlay (cardID, status) {
-  // console.log(cardID)
-  if (checkCardPlayable(cardID))
-    {return cardID.cards.picked = status;}
+function dealCards (cardstoDead){
+  console.log(cardstoDead)
+
 }
 
+
+// card play functions
 // runs a check to see if card has been played, discarded or just in hand
 function checkCardPlayable (cardID) {
   console.log('checking if cards is playable')
-  if (cardID.cards.picked == true || cardID.cards.discarded) {
+  if (cardID.cards.cardstatus.picked == true || cardID.cards.cardstatus.discarded) {
     console.log('card is not playable')
     return false
   }
@@ -176,6 +167,18 @@ function checkCardPlayable (cardID) {
   }
 }
 
+// sets true or false if card is in play
+function inPlay (cardID, status) {
+  // console.log(cardID)
+  if (checkCardPlayable(cardID)) {
+    return cardID.cards.cardstatus.picked = status
+    }
+  else {
+    return cardID.cards.cardstatus.picked
+  }
+}
+
+// extra functions for testing
 // this is how we utilize unimited arguments
 function manyArgs() {
   for (var i = 0; i < arguments.length; ++i)
@@ -184,6 +187,8 @@ function manyArgs() {
 }
 
 
+
+// exports
 module.exports = {
   setupGame: setupGame,
   // createDeck: createDeck,
@@ -194,6 +199,7 @@ module.exports = {
   createPowers: createPowers,
   createColors: createColors,
   mergeSets: mergeSets,
+  dealCards: dealCards,
   manyArgs: manyArgs,
   inPlay: inPlay
 }
