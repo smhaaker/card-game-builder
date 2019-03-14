@@ -61,9 +61,16 @@ let additional = {
   Work: "works!"
 };
 
+// we might want to pass a majority of values thusly:
+let stuff = {
+  value: 10,
+  description: 'this is a card'
+}
+// and pass that in. 
+
 let set3 = cardframe.createAttributes(8, 12, "SteffenBot", 10, colors[2], powers2, "really strong card", additional)
 
-// console.log(newCards.cards.id)
+// console.log(newCards.id)
 // console.log(set1)
 // // console.log(typeof set1)
 // // newCards = cardframe.createAttributes(4, "mr badass", 30, "falcon furry", "cool stuff")
@@ -88,20 +95,20 @@ console.log(deck[10].cards)
 // // // see one power from the list.
 // console.log(deck[0])
 //
-// console.log(deck[deck.length-1].cards.powers[2])
+// console.log(deck[deck.length-1].powers[2])
 // //
 // console.log(children[7])
 // change a cardname:
-// children[7].cards.cardName = 'NewName'
+// children[7].cardName = 'NewName'
 
 
-// cardframe.inPlay(deck[1], false)
-// console.log(deck[1])
+cardframe.inPlay(deck[1], false)
+console.log(deck[1])
 
-// cardframe.inPlay(deck[1], true)
-// console.log(deck[1])
-// cardframe.inPlay(deck[1], false)
-// console.log(deck[1])
+cardframe.inPlay(deck[1], true)
+console.log(deck[1])
+cardframe.inPlay(deck[1], false)
+console.log(deck[1])
 
 
 // console.log(children[7])
@@ -111,8 +118,8 @@ console.log('====================================')
 // let testargs = cardframe.manyArgs(23,33,6234,234,123563)
 
 
-// var shuffled = shuffle(deck);
-// console.log(shuffled)
+let shuffled = shuffle(deck);
+console.log(shuffled)
 
 function shuffle(deckToShuffle) {
     for (let i = 0; i < deckToShuffle.length - 1; i++) {
@@ -134,18 +141,32 @@ function deal(source, cardsToDeal) {
   let playerArr2 = []
   for (let i = 0; i < cardsToDeal; i += 2){
     // playerArr gets evens, playerarr2 get odds? so just do i+1 and 
-    playerArr.push(source[i])
-    playerArr2.push(source[i+1])
+    if(cardsToDeal > source.length){
+      console.log('not that many cards in deck')
+      break;
     }
-  console.log(playerArr2)
+    else {
+      if(source[i].cardstatus.picked == true){
+        // pick next card
+        console.log('this card is already picked')
+      }
+      else {
+        playerArr.push(source[i])
+        cardframe.inPlay(source[i], true)
+        playerArr2.push(source[i+1])
+        cardframe.inPlay(source[i+1], true)
+        }  
+      }
+    }
+  // console.log(playerArr2)
   return playerArr
 }
 
 // deals 4 cards to player 1 from the shuffled deck. 
-// let dealtToPlayer1 = deal(shuffled, 4)
-// console.log(dealtToPlayer1)
+let dealtToPlayer1 = deal(shuffled,12)
+console.log(dealtToPlayer1)
 // // cardframe.dealCards(4)
-// console.log(dealtToPlayer1[1])
+console.log(dealtToPlayer1[1])
 
 // rest of args, when we need that.
 // const testArray = (...args) => {

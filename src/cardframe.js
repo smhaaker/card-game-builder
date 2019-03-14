@@ -100,13 +100,13 @@ function createAttribute(one, two, three, optional) {
 }
 
 
-
+// this is the one we use for adding cards. Some default settings some optional
 // creates a list of total attributes for card type use ...args for adding the last argumetns
 function createAttributes(firstCardInSequence, lastCardInSequence, name, value, color, abilities, description, ...additional) {
   let jsonArray = []
   for (let i = firstCardInSequence; i < lastCardInSequence; i++){
     let element = {
-      cards: {
+      // cards: {
         id: i,
         cardName: name,
         value: value,
@@ -118,7 +118,7 @@ function createAttributes(firstCardInSequence, lastCardInSequence, name, value, 
         inplay: false,
         picked: false,
         discarded: false
-        }
+        // }
       }
     }
     jsonArray.push(element)
@@ -157,7 +157,7 @@ function dealCards (cardstoDead){
 // runs a check to see if card has been played, discarded or just in hand
 function checkCardPlayable (cardID) {
   console.log('checking if cards is playable')
-  if (cardID.cards.cardstatus.picked == true || cardID.cards.cardstatus.discarded) {
+  if (cardID.cardstatus.picked == true || cardID.cardstatus.discarded) {
     console.log('card is not playable')
     return false
   }
@@ -168,13 +168,14 @@ function checkCardPlayable (cardID) {
 }
 
 // sets true or false if card is in play
+// need to clean these to make sure picked / inplay are set differently
 function inPlay (cardID, status) {
   // console.log(cardID)
   if (checkCardPlayable(cardID)) {
-    return cardID.cards.cardstatus.picked = status
+    return cardID.cardstatus.picked = status
     }
   else {
-    return cardID.cards.cardstatus.picked
+    return cardID.cardstatus.picked
   }
 }
 
