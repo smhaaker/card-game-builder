@@ -187,8 +187,6 @@ function manyArgs() {
     console.log(arguments)
 }
 
-
-
 // exports
 module.exports = {
   setupGame: setupGame,

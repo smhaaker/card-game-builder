@@ -96,11 +96,6 @@ console.log(deck[10].cards)
 // console.log(deck[0])
 //
 // console.log(deck[deck.length-1].powers[2])
-// //
-// console.log(children[7])
-// change a cardname:
-// children[7].cardName = 'NewName'
-
 
 cardframe.inPlay(deck[1], false)
 console.log(deck[1])
@@ -111,7 +106,7 @@ cardframe.inPlay(deck[1], false)
 console.log(deck[1])
 
 
-// console.log(children[7])
+
 
 console.log('====================================')
 
@@ -134,7 +129,8 @@ function shuffle(deckToShuffle) {
 
 
 // dealing function. needs to do amount of players annd amount of cards to deal
-
+// this function is no good yet. 
+// Needs to increment count of dealt cards as well as set the stat.
 function deal(source, cardsToDeal) {
   // this works for 2 players. Need to fix for multiple players. Or just one
   let playerArr = []
@@ -162,11 +158,12 @@ function deal(source, cardsToDeal) {
   return playerArr
 }
 
+
 // deals 4 cards to player 1 from the shuffled deck. 
-let dealtToPlayer1 = deal(shuffled,12)
-console.log(dealtToPlayer1)
+// let dealtToPlayer1 = deal(shuffled,12)
+// console.log(dealtToPlayer1)
 // // cardframe.dealCards(4)
-console.log(dealtToPlayer1[1])
+// console.log(dealtToPlayer1[1])
 
 // rest of args, when we need that.
 // const testArray = (...args) => {
@@ -178,6 +175,45 @@ console.log(dealtToPlayer1[1])
 
 
 
+// this seems to kind of work. Need a check for even number of cards dealt though. 
+// also neeed to return player 1 2 and 3 somehow.... 
+// deal function function(decktodeal, players, amount of cards)
+function newDealer(deckToDealFrom, playersToDealTo, cardsToDealTotal) 
+{
+
+  let newArr = []
+  for(let i=0;i<playersToDealTo+1;i++){
+    newArr[i]=[];
+  }
+
+  console.log(newArr)
+
+  let j = 0
+  // console.log('deckToDealFrom ' + deckToDealFrom)
+  console.log('playersToDealTo ' + playersToDealTo)
+  console.log('cardsToDeal ' + cardsToDealTotal)
+  for (let i = 0; i < cardsToDealTotal; i++){
+    if (j > playersToDealTo) {
+      j = 0;
+    }
+
+    // console.log(i)
+    // console.log(j)
+
+    newArr[j].push(deckToDealFrom[i])
+    j++
+    cardframe.inPlay(deckToDealFrom[i], true)
+  }
+  console.log(newArr)
+  return newArr;
+}
+
+let cardsDealt = newDealer(shuffled, 1, 10)
+console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1].id))
+
+// console.log('player2: ' + cardsDealt[1])
+
+// console.log(cardsDealt[1])
 // setattributes(number of cards to set, type of attribute, (value)(faction))
 
 //
