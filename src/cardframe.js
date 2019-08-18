@@ -1,7 +1,3 @@
-let json = {
-  "gameName": "SteffenCards",
-}
-
 /**
  * Setting Baseline For Game
  * @param {string} nameOfGame - The name of the game
@@ -20,6 +16,8 @@ function setupGame(nameOfGame, numberOfDecks, minPlayers, maxPlayers, descriptio
   }
   return {nameOfGame, numberOfDecks, deckArray, minPlayers, maxPlayers, description}
 }
+
+
 
 
 
@@ -76,9 +74,9 @@ function playerSetup(numberOfPlayers, minCardsInHand, maxCardsInHand) {
 function setAttributes(numberOfCards, options){
   // if(!options.teamId) return console.log('teamId required');
   if(!numberOfCards) return console.log('numberOfCards required');
-  console.log(numberOfCards)
+  // console.log(numberOfCards)
   options = options || null;
-  console.log(options)
+  // console.log(options)
 }
 
 function createAttribute(one, two, three, optional) {
@@ -147,22 +145,16 @@ function mergeSets () {
   return completeset
 }
 
-function dealCards (cardstoDead){
-  console.log(cardstoDead)
-
-}
-
-
 // card play functions
 // runs a check to see if card has been played, discarded or just in hand
 function checkCardPlayable (cardID) {
-  console.log('checking if cards is playable')
+  // console.log('checking if cards is playable')
   if (cardID.cardstatus.picked == true || cardID.cardstatus.discarded) {
-    console.log('card is not playable')
+    // console.log('card is not playable')
     return false
   }
   else {
-    console.log('card is playable')
+    // console.log('card is playable')
     return true
   }
 }
@@ -207,19 +199,19 @@ function deal(deckToDealFrom, playersToDealTo, cardsToDealTotal)
     newArr[i]=[];
   }
 
-  console.log("amount of players:  " + newArr.length)
-  console.log(newArr)
+  // console.log("amount of players:  " + newArr.length)
+  // console.log(newArr)
   let j = 0
   // console.log('deckToDealFrom ' + deckToDealFrom)
-  console.log('playersToDealTo ' + playersToDealTo)
-  console.log('cardsToDeal ' + cardsToDealTotal)
+  // console.log('playersToDealTo ' + playersToDealTo)
+  // console.log('cardsToDeal ' + cardsToDealTotal)
   for (let i = 0; i < cardsToDealTotal; i++){
     if (j > playersToDealTo-1) {
       j = 0;
     }
 
     // console.log(i)
-    console.log(j)
+    // console.log(j)
 
     newArr[j].push(deckToDealFrom[i])
     j++
@@ -234,13 +226,12 @@ module.exports = {
   setupGame: setupGame,
   // createDeck: createDeck,
   setAttributes: setAttributes,
-  // json: json,
   createAttribute: createAttribute,
   createAttributes: createAttributes,
   createPowers: createPowers,
   createColors: createColors,
   mergeSets: mergeSets,
-  dealCards: dealCards,
+  // dealCards: dealCards,
   manyArgs: manyArgs,
   inPlay: inPlay,
   shuffle: shuffle,
