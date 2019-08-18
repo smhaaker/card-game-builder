@@ -8,7 +8,7 @@ console.log('====================================')
 /* Sets up the game,
  * example: name.setupGame(nameofGame, numberOfCardDecks, minPlayers, maxPlayers, description)
  */
-let config = cardframe.setupGame('SteffenCards', 2, 1, 4, 'a sample deck builder')
+let config = cardframe.setupGame('Old Greek People', 2, 1, 4, 'Greek Mythology Throwdown')
 // output the config
 console.log(config)
 // output specific item of config
@@ -34,7 +34,7 @@ console.log('====================================')
 // to gamesetup. playermoves. Probably in its own player object.
 
 
-let newCard = cardframe.createAttribute(1, "mr badass", "nr 2", "falcon fury")
+// let newCard = cardframe.createAttribute(1, "mr badass", "nr 2", "falcon fury")
 // console.log(newCard.cards[0].powers)
 // console.log(newCard.cards)
 

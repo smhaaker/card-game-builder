@@ -187,6 +187,48 @@ function manyArgs() {
     console.log(arguments)
 }
 
+function shuffle(deckToShuffle) {
+  for (let i = 0; i < deckToShuffle.length - 1; i++) {
+      let j = i + Math.floor(Math.random() * (deckToShuffle.length - i));
+
+      let temp = deckToShuffle[j];
+      deckToShuffle[j] = deckToShuffle[i];
+      deckToShuffle[i] = temp;
+  }
+  return deckToShuffle;
+}
+
+
+function deal(deckToDealFrom, playersToDealTo, cardsToDealTotal) 
+{
+
+  let newArr = []
+  for(let i=0;i<playersToDealTo;i++){
+    newArr[i]=[];
+  }
+
+  console.log("amount of players:  " + newArr.length)
+  console.log(newArr)
+  let j = 0
+  // console.log('deckToDealFrom ' + deckToDealFrom)
+  console.log('playersToDealTo ' + playersToDealTo)
+  console.log('cardsToDeal ' + cardsToDealTotal)
+  for (let i = 0; i < cardsToDealTotal; i++){
+    if (j > playersToDealTo-1) {
+      j = 0;
+    }
+
+    // console.log(i)
+    console.log(j)
+
+    newArr[j].push(deckToDealFrom[i])
+    j++
+    this.inPlay(deckToDealFrom[i], true)
+  }
+//   console.log(newArr)
+  return newArr;
+}
+
 // exports
 module.exports = {
   setupGame: setupGame,
@@ -200,5 +242,7 @@ module.exports = {
   mergeSets: mergeSets,
   dealCards: dealCards,
   manyArgs: manyArgs,
-  inPlay: inPlay
+  inPlay: inPlay,
+  shuffle: shuffle,
+  deal: deal
 }
