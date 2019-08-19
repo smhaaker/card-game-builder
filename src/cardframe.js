@@ -52,24 +52,6 @@ function createColors (options) {
 }
 
 
-function createPlayer(name) {
-
-}
-// create player -- this is where we create individual players
-
-
-// playersSetup. -- this is where we load in the created Players.
-// pass in create players values
-function playerSetup(numberOfPlayers, minCardsInHand, maxCardsInHand) {
-
-}
-
-// also where we set allowed cards in hand, drawable cards, moves allowed.
-
-// tablesetup -- allowed cards on table. Max / mins.
-
-
-
 // setting attributes
 function setAttributes(numberOfCards, options){
   // if(!options.teamId) return console.log('teamId required');
@@ -237,18 +219,18 @@ function deal(deckToDealFrom, playersToDealTo, cardsToDealTotal)
 function assignPlayers() {
   let playerArr = []
   for (let i = 0; i < arguments.length; i++){
-
     let element = {
         id: i,
         name: arguments[i],
-
       }
-    // }
     playerArr.push(element)
   }
-
   return playerArr
 }
+
+// we should also assign cards deck to player in a function. 
+
+// also some sort stats
 
 // exports
 module.exports = {

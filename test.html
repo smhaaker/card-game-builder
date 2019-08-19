@@ -2,79 +2,68 @@
 
 <head>
 
+    <style>
+    
+    #cardsOutput {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    .theDeck{
+        background-color: gainsboro;
+    }
+
+    .singleCard{
+        background-color: white;
+        padding: 10px;
+    }
+    
+    </style>
+
     <script type="text/javascript" src="./src/cardframe.js"></script>
     <script>
 
-        let config = new setupGame('SteffenCards', 2, 1, 4, 'a sample deck builder')
+        let config = new setupGame('Greek', 2, 1, 4, 'All the Greek Peoples')
 
         console.log(config)
         
-        let colors = createColors(['red', 'white', 'blue', 'black'])
-        console.log(colors)
+        let colors = createColors(['red', 'white', 'blue'])
 
-        let powers = createPowers(['superpunch', 'tickle machine', 'farts'])
-        let powers2 = createPowers(['balk', 'walk', 'talk', 'chalk?'])
+// Creating sets of cards from our options.
+// Amoung of cards, name, value, color / faction, powers, more stuff
+let zeus = createCardSet(2, "Zeus", 5, colors[1], ['thunderbolt'], 'Zeus is the king of the gods')
+let cassandra = createCardSet(4, "Cassandra", 5, colors[1], ['predict'], 'Cassandra predicts the future')
+let hera = createCardSet(4, "Hera", 5, colors[1], ['Mean'], 'Hera is so mean')
+let hades = createCardSet(4, "Hades", 5, colors[1], ['what does he do?'], 'of the underworld')
+let dionysius = createCardSet(4, "Dionysius", 5, colors[1], ['what does he do?'], 'God of the party')
+// We merge all the generated 
+let deck = mergeSets(zeus, cassandra, hera, hades, dionysius)
+console.log(deck)
 
-        let additional = {
-            More: "Things", 
-            Work: "works!"
-        };
-
-        let set1 = createAttributes(0, 3, "CatBot", 30, colors[1], powers2, "Strong Card", additional)
-        let set2 = createAttributes(4, 7, "DogBot", 20, colors[2], powers, "Medium card", additional)
-        let set3 = createAttributes(8, 16, "SteffenBot", 10, colors[3], powers, "Standard Card", additional)
+console.log('====================================')
 
 
-        let deck = mergeSets(set1, set2, set3)
-        // console.log(deck)
+// then we shuffled the cards
+let shuffled = shuffle(deck);
+// console.log(shuffled)
 
-        let shuffled = shuffle(deck);
-            console.log(shuffled)
+// dealing cards from deck shuffled to 4 players and two cards each
+let cardsDealt = deal(shuffled, 4, 8)
 
-            function shuffle(deckToShuffle) {
-                for (let i = 0; i < deckToShuffle.length - 1; i++) {
-                    let j = i + Math.floor(Math.random() * (deckToShuffle.length - i));
+// console.log("dealt cards: " + JSON.stringify(cardsDealt))
+console.log(cardsDealt)
 
-                    let temp = deckToShuffle[j];
-                    deckToShuffle[j] = deckToShuffle[i];
-                    deckToShuffle[i] = temp;
-                }
-                return deckToShuffle;
-            }
+// console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1]))
+// console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[1][1]))
+// console.log('player3 / card 2: ' + JSON.stringify(cardsDealt[2][1]))
+// console.log('player4 / card 2: ' + JSON.stringify(cardsDealt[3][1]))
 
-            function deal(source, cardsToDeal) {
-                // this works for 2 players. Need to fix for multiple players. Or just one
-                let playerArr = []
-                let playerArr2 = []
-                for (let i = 0; i < cardsToDeal; i += 2){
-                    // playerArr gets evens, playerarr2 get odds? so just do i+1 and 
-                    if(cardsToDeal > source.length){
-                    console.log('not that many cards in deck')
-                    break;
-                    }
-                    else {
-                    if(source[i].cardstatus.picked == true){
-                        // pick next card
-                        console.log('this card is already picked')
-                    }
-                    else {
-                        playerArr.push(source[i])
-                        inPlay(source[i], true)
-                        playerArr2.push(source[i+1])
-                        inPlay(source[i+1], true)
-                        }  
-                    }
-                    }
-                // console.log(playerArr2)
-                return playerArr
-                }
 
-                let dealtToPlayer1 = deal(shuffled,6)
-                console.log(dealtToPlayer1)
-                // let dealtToPlayer2 = deal(shuffled,4)
-                // console.log(dealtToPlayer2)
-                // // cardframe.dealCards(4)
-                // console.log(dealtToPlayer1[1])
+// assignes a playername to a playerID
+let players = assignPlayers('Steffen', 'Mike', 'A cat', 'a dog')
+console.log(players)
+console.log(players[1])
+console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
     </script>
 
 </head>
@@ -83,6 +72,10 @@
     <h1 id='title'>title</h1>
     <h2 id='desc'>desc</h2>
 
+    <div class="theDeck"><p>The entire Shuffled Deck</p>
+        <table id='cardsOutput'><tr></tr></table>
+    </div>
+    
 
 <script>
 
@@ -90,6 +83,11 @@
     h1Title.innerHTML = config.nameOfGame;
     let h2Desc = document.getElementById('desc')
     h2Desc.innerHTML = config.description;
+    let cardsOutputted = document.getElementById('cardsOutput')
+    
+    for (let i = 0; i < deck.length; i++){
+        cardsOutputted.innerHTML += '<td class="singleCard">Name: <br/>' + deck[i].cardName + "<br/> Value:" + JSON.stringify(deck[i].value) + '</td>'
+    }
 
 </script>
 
