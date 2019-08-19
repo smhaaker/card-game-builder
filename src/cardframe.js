@@ -100,7 +100,7 @@ function createAttribute(one, two, three, optional) {
 
 // this is the one we use for adding cards. Some default settings some optional
 // creates a list of total attributes for card type use ...args for adding the last argumetns
-function createAttributes(amountOfCards, name, value, color, abilities, description, ...additional) {
+function createCardSet(amountOfCards, name, value, color, abilities, description, ...additional) {
   let jsonArray = []
   for (let i = 0; i < amountOfCards; i++){
     let element = {
@@ -124,7 +124,7 @@ function createAttributes(amountOfCards, name, value, color, abilities, descript
   return jsonArray
 }
 
-// merging all card sets to a deck
+// merges sets of cards and assigned card ID's
 function mergeSets () {
   let completeSet
   let totalLength = 0
@@ -134,7 +134,6 @@ function mergeSets () {
   }
   if (arguments) {
     completeSet = arguments[0]
-    console.log('amount merging: ' + arguments.length)
     for (let i = 0; i < arguments.length; i++){
       for (let j = 0; j< arguments[i].length; j++){
         totalLength++
@@ -152,7 +151,7 @@ function mergeSets () {
   }
   for (let i = 0; i < totalLength; i++){
     completeSet[i].id = i+1
-    console.log(completeSet[i].id)
+    // console.log(completeSet[i].id)
   }
   return completeSet
 }
@@ -239,7 +238,7 @@ module.exports = {
   // createDeck: createDeck,
   setAttributes: setAttributes,
   createAttribute: createAttribute,
-  createAttributes: createAttributes,
+  createCardSet: createCardSet,
   createPowers: createPowers,
   createColors: createColors,
   mergeSets: mergeSets,

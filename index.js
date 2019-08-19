@@ -52,8 +52,8 @@ console.log(colors)
 
 // Creating sets of cards from our options.
 // first card, last card, name, value, color / faction, powers, more stuff
-let set1 = cardframe.createAttributes(0, 4, "SuperKiller", 10, colors[1], powers, "base card, goof for something", "upgrades"+[4])
-let set2 = cardframe.createAttributes(4, 8, "Mr badass", 30, "red", "not a very good card", "falcon fury", "cool stuff")
+let set1 = cardframe.createCardSet(0, 4, "SuperKiller", 10, colors[1], powers, "base card, goof for something", "upgrades"+[4])
+let set2 = cardframe.createCardSet(4, 8, "Mr badass", 30, "red", "not a very good card", "falcon fury", "cool stuff")
 
 // adding additional object
 let additional = {
@@ -68,7 +68,7 @@ let stuff = {
 }
 // and pass that in. 
 
-let set3 = cardframe.createAttributes(8, 12, "SteffenBot", 10, colors[2], powers2, "really strong card", additional)
+let set3 = cardframe.createCardSet(8, 12, "SteffenBot", 10, colors[2], powers2, "really strong card", additional)
 
 // console.log(newCards.id)
 // console.log(set1)
