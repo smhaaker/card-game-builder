@@ -17,14 +17,14 @@ let config = cardframe.setupGame('Old Greek People', 2, 1, 4, 'Greek Mythology T
 let colors = cardframe.createColors(['red', 'white', 'blue'])
 
 // Creating sets of cards from our options.
-// first card, last card, name, value, color / faction, powers, more stuff
-let zeus = cardframe.createAttributes(0, 4, "Zeus", 5, colors[1], ['thunderbolt'], 'Zeus is the king of the gods')
-let cassandra = cardframe.createAttributes(4, 8, "Cassandra", 5, colors[1], ['predict'], 'Cassandra predicts the future')
-let hera = cardframe.createAttributes(8, 12, "Hera", 5, colors[1], ['Mean'], 'Hera is so mean')
-let hades = cardframe.createAttributes(12, 16, "Hades", 5, colors[1], ['what does he do?'], 'of the underworld')
-
+// Amoung of cards, name, value, color / faction, powers, more stuff
+let zeus = cardframe.createAttributes(2, "Zeus", 5, colors[1], ['thunderbolt'], 'Zeus is the king of the gods')
+let cassandra = cardframe.createAttributes(4, "Cassandra", 5, colors[1], ['predict'], 'Cassandra predicts the future')
+let hera = cardframe.createAttributes(4, "Hera", 5, colors[1], ['Mean'], 'Hera is so mean')
+let hades = cardframe.createAttributes(4, "Hades", 5, colors[1], ['what does he do?'], 'of the underworld')
+let dionysius = cardframe.createAttributes(4, "Dionysius", 5, colors[1], ['what does he do?'], 'God of the party')
 // We merge all the generated 
-let deck = cardframe.mergeSets(zeus, cassandra, hera, hades)
+let deck = cardframe.mergeSets(zeus, cassandra, hera, hades, dionysius)
 console.log(deck)
 
 console.log('====================================')

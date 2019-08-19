@@ -100,9 +100,9 @@ function createAttribute(one, two, three, optional) {
 
 // this is the one we use for adding cards. Some default settings some optional
 // creates a list of total attributes for card type use ...args for adding the last argumetns
-function createAttributes(firstCardInSequence, lastCardInSequence, name, value, color, abilities, description, ...additional) {
+function createAttributes(amountOfCards, name, value, color, abilities, description, ...additional) {
   let jsonArray = []
-  for (let i = firstCardInSequence; i < lastCardInSequence; i++){
+  for (let i = 0; i < amountOfCards; i++){
     let element = {
       // cards: {
         id: i,
@@ -126,23 +126,35 @@ function createAttributes(firstCardInSequence, lastCardInSequence, name, value, 
 
 // merging all card sets to a deck
 function mergeSets () {
-  let completeset;
+  let completeSet
+  let totalLength = 0
   if (arguments.length > 0)
   {
     // completeset = arguments[0].concat(arguments[1])
   }
   if (arguments) {
-    completeset = arguments[0]
+    completeSet = arguments[0]
+    console.log('amount merging: ' + arguments.length)
+    for (let i = 0; i < arguments.length; i++){
+      for (let j = 0; j< arguments[i].length; j++){
+        totalLength++
+      }
+    }
   }
   else {
     console.log('no arguments')
   }
+  // console.log('Total cards is: ' + totalLength)
   for (let i = 1; i < arguments.length; i++) {
     // console.log('arguments length ' + i)
-    completeset = completeset.concat(arguments[i])
+    completeSet = completeSet.concat(arguments[i])
 
   }
-  return completeset
+  for (let i = 0; i < totalLength; i++){
+    completeSet[i].id = i+1
+    console.log(completeSet[i].id)
+  }
+  return completeSet
 }
 
 // card play functions
