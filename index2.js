@@ -38,21 +38,28 @@ let shuffled = cardframe.shuffle(deck);
 let cardsDealt = cardframe.deal(shuffled, 4, 8)
 
 // console.log("dealt cards: " + JSON.stringify(cardsDealt))
-// console.log(cardsDealt)
+console.log(cardsDealt)
 
-console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1]))
-console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[1][1]))
-console.log('player3 / card 2: ' + JSON.stringify(cardsDealt[2][1]))
-console.log('player4 / card 2: ' + JSON.stringify(cardsDealt[3][1]))
-
-
-    if (cardsDealt[0][1].value > cardsDealt[1][1].value)
-        {
-        console.log("player one wins!")
-        }
-    else {
-        console.log("player 2 wins")
-    }
+// console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1]))
+// console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[1][1]))
+// console.log('player3 / card 2: ' + JSON.stringify(cardsDealt[2][1]))
+// console.log('player4 / card 2: ' + JSON.stringify(cardsDealt[3][1]))
 
 
-    console.log(shuffled[10])
+// assignes a playername to a playerID
+let players = cardframe.assignPlayers('Steffen', 'Mike', 'A cat', 'a dog')
+console.log(players)
+console.log(players[1])
+console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
+
+
+    // if (cardsDealt[0][1].value > cardsDealt[1][1].value)
+    //     {
+    //     console.log("player one wins!")
+    //     }
+    // else {
+    //     console.log("player 2 wins")
+    // }
+
+
+    // console.log(shuffled[10])

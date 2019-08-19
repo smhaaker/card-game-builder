@@ -232,6 +232,24 @@ function deal(deckToDealFrom, playersToDealTo, cardsToDealTotal)
   return newArr;
 }
 
+
+// assigned passed name to a player id. 
+function assignPlayers() {
+  let playerArr = []
+  for (let i = 0; i < arguments.length; i++){
+
+    let element = {
+        id: i,
+        name: arguments[i],
+
+      }
+    // }
+    playerArr.push(element)
+  }
+
+  return playerArr
+}
+
 // exports
 module.exports = {
   setupGame: setupGame,
@@ -246,5 +264,6 @@ module.exports = {
   manyArgs: manyArgs,
   inPlay: inPlay,
   shuffle: shuffle,
-  deal: deal
+  deal: deal,
+  assignPlayers: assignPlayers
 }
