@@ -16,6 +16,7 @@
     .singleCard{
         background-color: white;
         padding: 10px;
+        width: 200px;
     }
     
     </style>
@@ -31,11 +32,11 @@
 
 // Creating sets of cards from our options.
 // Amoung of cards, name, value, color / faction, powers, more stuff
-let zeus = createCardSet(2, "Zeus", 5, colors[1], ['thunderbolt'], 'Zeus is the king of the gods')
+let zeus = createCardSet(2, "Zeus", 50, colors[1], ['thunderbolt'], 'Zeus is the king of the gods')
 let cassandra = createCardSet(4, "Cassandra", 5, colors[1], ['predict'], 'Cassandra predicts the future')
-let hera = createCardSet(4, "Hera", 5, colors[1], ['Mean'], 'Hera is so mean')
-let hades = createCardSet(4, "Hades", 5, colors[1], ['what does he do?'], 'of the underworld')
-let dionysius = createCardSet(4, "Dionysius", 5, colors[1], ['what does he do?'], 'God of the party')
+let hera = createCardSet(4, "Hera", 15, colors[1], ['Mean'], 'Hera is so mean')
+let hades = createCardSet(4, "Hades", 25, colors[1], ['what does he do?'], 'of the underworld')
+let dionysius = createCardSet(4, "Dionysius", 69, colors[1], ['what does he do?'], 'God of the party')
 // We merge all the generated 
 let deck = mergeSets(zeus, cassandra, hera, hades, dionysius)
 console.log(deck)
@@ -73,7 +74,7 @@ console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
     <h2 id='desc'>desc</h2>
 
     <div class="theDeck"><p>The entire Shuffled Deck</p>
-        <table id='cardsOutput'><tr></tr></table>
+        <table id='cardsOutput'></table>
     </div>
     
 
