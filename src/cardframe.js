@@ -17,22 +17,6 @@ function setupGame(nameOfGame, numberOfDecks, minPlayers, maxPlayers, descriptio
   return {nameOfGame, numberOfDecks, deckArray, minPlayers, maxPlayers, description}
 }
 
-
-
-
-
-
-// // this could probably be in setupGame.
-// /**
-//  * Setting Colors or Factions
-//  * @param {Number} numberOfColors - Amount of different colors of cards
-//  * @returns {Number} numberOfColors
-//  */
-// function createDeck(numberOfColors){
-//   return {numberOfColors}
-// }
-
-
 /**
  * Creating list of powers of the card
  * @param {Array} options - array or object of powers
@@ -59,24 +43,6 @@ function setAttributes(numberOfCards, options){
   // console.log(numberOfCards)
   options = options || null;
   // console.log(options)
-}
-
-function createAttribute(one, two, three, optional) {
-  let attributeJson = {
-    "cards": [
-      {
-        "name": one,
-        "value": 29,
-        "color": two,
-        "powers": [
-          "Radiation resistance",
-          "Turning tiny",
-          three
-        ]
-      }
-    ]
-  }
-  return attributeJson
 }
 
 
@@ -184,35 +150,34 @@ function shuffle(deckToShuffle) {
 }
 
 
-function deal(deckToDealFrom, playersToDealTo, cardsToDealTotal) 
-{
+function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
+    let cardsToDealTotal = cardsToEachPlayer * playersToDealTo
+    let newArr = []
+      for(let i=0;i<playersToDealTo;i++){
+        newArr[i]=[];
+      }
 
-  let newArr = []
-  for(let i=0;i<playersToDealTo;i++){
-    newArr[i]=[];
-  }
+    // console.log("amount of players:  " + newArr.length)
+    // console.log(newArr)
+    let j = 0
+    // console.log('deckToDealFrom ' + deckToDealFrom)
+    // console.log('playersToDealTo ' + playersToDealTo)
+    // console.log('cardsToDeal ' + cardsToDealTotal)
+    for (let i = 0; i < cardsToDealTotal; i++){
+      if (j > playersToDealTo-1) {
+        j = 0;
+      }
 
-  // console.log("amount of players:  " + newArr.length)
-  // console.log(newArr)
-  let j = 0
-  // console.log('deckToDealFrom ' + deckToDealFrom)
-  // console.log('playersToDealTo ' + playersToDealTo)
-  // console.log('cardsToDeal ' + cardsToDealTotal)
-  for (let i = 0; i < cardsToDealTotal; i++){
-    if (j > playersToDealTo-1) {
-      j = 0;
+      // console.log(i)
+      // console.log(j)
+
+      newArr[j].push(deckToDealFrom[i])
+      j++
+      this.inPlay(deckToDealFrom[i], true)
     }
-
-    // console.log(i)
-    // console.log(j)
-
-    newArr[j].push(deckToDealFrom[i])
-    j++
-    this.inPlay(deckToDealFrom[i], true)
+  //   console.log(newArr)
+    return newArr;
   }
-//   console.log(newArr)
-  return newArr;
-}
 
 
 // assigned passed name to a player id. 
@@ -228,6 +193,17 @@ function assignPlayers() {
   return playerArr
 }
 
+
+// shows the cards of whichever player is called
+function playerCards(playerID, cardsDealtName) {
+  let cardArr = []
+  for (let i = 0; i < cardsDealtName[playerID].length; i ++)
+    {
+      cardArr.push(cardsDealtName[playerID][i])
+    }
+    return cardArr
+}
+
 // we should also assign cards deck to player in a function. 
 
 // also some sort stats
@@ -237,7 +213,6 @@ module.exports = {
   setupGame: setupGame,
   // createDeck: createDeck,
   setAttributes: setAttributes,
-  createAttribute: createAttribute,
   createCardSet: createCardSet,
   createPowers: createPowers,
   createColors: createColors,
@@ -247,5 +222,6 @@ module.exports = {
   inPlay: inPlay,
   shuffle: shuffle,
   deal: deal,
-  assignPlayers: assignPlayers
+  assignPlayers: assignPlayers,
+  playerCards: playerCards
 }

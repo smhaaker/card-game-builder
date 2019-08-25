@@ -22,6 +22,7 @@
     </style>
 
     <script type="text/javascript" src="./src/cardframe.js"></script>
+    
     <script>
 
         let config = new setupGame('Greek', 2, 1, 4, 'All the Greek Peoples')
@@ -49,7 +50,7 @@ let shuffled = shuffle(deck);
 // console.log(shuffled)
 
 // dealing cards from deck shuffled to 4 players and two cards each
-let cardsDealt = deal(shuffled, 4, 8)
+let cardsDealt = deal(shuffled, 4, 2)
 
 // console.log("dealt cards: " + JSON.stringify(cardsDealt))
 console.log(cardsDealt)
@@ -62,9 +63,23 @@ console.log(cardsDealt)
 
 // assignes a playername to a playerID
 let players = assignPlayers('Steffen', 'Mike', 'A cat', 'a dog')
-console.log(players)
-console.log(players[1])
-console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
+let player1 = players[0]
+let player2 = players[1].name
+
+// console.log(players)
+console.log(player1)
+console.log(player1.name + ' card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
+
+console.log(player1.name + ' cards: ' + JSON.stringify(cardsDealt[players[1].id] ))
+
+// for (let i = 0; i < cardsDealt[players[0].id].length; i ++)
+// {
+//     console.log(cardsDealt[players[1].id][i])
+// }
+
+let playerCardsPlayer1 = playerCards(player1.id, cardsDealt)
+
+console.log(playerCardsPlayer1)
     </script>
 
 </head>

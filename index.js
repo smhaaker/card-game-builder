@@ -34,10 +34,6 @@ console.log('====================================')
 // to gamesetup. playermoves. Probably in its own player object.
 
 
-// let newCard = cardframe.createAttribute(1, "mr badass", "nr 2", "falcon fury")
-// console.log(newCard.cards[0].powers)
-// console.log(newCard.cards)
-
 
 // create powers. or whatever we want to call them.
 let powers = cardframe.createPowers(['superpunch', 'tickle machine', 'farts'])
@@ -69,13 +65,6 @@ let stuff = {
 // and pass that in. 
 
 let set3 = cardframe.createCardSet(8, 12, "SteffenBot", 10, colors[2], powers2, "really strong card", additional)
-
-// console.log(newCards.id)
-// console.log(set1)
-// // console.log(typeof set1)
-// // newCards = cardframe.createAttributes(4, "mr badass", 30, "falcon furry", "cool stuff")
-// console.log(set2)
-// console.log(set3)
 
 
 // we then join these cards sets to make a deck.

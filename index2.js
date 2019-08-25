@@ -9,9 +9,6 @@ console.log('====================================')
  * example: name.setupGame(nameofGame, numberOfCardDecks, minPlayers, maxPlayers, description)
  */
 let config = cardframe.setupGame('Old Greek People', 2, 1, 4, 'Greek Mythology Throwdown')
-// output the config
-// console.log(config)
-// console.log('====================================')
 
 // Define a list of colors to use. Passes as an array
 let colors = cardframe.createColors(['red', 'white', 'blue'])
@@ -35,15 +32,10 @@ let shuffled = cardframe.shuffle(deck);
 // console.log(shuffled)
 
 // dealing cards from deck shuffled to 4 players and two cards each
-let cardsDealt = cardframe.deal(shuffled, 4, 8)
+let cardsDealt = cardframe.deal(shuffled, 4, 2)
 
 // console.log("dealt cards: " + JSON.stringify(cardsDealt))
 console.log(cardsDealt)
-
-// console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1]))
-// console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[1][1]))
-// console.log('player3 / card 2: ' + JSON.stringify(cardsDealt[2][1]))
-// console.log('player4 / card 2: ' + JSON.stringify(cardsDealt[3][1]))
 
 
 // assignes a playername to a playerID
@@ -52,7 +44,7 @@ console.log(players)
 console.log(players[1])
 console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
 
-
+// simple gameplay:
     // if (cardsDealt[0][1].value > cardsDealt[1][1].value)
     //     {
     //     console.log("player one wins!")
