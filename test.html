@@ -7,16 +7,30 @@
     #cardsOutput {
         border: 1px solid black;
         padding: 5px;
+        width: 80%;
     }
 
     .theDeck{
         background-color: gainsboro;
+        width: 50%;
+        float: left;
+
     }
 
     .singleCard{
         background-color: white;
         padding: 10px;
-        width: 200px;
+        width: 50%;
+    }
+
+    .playerInfo{
+        background-color: olive;
+        float: right;
+        width: 50%;
+    }
+
+    .playerInner {
+        padding: 10px;
     }
     
     </style>
@@ -55,12 +69,6 @@ let cardsDealt = deal(shuffled, 4, 2)
 // console.log("dealt cards: " + JSON.stringify(cardsDealt))
 console.log(cardsDealt)
 
-// console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1]))
-// console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[1][1]))
-// console.log('player3 / card 2: ' + JSON.stringify(cardsDealt[2][1]))
-// console.log('player4 / card 2: ' + JSON.stringify(cardsDealt[3][1]))
-
-
 // assignes a playername to a playerID
 let players = assignPlayers('Steffen', 'Mike', 'A cat', 'a dog')
 let player1 = players[0]
@@ -92,6 +100,12 @@ console.log(playerCardsPlayer1)
         <table id='cardsOutput'></table>
     </div>
     
+    <div class="playerInfo">
+        <div class="playerInner">
+        Player: <span id="playerInfo"></span><br>
+        Cards: <span id="playerCardsList"></span><br>
+        </div> 
+    </div>
 
 <script>
 
@@ -100,7 +114,16 @@ console.log(playerCardsPlayer1)
     let h2Desc = document.getElementById('desc')
     h2Desc.innerHTML = config.description;
     let cardsOutputted = document.getElementById('cardsOutput')
+
+    let playerInfo = document.getElementById('playerInfo')
+    playerInfo.innerHTML = player1.name
+    let playerCardsList = document.getElementById('playerCardsList')
     
+    for (let i = 0; i < playerCardsPlayer1.length; i++){
+        playerCardsList.innerHTML += '<br/>Card Number: ' + i + ' CardName:  ' + playerCardsPlayer1[i].cardName + ' '    
+    }
+
+
     for (let i = 0; i < deck.length; i++){
         cardsOutputted.innerHTML += '<td class="singleCard">Name: <br/>' + deck[i].cardName + "<br/> Value:" + JSON.stringify(deck[i].value) + '</td>'
     }
