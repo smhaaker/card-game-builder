@@ -7,7 +7,7 @@ index.js is just an example file of usage
 Import however you need.
 
 ## functions:
-* setupGame: sets up a game with name and amount of cardsOfOneColor
+* setupGame: sets up a game with name / amount of decks / players and description
 * createCardSet: create a set of cards with all its attributes
 * mergeSets: merges given sets of cards
 * shuffle: shuffles the merged set
