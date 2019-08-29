@@ -8,6 +8,13 @@ Import however you need.
 
 ## functions:
 * setupGame: sets up a game with name and amount of cardsOfOneColor
-* createPowers: define a set of powers, returns an array
-* createColors: define colors, which can be used to define factions or similar, returns an array
-* createAttributes: define attributes for x amount of cards in the deck, returns an array of objects
+* createCardSet: create a set of cards with all its attributes
+* mergeSets: merges given sets of cards
+* shuffle: shuffles the merged set
+* deal: deals amount of cards to given players
+* checkCardPlayable: returns true if the card has status of playable
+* playerCards: checks cards of specific player
+
+## Todo / requests
+* Documentation
+* Reactive UI
