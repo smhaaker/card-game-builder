@@ -18,3 +18,10 @@ Import however you need.
 ## Todo / requests
 * Documentation
 * Reactive UI
+* Folder structure
+
+## Examples
+* test.html -- simple html / js implementation
+* setupgame.html -- simple generator to show how to use
+* index.js -- old example
+* index2.js -- new example of usage
