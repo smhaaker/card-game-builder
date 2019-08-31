@@ -138,20 +138,16 @@ function discard(cardID, status) {
 
 // returns a new deck of discarded cards to be reshuffled
 function discardedDeck(deckToCheck) {
+  let newArr = []
   for (let i = 0; i < deckToCheck.length; i++)
   {
       if (deckToCheck[i].cardstatus.discarded == true) {
-          console.log(i)  
+          console.log(i)
+          newArr.push(deckToCheck[i])
+          // update to set status discarded to false on returned deck as well.
       }
   }
-  
-  // if (cardID.cardstatus.discarded == true) {
-  
-  // }
-  // else {
-  //   // console.log('card is playable')
-  //   return true
-  // }
+  return newArr
 }
 
 // extra functions for testing

@@ -57,8 +57,9 @@ console.log(shuffled[1])
 console.log(shuffled)
 
 // finds all discarded cards in a deck
-cardframe.discardedDeck(shuffled)
 
+let discardedShuffled = cardframe.discardedDeck(shuffled)
+console.log(discardedShuffled)
 
 // simple gameplay:
     // if (cardsDealt[0][1].value > cardsDealt[1][1].value)
