@@ -61,9 +61,9 @@ function createCardSet(amountOfCards, name, value, color, abilities, description
         description: description,
         additional,
         cardstatus: {
-        inplay: false,
-        picked: false,
-        discarded: false
+          inplay: false,
+          picked: false,
+          discarded: false
         // }
       }
     }
@@ -121,13 +121,37 @@ function checkCardPlayable (cardID) {
 // sets true or false if card is in play
 // need to clean these to make sure picked / inplay are set differently
 function inPlay (cardID, status) {
-  // console.log(cardID)
+  console.log('CARD ID')
+  console.log(cardID)
   if (checkCardPlayable(cardID)) {
     return cardID.cardstatus.picked = status
     }
   else {
     return cardID.cardstatus.picked
   }
+}
+
+// discard card
+function discard(cardID, status) {
+    return cardID.cardstatus.discarded = status
+}
+
+// returns a new deck of discarded cards to be reshuffled
+function discardedDeck(deckToCheck) {
+  for (let i = 0; i < deckToCheck.length; i++)
+  {
+      if (deckToCheck[i].cardstatus.discarded == true) {
+          console.log(i)  
+      }
+  }
+  
+  // if (cardID.cardstatus.discarded == true) {
+  
+  // }
+  // else {
+  //   // console.log('card is playable')
+  //   return true
+  // }
 }
 
 // extra functions for testing
@@ -138,6 +162,7 @@ function manyArgs() {
     console.log(arguments)
 }
 
+// returns input deck reshuffled
 function shuffle(deckToShuffle) {
   for (let i = 0; i < deckToShuffle.length - 1; i++) {
       let j = i + Math.floor(Math.random() * (deckToShuffle.length - i));
@@ -149,6 +174,11 @@ function shuffle(deckToShuffle) {
   return deckToShuffle;
 }
 
+// will reshuffle either the player deck or community deck
+function reshuffle(deckToReshuffle){
+  // check if cards are in play or discarded or picked... 
+  // discarded can be reshuffled. anything else cannot.
+}
 
 function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
     let cardsToDealTotal = cardsToEachPlayer * playersToDealTo
@@ -220,7 +250,10 @@ module.exports = {
   // dealCards: dealCards,
   manyArgs: manyArgs,
   inPlay: inPlay,
+  discard: discard,
+  discardedDeck: discardedDeck,
   shuffle: shuffle,
+  reshuffle: reshuffle,
   deal: deal,
   assignPlayers: assignPlayers,
   playerCards: playerCards

@@ -44,6 +44,22 @@ console.log(players)
 console.log(players[1])
 console.log('player2 / card 2: ' + JSON.stringify(cardsDealt[players[1].id][1]))
 
+
+
+
+cardframe.discard(shuffled[1], true)
+cardframe.discard(shuffled[2], true)
+cardframe.discard(shuffled[6], true)
+cardframe.discard(shuffled[15], true)
+// shuffled[1].cardstatus.discarded = true;
+console.log('shuffled')
+console.log(shuffled[1])
+console.log(shuffled)
+
+// finds all discarded cards in a deck
+cardframe.discardedDeck(shuffled)
+
+
 // simple gameplay:
     // if (cardsDealt[0][1].value > cardsDealt[1][1].value)
     //     {

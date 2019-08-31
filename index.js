@@ -86,13 +86,13 @@ console.log(deck[10].cards)
 //
 // console.log(deck[deck.length-1].powers[2])
 
-cardframe.inPlay(deck[1], false)
-console.log(deck[1])
+// cardframe.inPlay(deck[1], false)
+// console.log(deck[1])
 
-cardframe.inPlay(deck[1], true)
-console.log(deck[1])
-cardframe.inPlay(deck[1], false)
-console.log(deck[1])
+// cardframe.inPlay(deck[1], true)
+// console.log(deck[1])
+// cardframe.inPlay(deck[1], false)
+// console.log(deck[1])
 
 
 
@@ -215,26 +215,12 @@ console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1].id))
 //
 // console.log(sortedDeck)
 
+cardframe.inPlay(deck[1], false)
+console.log(deck[1])
 
-// set up players ??
-// set up types of cards.
-// amount of cards need to return a list / array / object
-// something like setTypeOfCards(number of cards, attributes: HP: 4, stuff:5)
-
-
-
-// todos:
-/*
-  setupGame: name, numberOfDecks, maxPlayers, description.
-  playerSetup: the ID of the player.
-  totalCardPool: somehow.
+cardframe.inPlay(deck[1], true)
+console.log(deck[1])
+cardframe.inPlay(deck[1], false)
+console.log(deck[1])
 
 
-  functions to add :
-    shufflecards:
-    drawcards: (playerNumber, number of cards) // this then gives x cards and sets them ouf of the total pool.
-    Shuffleddeck?. Need to set drawn cards to inPool: false? all cards to inPool: true
-    Discarded Cards:
-    Playerdeck: ?
-    // add description on card. Tagline. Special Power / notes. Instructions.
-*/
