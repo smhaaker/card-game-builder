@@ -20,6 +20,12 @@ Import however you need.
 * Reactive UI
 * Folder structure
 
+### Todo Functions:
+* Amount of cards to play
+* Amount of decks per player
+* Amount of cards per player hand
+* Discard / play deck
+
 ## Examples
 * test.html -- simple html / js implementation
 * setupgame.html -- simple generator to show how to use
