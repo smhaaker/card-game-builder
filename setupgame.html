@@ -148,7 +148,7 @@ body{
 
     <div id="generatedCard">
         <div id="newCard"></div>
-        <button onclick="addCardsToDeck()">add Cards to deck</button>
+        <button onclick="addToDeck()">add Cards to deck</button>
     </div>
 
 
@@ -161,6 +161,8 @@ body{
 <script>
 
     let config;
+    let deckArr = [];
+    let newCard;
 
     function generate() {
 
@@ -185,7 +187,7 @@ body{
         let cardAbility = document.getElementById("cardAbility").value
         let cardDesc = document.getElementById("cardDesc").value
 
-        let newCard = new createCardSet(cardAmount, cardName, cardValue, cardColor, cardAbility, cardDesc)
+        newCard = new createCardSet(cardAmount, cardName, cardValue, cardColor, cardAbility, cardDesc)
         console.log(newCard)
         let generated = document.getElementById('newCard')
         generated.innerHTML= `<p id="generatedCardToAdd"> 
@@ -195,6 +197,16 @@ body{
             Abilities: ${newCard[0].abilities} <br>
             Description: ${newCard[0].description} <br>
             Amount: ${cardAmount} </p>`
+    }
+
+    function addToDeck(){
+        console.log(newCard)
+        deckArr.push(newCard)
+        console.log(deckArr)
+    }
+
+    function completeDeck() {
+
     }
 
     function populate () {
