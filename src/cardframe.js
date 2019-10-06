@@ -193,10 +193,8 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
       if (j > playersToDealTo-1) {
         j = 0;
       }
-
       // console.log(i)
       // console.log(j)
-
       newArr[j].push(deckToDealFrom[i])
       j++
       this.inPlay(deckToDealFrom[i], true)
