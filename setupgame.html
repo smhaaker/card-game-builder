@@ -88,6 +88,7 @@ body{
     }
 
     #generatedCardToAdd{
+        width: 25%;
         background-color: aqua;
     }
     </style>
@@ -152,10 +153,13 @@ body{
     </div>
 
 
+
+        <button onclick="finalizeDeck()">Finalize Deck</button>
     <br><br><br>
     <h1 id='title'>title</h1>
     <h3 id='desc'>desc</h2>
-
+    <h3> All Cards In Deck:</h3>
+    <span id='completeDeck'>The whole deck</span>
 
 
 <script>
@@ -205,7 +209,19 @@ body{
         console.log(deckArr)
     }
 
-    function completeDeck() {
+    function finalizeDeck() {
+        // fix the bug where if you readd cards it generates new numbers. Must check for ID. Probably in the array setup
+        let finaldeck
+        finaldeck = mergeSets(...deckArr)
+        console.log(finaldeck)
+        let deckOutput = document.getElementById('completeDeck')
+        
+        deckOutput.innerHTML = ''
+        for(let i = 0; i<finaldeck.length; i++){
+            deckOutput.innerHTML += `
+            CardName: ${finaldeck[i].cardName} <br/>
+            CardID: ${finaldeck[i].id} <br/>`
+        }
 
     }
 
