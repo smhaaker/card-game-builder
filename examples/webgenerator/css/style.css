@@ -158,6 +158,9 @@ button:active{
     transition: 0.3s;
     overflow-wrap: break-word;
     width: 30%;
+    margin-right: 15%;
+
+    height: 40vh;
     float: right;
 }
 #generatedCardToAdd:hover{
