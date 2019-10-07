@@ -1,79 +1,100 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="../../src/cardframe.js"></script>
-    <script type="text/javascript" src="./js/script.js"></script>
 
-
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script type="text/javascript" src="../../src/cardframe.js"></script>
+        <script type="text/javascript" src="./js/script.js"></script>
+    
+    
 </head>
 
-    <h1>Card Game Generator Simple HTML example</h1>
-    <h3>Enter the info and hit generate</h3>
-    <label for="gameName">
-        <input type="text" id="gameName" placeholder="Name of Game">
-    </label>
-    
-    <br>
 
-    <div class="selectors">
-    <label for="decksAmount">
-        Amount of decks:
-        <select id="decksAmount">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </label>
-    <br>
+<body>
+    <header>
+        <h1>CardFrame Game Generator Tool</h1>
+    </header>
+    <app>
+        <nav>
+            <a href="">Game Config</a><br/>
+            <a href="">Add Cards</a><br/>
+            <a href="">Docs</a><br/>
+        </nav>
+        <article>
+        <div class="content">
+        
+            <div id="gameConfig">
+                <h3>Enter the info and hit generate</h3>
+                <label for="gameName">
+                    <input type="text" id="gameName" placeholder="Name of Game">
+                </label>
+                <div class="selectors">
+                    <label for="decksAmount">
+                        Amount of decks:
+                        <select id="decksAmount">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </label>
+                    <br>
+                
+                    <label for="playerAmount">
+                        Players: 
+                        <select id="playerAmount">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        </select>
+                    </label>
+                    <br>
+                    </div>
+            
+                <button onclick="generate()">Generate Game Info</button>
+                <br><br>
+                <hr>
+                <br>
 
-    <label for="playerAmount">
-        Players: 
-        <select id="playerAmount">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-        </select>
-    </label>
-    <br>
-    </div>
+                <br><br>
+            
+                <h1 id='title'>title</h1>
+                <h3 id='desc'>desc</h2>
+                <h3> All Cards In Deck:</h3>
+                <span id='completeDeck'>The whole deck</span>
+            </div>
 
-    <button onclick="generate()">Generate Game Info</button>
-    <br><br>
-    <hr>
-    <br>
+            <br>
 
-    <div id="addCards">
-        <label for="cardInfo">
-            <input type="text" class="cardInputs" id="cardName" placeholder="Name of Card"><br>
-            <input type="text" class="cardInputs" id="cardAmount" placeholder="Amount"><br>
-            Image Url:  <input type="text" class="cardInputs" id="cardUrl" placeholder="ex. img/truck.png"><br>
-            <input type="text" class="cardInputs" id="cardValue" placeholder="Value"><br>
-            Color: <input class="cardInputs" type="color" id="cardColor" name="cardColor" value="#e66465"><br>
+            <div id="mainCardAdder">
+              <div id="cardGenerator">
+                    <div id="addCards">
+                        <label for="cardInfo">
+                            <input type="text" class="cardInputs" id="cardName" placeholder="Name of Card"><br>
+                            <input type="text" class="cardInputs" id="cardAmount" placeholder="Amount"><br>
+                            <input type="text" class="cardInputs" id="cardUrl" placeholder="Image Url. ex: img/truck.png"><br>
+                            <input type="text" class="cardInputs" id="cardValue" placeholder="Value"><br>
+                            <input class="cardInputs" type="color" id="cardColor" name="cardColor" value="#e66465"><br>
+        
+                            <input type="text" class="cardInputs" id="cardAbility" placeholder="Ability"><br>
+                            <input type="text" class="cardInputs" id="cardDesc" placeholder="Description"><br>
+                        </label>
+                        <button id="addCardButton" onclick="addCards()">Preview Card</button>
+                    </div>
+        
+                    <div id="generatedCard">
+                        <div id="newCard"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <button id="alignBottomButton" onclick="addToDeck()">Add this card to Deck</button>
+                </div>
+                <button id="mergeButton" onclick="finalizeDeck()">Merge Deck</button>
+        
+            </div>
 
-            <!-- <input type="text" class="cardInputs" id="cardColor" placeholder="Color"><br> -->
-            <input type="text" class="cardInputs" id="cardAbility" placeholder="Ability"><br>
-            <input type="text" class="cardInputs" id="cardDesc" placeholder="Description"><br>
-        </label>
-        <button onclick="addCards()">add Cards</button>
-    </div>
-
-    <div id="generatedCard">
-        <div id="newCard"></div>
-        <button onclick="addToDeck()">add Cards to deck</button>
-    </div>
-
-
-
-        <button onclick="finalizeDeck()">Finalize Deck</button>
-    <br><br><br>
-    <h1 id='title'>title</h1>
-    <h3 id='desc'>desc</h2>
-    <h3> All Cards In Deck:</h3>
-    <span id='completeDeck'>The whole deck</span>
-
-
-
-
+        </div>
+        </article>
+    </app>
+</body>
 </html>
+

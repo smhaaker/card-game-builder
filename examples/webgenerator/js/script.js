@@ -2,6 +2,7 @@
     let config;
     let deckArr = [];
     let newCard;
+    let finaldeck
 
     function generate() {
 
@@ -32,7 +33,7 @@
         generated.innerHTML= `<div id="generatedCardToAdd"> 
             Name: ${newCard[0].cardName} <br>
             <div class="cardImgDiv">
-                <img src='${newCard[0].additional[0]}' width=100% alt="image">
+                <img src='${newCard[0].additional[0]}' alt="image">
             </div>
             Value: ${newCard[0].value} <br>
             Color: ${newCard[0].color} <br>
@@ -49,12 +50,11 @@
     }
 
     function cardColor(color) {
-        document.getElementById("generatedCardToAdd").style.backgroundColor = color;
+        document.getElementById("generatedCardToAdd").style.borderColor = color;
     }
 
     function finalizeDeck() {
         // fix the bug where if you readd cards it generates new numbers. Must check for ID. Probably in the array setup
-        let finaldeck
         finaldeck = mergeSets(...deckArr)
         console.log(finaldeck)
         let deckOutput = document.getElementById('completeDeck')

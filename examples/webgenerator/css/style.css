@@ -1,10 +1,58 @@
-body{
+
+
+html, body {
+    margin:0;
+    height:100%;
+    min-height:100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: .8em;
     line-height: 20px;
 }
+
+body {
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+    height: 100%; 
+}
+
+header { 
+    z-index: 0;
+    flex: 0 64px;
+    display: flex;
+    background: black;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);
+    color: white;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+app {
+    flex: 1;
+    display: flex;
+}
+
+nav {
+    background: #FAF9F8;
+    flex: 0 0 20%;
+    order: 0;
+    border-right: 1px solid #d9d9d9;
+    padding: 2%;
+    font-size: 1.2em;
+}
+
+article {
+    background: #F3F3F5;
+    flex: 1 1 100px;
+    order: 1;
+
+}
+
+
 h1{
-    color: gray;
+    color: white;
     padding: 5px;
 }
 h3{
@@ -32,7 +80,7 @@ input[type=color]{
     /* width: 100%; */
     background-color: white;
     /* padding: 12px 20px; */
-    height: 4%;
+    height: 40px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 3px solid #ccc;
@@ -62,6 +110,9 @@ button:hover{
 }
 button:active{
     background-color: red;
+}
+#addCardButton{
+    float: left;
 }
 #gameName{
     width: 90%;
@@ -93,24 +144,59 @@ button:active{
     width: 25%;
 }
 .cardInputs{
-    width: 25%;
+    width: 75%;
 }
 
 #generatedCardToAdd{
     font-size: 1.2em;
     line-height: 1.5;
-    width: 35%;
-    background-color: aqua;
+    background-color: wheat;
     padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 7px solid #1C6EA4;
+    border-radius: 40px 40px 0px 40px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     overflow-wrap: break-word;
+    width: 30%;
+    float: right;
 }
 #generatedCardToAdd:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
 }
 .cardImgDiv{
-    background-color: black;
+    background-color: gray;
+}
+#addCards{
+    width: 50%;
+    float: left;
+    /* border: 1px solid black;  */
+}
+#cardGenerator{
+    /* background-color: aquamarine;
+    border: 1px solid orange; */
+}
+#alignBottomButton{
+    position: relative;
+    bottom: 40px;
+    right: -5px;
+}
+#mainCardAdder{
+    /* background-color: chocolate; */
+}
+#mergeButton{
+    position: relative;
+    right: -226px;
+    bottom: -5px;
+}
+
+a{
+    text-decoration: none;
+    color: darkgreen;
+}
+a:hover{
+    background-color: aqua;
+}
+
+.content{
+    padding: 5px;
 }
