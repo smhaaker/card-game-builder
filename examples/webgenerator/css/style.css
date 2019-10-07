@@ -181,6 +181,7 @@ button:active{
     right: -5px;
 }
 #mainCardAdder{
+    display: none;
     /* background-color: chocolate; */
 }
 #mergeButton{
@@ -199,4 +200,18 @@ a:hover{
 
 .content{
     padding: 5px;
+}
+
+ul{
+    list-style: none;
+    color: darkgreen;
+    padding-inline-start: 0px;
+    width: 100%
+}
+li:hover{
+    background-color: aqua;
+}
+
+#gameConfig{
+    display: none;
 }

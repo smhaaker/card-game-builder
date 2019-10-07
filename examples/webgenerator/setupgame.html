@@ -15,9 +15,11 @@
     </header>
     <app>
         <nav>
-            <a href="">Game Config</a><br/>
-            <a href="">Add Cards</a><br/>
-            <a href="">Docs</a><br/>
+            <ul>
+            <li onclick="showDiv('gameConfig')">Game Config</li>
+            <li onclick="showDiv('mainCardAdder')">Add Cards</li>
+            <li onclick="showDiv(docs)">Docs</li>
+            </ul>
         </nav>
         <article>
         <div class="content">
@@ -89,7 +91,6 @@
                     <button id="alignBottomButton" onclick="addToDeck()">Add this card to Deck</button>
                 </div>
                 <button id="mergeButton" onclick="finalizeDeck()">Merge Deck</button>
-        
             </div>
 
         </div>

@@ -75,3 +75,15 @@
         h2Desc.innerHTML = config.description;
     }
 
+    function showDiv(div) {
+        let x = document.getElementById(div);
+        if (x != null) {
+            if (x.style.display == "block") {
+                x.style.display = 'none';
+            }
+            else {
+                x.style.display = 'block';
+            }
+            return false;
+        }
+    }
