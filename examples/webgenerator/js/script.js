@@ -63,7 +63,8 @@
         for(let i = 0; i<finaldeck.length; i++){
             deckOutput.innerHTML += `
             CardName: ${finaldeck[i].cardName} <br/>
-            CardID: ${finaldeck[i].id} <br/>`
+            CardID: ${finaldeck[i].id} <br/>
+            CardID: ${finaldeck[i].color} <br/>`
         }
 
     }
@@ -75,15 +76,31 @@
         h2Desc.innerHTML = config.description;
     }
 
-    function showDiv(div) {
-        let x = document.getElementById(div);
-        if (x != null) {
-            if (x.style.display == "block") {
-                x.style.display = 'none';
+    let divState = {};
+    function showDiv(id) {
+        console.log('testing')
+        if (document.getElementById) {
+            let divid = document.getElementById(id);
+            divState[id] = (divState[id]) ? false : true;
+            for (let div in divState){
+                if (divState[div] && div != id){
+                    document.getElementById(div).style.display = 'none';
+                    divState[div] = false;
+                }
             }
-            else {
-                x.style.display = 'block';
-            }
-            return false;
+            divid.style.display = (divid.style.display == 'block' ? 'none' : 'block');
         }
     }
+
+    // function showDiv(div) {
+    //     let x = document.getElementById(div);
+    //     if (x != null) {
+    //         if (x.style.display == "block") {
+    //             x.style.display = 'none';
+    //         }
+    //         else {
+    //             x.style.display = 'block';
+    //         }
+    //         return false;
+    //     }
+    // }

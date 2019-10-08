@@ -28,7 +28,10 @@ header {
     flex-direction: column;
     text-align: center;
 }
-
+header h1 {
+    color: white;
+    padding: 5px;
+}
 app {
     flex: 1;
     display: flex;
@@ -49,17 +52,25 @@ article {
     order: 1;
 
 }
-
-
 h1{
-    color: white;
-    padding: 5px;
+    color: gray;
+    font-size: 2rem;
+    /* padding: 10px; */
+}
+h2{
+    /* padding: 10px; */
 }
 h3{
     color: gray;
     padding: 5px;
 }
+#docs{
+    padding: 10px;
+}
 
+#decks{
+    padding: 10px;
+}
 input[type=text]{
     /* width: 100%; */
     padding: 12px 20px;
@@ -112,7 +123,9 @@ button:active{
     background-color: red;
 }
 #addCardButton{
-    float: left;
+    margin-top: 5px;
+    float: right;
+    width: 50%;
 }
 #gameName{
     width: 90%;
@@ -144,9 +157,12 @@ button:active{
     width: 25%;
 }
 .cardInputs{
-    width: 75%;
+    width: 100%;
 }
-
+#generatedCard{
+    /* border: 1px solid blue; */
+    height: 50vh;
+}
 #generatedCardToAdd{
     font-size: 1.2em;
     line-height: 1.5;
@@ -158,9 +174,8 @@ button:active{
     transition: 0.3s;
     overflow-wrap: break-word;
     width: 30%;
-    margin-right: 15%;
-
-    height: 40vh;
+    margin-right: 5%;
+    height: 35vh;
     float: right;
 }
 #generatedCardToAdd:hover{
@@ -172,6 +187,7 @@ button:active{
 #addCards{
     width: 50%;
     float: left;
+    padding: 5px;
     /* border: 1px solid black;  */
 }
 #cardGenerator{
@@ -184,13 +200,9 @@ button:active{
     right: -5px;
 }
 #mainCardAdder{
-    display: none;
+    /* display: none; */
     /* background-color: chocolate; */
-}
-#mergeButton{
-    position: relative;
-    right: -226px;
-    bottom: -5px;
+    /* border: 1px solid orange; */
 }
 
 a{
@@ -204,7 +216,6 @@ a:hover{
 .content{
     padding: 5px;
 }
-
 ul{
     list-style: none;
     color: darkgreen;

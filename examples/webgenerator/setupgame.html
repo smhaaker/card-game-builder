@@ -18,7 +18,8 @@
             <ul>
             <li onclick="showDiv('gameConfig')">Game Config</li>
             <li onclick="showDiv('mainCardAdder')">Add Cards</li>
-            <li onclick="showDiv(docs)">Docs</li>
+            <li onclick="showDiv('decks')">View Decks</li>
+            <li onclick="showDiv('docs')">Docs</li>
             </ul>
         </nav>
         <article>
@@ -62,8 +63,6 @@
             
                 <h1 id='title'>title</h1>
                 <h3 id='desc'>desc</h2>
-                <h3> All Cards In Deck:</h3>
-                <span id='completeDeck'>The whole deck</span>
             </div>
 
             <br>
@@ -82,15 +81,33 @@
                             <input type="text" class="cardInputs" id="cardDesc" placeholder="Description"><br>
                         </label>
                         <button id="addCardButton" onclick="addCards()">Preview Card</button>
+
                     </div>
         
                     <div id="generatedCard">
                         <div id="newCard"></div>
                     </div>
+
+                    <button onclick="addToDeck()">Add Card To Deck</button>
+                    <button onclick="finalizeDeck()">Merge Deck</button>
                     <div style="clear:both;"></div>
-                    <button onclick="addToDeck()">Add this card to Deck</button>
+
+                    <!-- <button onclick="addToDeck()">Add this card to Deck</button> -->
                 </div>
-                <button  onclick="finalizeDeck()">Merge Deck</button>
+                <!-- <button  onclick="finalizeDeck()">Merge Deck</button> -->
+            </div>
+
+            <div id="decks">
+                <h1>Current Deck</h1>
+                <div id='completeDeck'>The whole deck</Div>
+            </div>
+    
+
+            <div id="docs">
+                <h1>This is a very early version of the card game generator tool</h1>
+                <h2>Documentation</h2>
+                <p><b>Add Cards</b> - First, fill out form and preview card. When happy with card, Click add to deck.
+                Keep adding cards to deck until deck is complete. When deck is complete. Hit Merge deck</p>
             </div>
 
         </div>
