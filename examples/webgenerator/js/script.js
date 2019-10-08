@@ -33,7 +33,7 @@
         generated.innerHTML= `<div id="generatedCardToAdd"> 
             Name: ${newCard[0].cardName} <br>
             <div class="cardImgDiv">
-                <img src='${newCard[0].additional[0]}' alt="image">
+                <img class="cardImg" src='${newCard[0].additional[0]}' alt="image">
             </div>
             Value: ${newCard[0].value} <br>
             Color: ${newCard[0].color} <br>
@@ -53,6 +53,11 @@
         document.getElementById("generatedCardToAdd").style.borderColor = color;
     }
 
+    // currently only adds to last added. Need to generate ID's
+    function cardColorSmall(id, color) {
+        document.getElementById(`generatedCardToAddSmall${id}`).style.borderColor = color;
+    }
+
     function finalizeDeck() {
         // fix the bug where if you readd cards it generates new numbers. Must check for ID. Probably in the array setup
         finaldeck = mergeSets(...deckArr)
@@ -62,9 +67,15 @@
         deckOutput.innerHTML = ''
         for(let i = 0; i<finaldeck.length; i++){
             deckOutput.innerHTML += `
+            <div class="generatedCardToAddSmall" id="generatedCardToAddSmall${i}">
             CardName: ${finaldeck[i].cardName} <br/>
+            <div>
+                <img class="cardImgDivSmall" src='${finaldeck[i].additional[0]}' alt="image">
+            </div>
             CardID: ${finaldeck[i].id} <br/>
-            CardID: ${finaldeck[i].color} <br/>`
+            CardID: ${finaldeck[i].color} <br/>
+            </div>`
+            this.cardColorSmall(i, finaldeck[i].color)
         }
 
     }
