@@ -60,6 +60,8 @@
 
     function finalizeDeck() {
         // fix the bug where if you readd cards it generates new numbers. Must check for ID. Probably in the array setup
+        
+        console.log(finaldeck)
         finaldeck = mergeSets(...deckArr)
         console.log(finaldeck)
         let deckOutput = document.getElementById('completeDeck')
@@ -68,12 +70,14 @@
         for(let i = 0; i<finaldeck.length; i++){
             deckOutput.innerHTML += `
             <div class="generatedCardToAddSmall" id="generatedCardToAddSmall${i}">
-            CardName: ${finaldeck[i].cardName} <br/>
-            <div>
+            ${finaldeck[i].cardName} <br/>
+            <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${finaldeck[i].additional[0]}' alt="image">
             </div>
             CardID: ${finaldeck[i].id} <br/>
-            CardID: ${finaldeck[i].color} <br/>
+            Color: ${finaldeck[i].color} <br/>
+            Desc: ${finaldeck[i].description} <br/>
+            Value: ${finaldeck[i].value} <br/>
             </div>`
             this.cardColorSmall(i, finaldeck[i].color)
         }

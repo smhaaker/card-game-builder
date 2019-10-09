@@ -209,6 +209,10 @@ button:active{
 .cardImgDivSmall{
     width: 100%;
 }
+.cardImgDivSmallContainer{
+    height: 10vh;
+    background-color: dimgray;
+}
 #addCards{
     width: 50%;
     float: left;
