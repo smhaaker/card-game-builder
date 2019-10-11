@@ -81,7 +81,7 @@
             </div>`
             this.cardColorSmall(i, finaldeck[i].color)
         }
-
+        document.getElementById('cardsIndDeck').innerHTML = finaldeck.length
     }
 
     function populate () {
