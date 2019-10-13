@@ -3,6 +3,8 @@
     let deckArr = [];
     let newCard;
     let finaldeck
+    let previewDeck = []
+    let count = 0;
 
     function generate() {
 
@@ -59,11 +61,13 @@
     // currently only adds to last added. Need to generate ID's
     function cardColorSmall(id, color) {
         document.getElementById(`generatedCardToAddSmall${id}`).style.borderColor = color;
+        document.getElementById(`valueSmall${id}`).style.borderColor = color;
     }
+
 
     function finalizeDeck() {
         // fix the bug where if you readd cards it generates new numbers. Must check for ID. Probably in the array setup
-        
+        count = 0;
         console.log(finaldeck)
         finaldeck = mergeSets(...deckArr)
         console.log(finaldeck)
@@ -80,7 +84,9 @@
             CardID: ${finaldeck[i].id} <br/>
             Color: ${finaldeck[i].color} <br/>
             Desc: ${finaldeck[i].description} <br/>
-            Value: ${finaldeck[i].value} <br/>
+            <div class="valueSmall" id="valueSmall${i}">
+                ${finaldeck[i].value} <br/>
+            </div>
             </div>`
             this.cardColorSmall(i, finaldeck[i].color)
         }
