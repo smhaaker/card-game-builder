@@ -31,15 +31,17 @@
         console.log(newCard)
         let generated = document.getElementById('newCard')
         generated.innerHTML= `<div id="generatedCardToAdd"> 
-            Name: ${newCard[0].cardName} <br>
+            <div id="nameCenter">${newCard[0].cardName}</div>
             <div class="cardImgDiv">
                 <img class="cardImg" src='${newCard[0].additional[0]}' alt="image">
             </div>
-            Value: ${newCard[0].value} <br>
-            Color: ${newCard[0].color} <br>
             Abilities: ${newCard[0].abilities} <br>
             Description: ${newCard[0].description} <br>
-            Amount: ${cardAmount} </div>`
+            Amount: ${cardAmount} 
+            <div id="value">
+                ${newCard[0].value} <br/>
+            </div>
+            </div>`
         this.cardColor(newCard[0].color)
     }
 
@@ -51,6 +53,7 @@
 
     function cardColor(color) {
         document.getElementById("generatedCardToAdd").style.borderColor = color;
+        document.getElementById("value").style.borderColor = color;
     }
 
     // currently only adds to last added. Need to generate ID's

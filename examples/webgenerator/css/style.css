@@ -164,6 +164,7 @@ button:active{
     height: 50vh;
 }
 #generatedCardToAdd{
+    position: relative;
     font-size: 1.2em;
     line-height: 1.5;
     background-color: wheat;
@@ -270,3 +271,22 @@ li:hover{
 #gameConfig{
     display: none;
 }
+
+/* Cards Preview */
+
+#nameCenter{
+    text-align: center;
+    font-size: 2rem;
+}
+#value{
+    border-left: 5px solid black;
+    border-top: 5px solid black;
+    border-radius: 10px 0px 0px 0px;
+    padding: 5px;
+    padding-left: 15px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 2rem;
+}
+
