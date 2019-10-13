@@ -82,7 +82,8 @@
                 <img class="cardImgDivSmall" src='${finaldeck[i].additional[0]}' alt="image">
             </div>
             CardID: ${finaldeck[i].id} <br/>
-            Color: ${finaldeck[i].color} <br/>
+            Abilities: ${finaldeck[i].abilities} <br/>
+
             Desc: ${finaldeck[i].description} <br/>
             <div class="valueSmall" id="valueSmall${i}">
                 ${finaldeck[i].value} <br/>
@@ -115,16 +116,3 @@
             divid.style.display = (divid.style.display == 'block' ? 'none' : 'block');
         }
     }
-
-    // function showDiv(div) {
-    //     let x = document.getElementById(div);
-    //     if (x != null) {
-    //         if (x.style.display == "block") {
-    //             x.style.display = 'none';
-    //         }
-    //         else {
-    //             x.style.display = 'block';
-    //         }
-    //         return false;
-    //     }
-    // }
