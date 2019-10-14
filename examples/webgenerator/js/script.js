@@ -73,24 +73,43 @@
         console.log(finaldeck)
         let deckOutput = document.getElementById('completeDeck')
         
-        deckOutput.innerHTML = ''
-        for(let i = 0; i<finaldeck.length; i++){
+        for(let id in finaldeck) {
+            console.log(`key:${id}`, `name:${finaldeck[id].cardName}`);
             deckOutput.innerHTML += `
-            <div class="generatedCardToAddSmall" id="generatedCardToAddSmall${i}">
-            ${finaldeck[i].cardName} <br/>
+            <div class="generatedCardToAddSmall" id="generatedCardToAddSmall${id}">
+            ${finaldeck[id].cardName} <br/>
             <div class="cardImgDivSmallContainer">
-                <img class="cardImgDivSmall" src='${finaldeck[i].additional[0]}' alt="image">
+                <img class="cardImgDivSmall" src='${finaldeck[id].additional[0]}' alt="image">
             </div>
-            CardID: ${finaldeck[i].id} <br/>
-            Abilities: ${finaldeck[i].abilities} <br/>
+            CardID: ${finaldeck[id].id} <br/>
+            Abilities: ${finaldeck[id].abilities} <br/>
 
-            Desc: ${finaldeck[i].description} <br/>
-            <div class="valueSmall" id="valueSmall${i}">
-                ${finaldeck[i].value} <br/>
+            Desc: ${finaldeck[id].description} <br/>
+            <div class="valueSmall" id="valueSmall${id}">
+                ${finaldeck[id].value} <br/>
             </div>
             </div>`
-            this.cardColorSmall(i, finaldeck[i].color)
+            this.cardColorSmall(id, finaldeck[id].color)
         }
+
+        // deckOutput.innerHTML = ''
+        // for(let i = 0; i<finaldeck.length; i++){
+        //     deckOutput.innerHTML += `
+        //     <div class="generatedCardToAddSmall" id="generatedCardToAddSmall${i}">
+        //     ${finaldeck[i].cardName} <br/>
+        //     <div class="cardImgDivSmallContainer">
+        //         <img class="cardImgDivSmall" src='${finaldeck[i].additional[0]}' alt="image">
+        //     </div>
+        //     CardID: ${finaldeck[i].id} <br/>
+        //     Abilities: ${finaldeck[i].abilities} <br/>
+
+        //     Desc: ${finaldeck[i].description} <br/>
+        //     <div class="valueSmall" id="valueSmall${i}">
+        //         ${finaldeck[i].value} <br/>
+        //     </div>
+        //     </div>`
+        //     this.cardColorSmall(i, finaldeck[i].color)
+        // }
         document.getElementById('cardsIndDeck').innerHTML = finaldeck.length
     }
 
