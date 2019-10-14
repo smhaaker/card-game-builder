@@ -267,17 +267,23 @@ li:hover{
 #nameCenter{
     text-align: center;
     font-size: 2rem;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    padding-bottom: 2%;
 }
 #value{
     border-left: 5px solid black;
     border-top: 5px solid black;
     border-radius: 10px 0px 0px 0px;
     padding: 5px;
-    padding-left: 15px;
+    padding-left: 10px;
     position: absolute;
     right: 0;
     bottom: 0;
     font-size: 2rem;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: -2px -1px 4px 0px #888888;
 }
 
 
@@ -314,6 +320,8 @@ li:hover{
     right: 0;
     bottom: 0;
     font-size: 1.2rem;
+    color: #ff0002;
+    text-shadow: 2px 2px 4px #000000
 }
 #valueSmall{
 }

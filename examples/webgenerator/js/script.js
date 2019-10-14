@@ -66,13 +66,14 @@
 
 
     function finalizeDeck() {
-        // fix the bug where if you readd cards it generates new numbers. Must check for ID. Probably in the array setup
         count = 0;
-        console.log(finaldeck)
+        // console.log(finaldeck)
         finaldeck = mergeSets(...deckArr)
         console.log(finaldeck)
         let deckOutput = document.getElementById('completeDeck')
         
+        deckOutput.innerHTML = ''
+
         for(let id in finaldeck) {
             console.log(`key:${id}`, `name:${finaldeck[id].cardName}`);
             deckOutput.innerHTML += `
