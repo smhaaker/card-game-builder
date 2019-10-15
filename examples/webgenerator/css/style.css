@@ -276,14 +276,18 @@ li:hover{
     border-top: 5px solid black;
     border-radius: 10px 0px 0px 0px;
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 12px;
     position: absolute;
     right: 0;
     bottom: 0;
     font-size: 2rem;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-    box-shadow: -2px -1px 4px 0px #888888;
+    /* color: white ; */
+    color: black;
+
+    /* text-shadow: 1px 1px 4px #000000; */
+    text-shadow: 1px 0px 2px #000000;;
+    box-shadow: 1px 1px 4px 0px #000000 inset;
+
 }
 
 
@@ -320,7 +324,7 @@ li:hover{
     right: 0;
     bottom: 0;
     font-size: 1.2rem;
-    color: #ff0002;
+    color: #000;
     text-shadow: 2px 2px 4px #000000
 }
 #valueSmall{
@@ -350,4 +354,27 @@ li:hover{
 }
 #generatedCardToAddSmallPreview{
 
+}
+
+
+.desc{
+    background-color: white;
+    font-size: 1.2rem;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.abilities{
+    background-color: green;
+    font-size: 1.2rem;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#amountOfCards{
+    color: gray;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    padding: 10px;
 }

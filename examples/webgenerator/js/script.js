@@ -32,17 +32,23 @@
         newCard = new createCardSet(cardAmount, cardName, cardValue, cardColor, cardAbility, cardDesc, cardUrl)
         console.log(newCard)
         let generated = document.getElementById('newCard')
-        generated.innerHTML= `<div id="generatedCardToAdd"> 
-            <div id="nameCenter">${newCard[0].cardName}</div>
-            <div class="cardImgDiv">
-                <img class="cardImg" src='${newCard[0].additional[0]}' alt="image">
-            </div>
-            Abilities: ${newCard[0].abilities} <br>
-            Description: ${newCard[0].description} <br>
-            Amount: ${cardAmount} 
-            <div id="value">
-                ${newCard[0].value} <br/>
-            </div>
+        let amountOfCards = document.getElementById('amountOfCards')
+        amountOfCards.innerHTML = `${cardAmount} cards to add`    
+        generated.innerHTML= `
+            <div id="generatedCardToAdd"> 
+                <div id="nameCenter">${newCard[0].cardName}</div>
+                <div class="cardImgDiv">
+                    <img class="cardImg" src='${newCard[0].additional[0]}' alt="image">
+                </div>
+                <div class="desc">
+                    ${newCard[0].description}    
+                </div>
+                <div class="abilities">
+                    Abilities: ${newCard[0].abilities}
+                </div>
+                <div id="value">
+                    ${newCard[0].value} <br/>
+                </div>
             </div>`
         this.cardColor(newCard[0].color)
     }

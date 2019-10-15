@@ -70,8 +70,8 @@
             <div id="mainCardAdder">
               <div id="cardGenerator">
                     <div id="addCards">
-                        <label for="cardInfo">
-                            <input type="text" class="cardInputs" id="cardName" placeholder="Name of Card"><br>
+                        <!-- <label for="cardName"></label> -->
+                            <input type="text" class="cardInputs" id="cardName" placeholder="Name of Card">
                             <input type="text" class="cardInputs" id="cardAmount" placeholder="Amount"><br>
                             <input type="text" class="cardInputs" id="cardUrl" placeholder="Image Url. ex: img/truck.png"><br>
                             <input type="text" class="cardInputs" id="cardValue" placeholder="Value"><br>
@@ -79,15 +79,15 @@
         
                             <input type="text" class="cardInputs" id="cardAbility" placeholder="Ability"><br>
                             <input type="text" class="cardInputs" id="cardDesc" placeholder="Description"><br>
-                        </label>
+                        
                         <button id="addCardButton" onclick="addCards()">Preview Card</button>
-
+                        <p id="amountOfCards"></p>
                     </div>
         
                     <div id="generatedCard">
                         <div id="newCard"></div>
                     </div>
-
+                    <br/><br/>
                     <button onclick="addToDeck()">Add Card To Deck</button>
                     <button onclick="finalizeDeck()">Merge Deck</button>
                     <div style="clear:both;"></div>
