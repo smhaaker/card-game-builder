@@ -84,17 +84,17 @@
             console.log(`key:${id}`, `name:${finaldeck[id].cardName}`);
             deckOutput.innerHTML += `
             <div class="generatedCardToAddSmall" id="generatedCardToAddSmall${id}">
-            ${finaldeck[id].cardName} <br/>
-            <div class="cardImgDivSmallContainer">
-                <img class="cardImgDivSmall" src='${finaldeck[id].additional[0]}' alt="image">
-            </div>
-            CardID: ${finaldeck[id].id} <br/>
-            Abilities: ${finaldeck[id].abilities} <br/>
+                <div id="nameCenterSmall">${finaldeck[id].cardName}</div>
+                <div class="cardImgDivSmallContainer">
+                    <img class="cardImgDivSmall" src='${finaldeck[id].additional[0]}' alt="image">
+                </div>
+                <div id="descSmall">Desc: ${finaldeck[id].description}</div>
+                <div id="abilitiesSmall">Abilities: ${finaldeck[id].abilities}</div>
+                CardID: ${finaldeck[id].id}
 
-            Desc: ${finaldeck[id].description} <br/>
-            <div class="valueSmall" id="valueSmall${id}">
-                ${finaldeck[id].value} <br/>
-            </div>
+                <div class="valueSmall" id="valueSmall${id}">
+                    ${finaldeck[id].value} <br/>
+                </div>
             </div>`
             this.cardColorSmall(id, finaldeck[id].color)
         }

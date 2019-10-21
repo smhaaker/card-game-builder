@@ -192,6 +192,7 @@ button:active{
     height: 10vh;
     background-color: dimgray;
     position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 #addCards{
     width: 50%;
@@ -277,20 +278,18 @@ li:hover{
     border-top: 5px solid black;
     border-radius: 10px 0px 0px 0px;
     padding: 5px;
-    padding-left: 12px;
+    padding-left: 10px;
+    padding-right: 8px;
     position: absolute;
     right: 0;
     bottom: 0;
     font-size: 2rem;
     /* color: white ; */
     color: black;
-
     /* text-shadow: 1px 1px 4px #000000; */
     text-shadow: 1px 0px 2px #000000;;
     box-shadow: 1px 1px 4px 0px #000000 inset;
-
 }
-
 
 /* Card Deck */
 .generatedCardToAddSmall{
@@ -307,31 +306,56 @@ li:hover{
     width: 10%;
     margin-right: 1%;
     margin-top: 5px;
-    height: 20vh;
+    height: 25vh;
     float: left;
 }
 .generatedCardToAddSmall:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
 }
 
-
+#nameCenterSmall{
+    text-align: center;
+    font-size: 1.3rem;
+    color: white;
+    text-shadow: 1px 1px 2px #000000;
+    padding-bottom: 2%;
+}
+#descSmall{
+    background-color: white;
+    font-size: 1rem;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+#abilitiesSmall{
+    background-color: green;
+    font-size: 1rem;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
 .valueSmall{
     border-left: 5px solid black;
     border-top: 5px solid black;
     border-radius: 10px 0px 0px 0px;
     padding: 5px;
     padding-left: 10px;
+    padding-right: 8px;
     position: absolute;
     right: 0;
     bottom: 0;
     font-size: 1.2rem;
     color: #000;
-    text-shadow: 2px 2px 4px #000000
+    box-shadow: 1px 1px 4px 0px #000000 inset;
+    text-shadow: 1px 0px 2px #000000;
 }
 #valueSmall{
 }
 
-
+.generatedCardsSmallContainer{
+    background-color: blue;
+    width: 10%;
+    float: left;
+}
 
 .generatedCardToAddSmallPreview{
     position: relative;
