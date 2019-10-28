@@ -6,7 +6,6 @@
         <script type="text/javascript" src="./js/script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    
 </head>
 
 <body>
@@ -15,9 +14,38 @@
     Game info:
 </header>
 <div class="player1">
-    Player1: Name
-    <div id="deck">Cards Remaining</div>
+    <div id="player1Info">
+        <span id="player1Name">Name: Player1</span>
+        <span id="player1Health"></span>
+        <span id="player1Moves"></span>
+    </div>
+    <div id="deck">Cards Remaining <span id='player1deckcards'></span></div>
     <div id="cardsInHand">
+    </div>
+</div>
+
+<main>
+
+    Playboard
+    <button onclick=dealCards()>Deal Cards</button><br/><br/>
+    cards for player 1 goes here: <div id="player1Board"></div>
+    <br/>
+    <br/><br/><br/><br/><br/><br/>
+
+    cards for player 1 goes here: <div id="player2Board"></div>
+    <br/>
+
+</main>
+
+
+<div class="player2">
+    <div id="player1Info">
+        <span id="player2Name">Name: Player1</span>
+        <span id="player2Health"></span>
+        <span id="player2Moves"></span>
+    </div>
+    <div id="deck">Cards Remaining <span id='player2deckcards'></span></div>
+    <div id="cardsInHandPlayer2">
         <div class="cardShow">
             Name: Zeus<br/>
             Name: Zeus<br/>
@@ -35,41 +63,6 @@
         <span id="testing"></span>
     </div>
 </div>
-
-<main>
-    Playboard
-
-    cards for player 1 goes here: <div id="player1Board"></div>
-    <br/>
-    <br/><br/><br/><br/><br/><br/>
-
-    cards for player 1 goes here: <div id="player2Board"></div>
-    <br/>
-    <button onclick=dealCards()>Deal Cards</button>
-</main>
-
-
-<div class="player2">
-        Player1: Name
-        <div id="deck">Cards Remaining</div>
-        <div id="cardsInHandPlayer2">
-            <div class="cardShow">
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-            </div>
-            <div class="cardShow">
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-                Name: Zeus<br/>
-            </div>
-            <span id="testing"></span>
-        </div>
-    </div>
 
 <Footer>
     Player2: Name
