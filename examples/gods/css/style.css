@@ -1,0 +1,117 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 3%;
+}
+
+.player1{
+    height: 20%;
+    background-color: blueviolet;
+}
+
+#cardsInHand{
+    border: 1px solid black;
+}
+#deck{
+    position: relative;
+    font-size: 1em;
+    line-height: 1.5;
+    background-color: wheat;
+    padding: 10px;
+    border: 7px solid #1C6EA4;
+    border-radius: 40px 40px 0px 40px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    overflow-wrap: break-word;
+    width: 7%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+
+    height: 13vh;
+    float: left;
+}
+.cardShow{
+    position: relative;
+    font-size: 1em;
+    line-height: 1.5;
+    background-color: wheat;
+    padding: 10px;
+    border: 7px solid #1C6EA4;
+    border-radius: 40px 40px 0px 40px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    overflow-wrap: break-word;
+    width: 7%;
+    margin-right: 1%;
+    margin-top: 1%;
+    height: 13vh;
+    float: left;
+}
+
+.player2{
+    height: 20%;
+    background-color: greenyellow;
+}
+
+
+.valueSmall{
+    border-left: 5px solid black;
+    border-top: 5px solid black;
+    border-radius: 10px 0px 0px 0px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 8px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 1.2rem;
+    color: #000;
+    box-shadow: 1px 1px 4px 0px #000000 inset;
+    text-shadow: 1px 0px 2px #000000;
+}
+
+.cardImgDiv{
+    background-color: gray;
+    height: 25vh;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.cardImg{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.cardImgDivSmall{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.cardImgDivSmallContainer{
+    height: 5vh;
+    background-color: dimgray;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+main {
+    flex: auto;
+    background-color: #ccc;
+}
+
+footer {
+    height: 3%;
+}
