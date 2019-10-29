@@ -1,12 +1,23 @@
 // player 1 Defs:
 let healthPlayer1 = 100;
 let actionsPlayer1 = 3;
+let dealCardsPlayer1 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
+let cardsLeftInDeckPlayer1 = 0;
+
 
 // player 2 Defs:
 let healthPlayer2 = 100;
 let actionsPlayer2   = 3;
+let dealCardsPlayer2 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
+let cardsLeftInDeckPlayer2 = 0;
+
+
+let currentPlayer = 0;
+
 
 // Player 1 define deck
+// need to set url as standard in framework. 
+// also need to set health,,.. or at least swap out HP for health on display
 let zeus = createCardSet(2, "Zeus", 50, "red", ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancient-origins.net/sites/default/files/field/image/Unshakeable-Power-of-Zeus.jpg')
 let cassandra = createCardSet(4, "Cassandra", 5, "red", ['predict'], 'Cassandra predicts the future')
 let hera = createCardSet(4, "Hera", 15, "red", ['Mean'], 'Hera is so mean')
@@ -19,11 +30,11 @@ console.log(deckPlayer1)
 let shuffledPlayer1 = shuffle(deckPlayer1);
 
 // Player 2 define deck
-let jupiter = createCardSet(2, "Zeus", 50, "red", ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Jupiter-The-King-of-Gods.jpg')
-let apollo = createCardSet(4, "Cassandra", 5, "red", ['predict'], 'Cassandra predicts the future')
-let mars = createCardSet(4, "Hera", 15, "red", ['Mean'], 'Hera is so mean', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Mars-The-God-of-War.jpg')
-let pluto = createCardSet(4, "Hades", 25, "red", ['what does he do?'], 'of the underworld', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Pluto-The-God-of-Underworld.jpg')
-let neptune = createCardSet(4, "Dionysius", 69, "red", ['what does he do?'], 'God of the party', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Neptune-The-Roman-God-of-Sea.jpg')
+let jupiter = createCardSet(2, "jupiter", 50, "red", ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Jupiter-The-King-of-Gods.jpg')
+let apollo = createCardSet(4, "apollo", 5, "red", ['predict'], 'Cassandra predicts the future')
+let mars = createCardSet(4, "mars", 15, "red", ['Mean'], 'Hera is so mean', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Mars-The-God-of-War.jpg')
+let pluto = createCardSet(4, "pluto", 25, "red", ['what does he do?'], 'of the underworld', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Pluto-The-God-of-Underworld.jpg')
+let neptune = createCardSet(4, "neptune", 69, "red", ['what does he do?'], 'God of the party', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Neptune-The-Roman-God-of-Sea.jpg')
 // We merge all the generated 
 let deckPlayer2 = mergeSets(jupiter, apollo, mars, pluto, neptune)
 console.log(deckPlayer2)
@@ -56,13 +67,13 @@ function dealAndShowPlayer1() {
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
             </div>
-            <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
-            <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
               <div class="valueSmall" id="valueSmall${i}">
                 ${cardsDealt[i][0].value} <br/>
             </div>
         </div>`
         // cardsOutput.innerHTML += cardsDealt[i][0].cardName
+        // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
+        // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
     }
 
 }
@@ -104,13 +115,13 @@ function dealAndShowPlayer2() {
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
             </div>
-            <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
-            <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
             <div class="valueSmall" id="valueSmall${i}">
                 ${cardsDealt[i][0].value} <br/>
             </div>
         </div>`
         // cardsOutput.innerHTML += cardsDealt[i][0].cardName
+        // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
+        // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
     }
 }
 
@@ -135,4 +146,18 @@ function dealCards() {
     dealAndShowPlayer2()
 }
 
+
+function endTurn() {
+    // resets next users actions to 3. Leaves current to 0. 
+    // works on button end turn... 
+    if (currentPlayer === 0) {
+        console.log(`Current player is ${currentPlayer}`)
+        currentPlayer = 1
+    }
+    else {
+        console.log(`Current player is ${currentPlayer}`)
+        currentPlayer = 0
+    }
+    console.log(`Ending turn. ${currentPlayer} is up next`)
+} 
 
