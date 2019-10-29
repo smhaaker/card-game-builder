@@ -120,7 +120,7 @@ function checkCardPlayable (cardID) {
 
 // sets true or false if card is in play
 // need to clean these to make sure picked / inplay are set differently
-function inPlay (cardID, status) {
+function picked (cardID, status) {
   console.log('CARD ID')
   console.log(cardID)
   if (checkCardPlayable(cardID)) {
@@ -189,15 +189,34 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
     // console.log('deckToDealFrom ' + deckToDealFrom)
     // console.log('playersToDealTo ' + playersToDealTo)
     // console.log('cardsToDeal ' + cardsToDealTotal)
+
     for (let i = 0; i < cardsToDealTotal; i++){
-      if (j > playersToDealTo-1) {
-        j = 0;
+      // console.log('testing picked: ' + JSON.stringify(deckToDealFrom[i].cardstatus.picked))
+      for (let k = 0; k < deckToDealFrom.length; k++){
+        if(deckToDealFrom[k].cardstatus.picked === true){
+          console.log('this card has already been picked')
+         }
+        else{
+          console.log('first index can be used: ' + k)
+          newArr[j].push(deckToDealFrom[k])
+          this.picked(deckToDealFrom[k], true)
+          break;
+        }
       }
+      // if(deckToDealFrom[i].cardstatus.picked === true){
+      //   console.log('this card has already been picked')
+      // }
+      // else {
+      //   // logic for deal next card in here
+      // }
+        if (j > playersToDealTo-1) {
+          j = 0;
+        }
       // console.log(i)
       // console.log(j)
-      newArr[j].push(deckToDealFrom[i])
+      // newArr[j].push(deckToDealFrom[i])
       j++
-      this.inPlay(deckToDealFrom[i], true)
+      // this.picked(deckToDealFrom[i], true)
     }
   //   console.log(newArr)
     return newArr;
@@ -243,7 +262,7 @@ module.exports = {
   mergeSets: mergeSets,
   // dealCards: dealCards,
   manyArgs: manyArgs,
-  inPlay: inPlay,
+  picked: picked,
   discard: discard,
   discardedDeck: discardedDeck,
   shuffle: shuffle,

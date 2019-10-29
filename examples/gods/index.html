@@ -10,19 +10,20 @@
 
 <body>
 
-<header>
+<!-- <header>
     Game info:
-</header>
+</header> -->
 <div class="player1">
     <div id="player1Info">
         <span id="player1Name">Name: Player1</span>
         <span id="player1Health"></span>
         <span id="player1Moves"></span>
     </div>
-    <div id="deck">Cards Remaining <span id='player1deckcards'></span></div>
+    <div id="deck" onclick=drawCardPlayer1()>Cards Remaining <span id='player1deckcards'></span></div>
     <div id="cardsInHand">
     </div>
 </div>
+<div class="player1statusBar"><span id="player1StatusBarText">Welcome, please wait your turn</span></div>
 
 <main>
 
@@ -37,7 +38,7 @@
 
 </main>
 
-
+<div class="player2statusBar"><span id="player2StatusBarText">Welcome, please wait your turn</span></div>
 <div class="player2">
     <div id="player1Info">
         <span id="player2Name">Name: Player1</span>
@@ -63,13 +64,13 @@
             Name: Zeus<br/>
             Name: Zeus<br/>
         </div>
-        <span id="testing"></span>
+        <!-- <span id="testing"></span> -->
     </div>
 </div>
 
-<Footer>
+<!-- <Footer>
     Player2: Name
-</Footer>
+</Footer> -->
 
 </body>
 

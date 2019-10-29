@@ -3,14 +3,16 @@ let healthPlayer1 = 100;
 let actionsPlayer1 = 3;
 let dealCardsPlayer1 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer1 = 0;
-
+let cardsInHandPlayer1 = 0;
+const maxCardsInHandPlayer1 = 7;
 
 // player 2 Defs:
 let healthPlayer2 = 100;
 let actionsPlayer2   = 3;
 let dealCardsPlayer2 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer2 = 0;
-
+let cardsInHandPlaer2 = 0;
+const maxCardsInHandPlayer2 = 7;
 
 let currentPlayer = 0;
 
@@ -62,7 +64,7 @@ function dealAndShowPlayer1() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShow${i}" onclick=playCard(${i})>
+        <div class="cardShow" id="cardShow${i}" onclick=playCardPlayer1(${i})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -71,6 +73,7 @@ function dealAndShowPlayer1() {
                 ${cardsDealt[i][0].value} <br/>
             </div>
         </div>`
+        cardsInHandPlayer1++
         // cardsOutput.innerHTML += cardsDealt[i][0].cardName
         // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
         // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
@@ -78,9 +81,49 @@ function dealAndShowPlayer1() {
 
 }
 
-function playCard(id){
+
+// this function works but deals the first card of the complete deck instead of the new deck... Need to fix this
+function drawCardPlayer1() {
+    let cardsOutput = document.getElementById('cardsInHand')
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
+        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
+        updateStatusP1(`No Moves Left, Please End Turn`)
+    }
+    else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
+        updateStatusP1(`Max Cards In Hand`)
+    }
+    else {
+        let cardsDealt = deal(shuffledPlayer1, 1, 1)
+        console.log(cardsDealt)
+
+        for (let i = 0; i < cardsDealt.length; i++)
+        {
+            cardsOutput.innerHTML += `
+            <div class="cardShow" id="cardShow${i}" onclick=playCardPlayer1(${i})>
+                <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
+                <div class="cardImgDivSmallContainer">
+                    <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
+                </div>
+                  <div class="valueSmall" id="valueSmall${i}">
+                    ${cardsDealt[i][0].value} <br/>
+                </div>
+            </div>`
+        }
+        actionsPlayer1--
+        cardsInHandPlayer1++
+        let playerMovesInfo = document.getElementById('player1Moves')
+        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+    }
+}
+
+
+function playCardPlayer1(id){
+    // let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
+    if (actionsPlayer1 <= 0){
+        console.log('no moves left!')
+        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
+        updateStatusP1(`No Moves Left, Please End Turn`)
     }
     else {
         console.log(id)
@@ -93,6 +136,13 @@ function playCard(id){
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     }
 }
+
+
+function updateStatusP1(message) {
+    let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
+    statusbarPlayer1.innerHTML = message
+}
+
 
 function dealAndShowPlayer2() {
     let cardsDealt = deal(shuffledPlayer2, 5, 1)
@@ -125,9 +175,12 @@ function dealAndShowPlayer2() {
     }
 }
 
+
 function playCardPlayer2(id){
+    let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
+        statusbarPlayer2.innerHTML = `No Moves Left, Please End Turn`
     }
     else {
         console.log(id)

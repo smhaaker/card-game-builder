@@ -43,7 +43,17 @@ header {
     float: right;
 
 }
-
+.player1statusBar{
+    text-align: center;
+    padding: 1%;
+}
+#player1StatusBarText{
+    /* text-align: center; */
+}
+.player2statusBar{
+    text-align: center;
+    padding: 1%;
+}
 #deck{
     position: relative;
     font-size: 1em;

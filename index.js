@@ -86,12 +86,12 @@ console.log(deck[10].cards)
 //
 // console.log(deck[deck.length-1].powers[2])
 
-// cardframe.inPlay(deck[1], false)
+// cardframe.picked(deck[1], false)
 // console.log(deck[1])
 
-// cardframe.inPlay(deck[1], true)
+// cardframe.picked(deck[1], true)
 // console.log(deck[1])
-// cardframe.inPlay(deck[1], false)
+// cardframe.picked(deck[1], false)
 // console.log(deck[1])
 
 
@@ -137,9 +137,9 @@ function deal(source, cardsToDeal) {
       }
       else {
         playerArr.push(source[i])
-        cardframe.inPlay(source[i], true)
+        cardframe.picked(source[i], true)
         playerArr2.push(source[i+1])
-        cardframe.inPlay(source[i+1], true)
+        cardframe.picked(source[i+1], true)
         }  
       }
     }
@@ -191,7 +191,7 @@ function newDealer(deckToDealFrom, playersToDealTo, cardsToDealTotal)
 
     newArr[j].push(deckToDealFrom[i])
     j++
-    cardframe.inPlay(deckToDealFrom[i], true)
+    cardframe.picked(deckToDealFrom[i], true)
   }
   console.log(newArr)
   return newArr;
@@ -215,12 +215,12 @@ console.log('player1 / card 2: ' + JSON.stringify(cardsDealt[0][1].id))
 //
 // console.log(sortedDeck)
 
-cardframe.inPlay(deck[1], false)
+cardframe.picked(deck[1], false)
 console.log(deck[1])
 
-cardframe.inPlay(deck[1], true)
+cardframe.picked(deck[1], true)
 console.log(deck[1])
-cardframe.inPlay(deck[1], false)
+cardframe.picked(deck[1], false)
 console.log(deck[1])
 
 
