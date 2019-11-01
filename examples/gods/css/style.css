@@ -38,22 +38,12 @@ header {
     margin-left: 1%;
     margin-right: 1%;
     margin-top: 1%;
-
     height: 13vh;
     float: right;
+}
 
-}
-.player1statusBar{
-    text-align: center;
-    padding: 1%;
-}
-#player1StatusBarText{
-    /* text-align: center; */
-}
-.player2statusBar{
-    text-align: center;
-    padding: 1%;
-}
+
+
 #deck{
     position: relative;
     font-size: 1em;
@@ -162,6 +152,64 @@ footer {
 }
 
 
+/* StatusBars */
+.player1statusBar{
+    position: relative;
+    text-align: center;
+    /* padding: 1%; */
+}
+.player2statusBar{
+    position: relative;
+    text-align: center;
+    /* padding: 1%; */
+}
+
+#player1StatusBarText{
+    position: absolute;
+    bottom: 25%;
+    right: 45%;
+    font-size: 1.2em;
+    /* padding: 10px;
+    text-align: center;
+    width: 10%;
+    background-color: #555555;
+    color: white;
+    border: 2px solid #555555;
+    -webkit-transition-duration: 0.4s;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+#player2StatusBarText{
+    position: absolute;
+    bottom: 25%;
+    right: 45%;
+    font-size: 1.2em;
+    /* padding: 10px;
+    text-align: center;
+    width: 10%;
+    background-color: #555555;
+    color: white;
+    border: 2px solid #555555;
+    -webkit-transition-duration: 0.4s;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.endTurnButton{
+    float: right;
+    /* margin-right: 5px; */
+    padding: 10px;
+    width: 10%;
+    background-color: #555555;
+    color: white;
+    border: 2px solid #555555;
+    -webkit-transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* Remove */
 #endTurn{
     position: relative;
     font-size: 1em;
@@ -180,3 +228,5 @@ footer {
     height: 13vh;
     float: right;
 }
+
+

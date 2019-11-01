@@ -11,7 +11,7 @@ let healthPlayer2 = 100;
 let actionsPlayer2   = 3;
 let dealCardsPlayer2 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer2 = 0;
-let cardsInHandPlaer2 = 0;
+let cardsInHandPlayer2 = 0;
 const maxCardsInHandPlayer2 = 7;
 
 let currentPlayer = 0;
@@ -56,7 +56,7 @@ function dealAndShowPlayer1() {
     playerHealthInfo.innerHTML = `Health ${healthPlayer1}`
     let playerMovesInfo = document.getElementById('player1Moves')
     playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
-    let cardsOutput = document.getElementById('cardsInHand')
+    let cardsOutput = document.getElementById('cardsInHandPlayer1')
     let cardsLeftInDeck = document.getElementById('player1deckcards')
     cardsLeftInDeck.innerHTML = shuffledPlayer1.length - cardsDealt.length
 
@@ -84,7 +84,7 @@ function dealAndShowPlayer1() {
 
 // this function works but deals the first card of the complete deck instead of the new deck... Need to fix this
 function drawCardPlayer1() {
-    let cardsOutput = document.getElementById('cardsInHand')
+    let cardsOutput = document.getElementById('cardsInHandPlayer1')
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
@@ -141,17 +141,20 @@ function playCardPlayer1(id){
     }
 }
 
-
+// Combine these two into one function parameters playerNumber, Message
 function updateStatusP1(message) {
     let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
     statusbarPlayer1.innerHTML = message
 }
 
+function updateStatusP2(message) {
+    let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
+    statusbarPlayer2.innerHTML = message
+}
 
 function dealAndShowPlayer2() {
     let cardsDealt = deal(shuffledPlayer2, 5, 1)
-    console.log(cardsDealt)
-    
+    console.log(cardsDealt)   
         
     let playerHealthInfo = document.getElementById('player2Health')
     playerHealthInfo.innerHTML = `Health: ${healthPlayer2}`
@@ -173,6 +176,7 @@ function dealAndShowPlayer2() {
                 ${cardsDealt[i][0].value} <br/>
             </div>
         </div>`
+        cardsInHandPlayer2++
         // cardsOutput.innerHTML += cardsDealt[i][0].cardName
         // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
         // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
@@ -197,6 +201,42 @@ function playCardPlayer2(id){
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
     }
 }
+
+function drawCardPlayer2() {
+    let cardsOutput = document.getElementById('cardsInHandPlayer2')
+    console.log(cardsInHandPlayer2)
+    if (actionsPlayer2 <= 0){
+        console.log('no moves left!')
+        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
+        updateStatusP2(`No Moves Left, Please End Turn`)
+    }
+    else if (cardsInHandPlayer2 >= maxCardsInHandPlayer2){
+        updateStatusP2(`Max Cards In Hand`)
+    }
+    else {
+        let cardsDealt = deal(shuffledPlayer2, 1, 1)
+        console.log(cardsDealt)
+
+        for (let i = 0; i < cardsDealt.length; i++)
+        {
+            cardsOutput.innerHTML += `
+            <div class="cardShow" id="cardShowPlayer2-${i}" onclick=playCardPlayer2(${i})>
+                <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
+                <div class="cardImgDivSmallContainer">
+                    <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
+                </div>
+                  <div class="valueSmall" id="valueSmall${i}">
+                    ${cardsDealt[i][0].value} <br/>
+                </div>
+            </div>`
+        }
+        actionsPlayer2--
+        cardsInHandPlayer2++
+        let playerMovesInfo = document.getElementById('player2Moves')
+        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+    }
+}
+
 
 function dealCards() {
     dealAndShowPlayer1()
