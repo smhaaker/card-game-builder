@@ -64,7 +64,7 @@ function dealAndShowPlayer1() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShow${i}" onclick=playCardPlayer1(${i})>
+        <div class="cardShow" id="cardShowPlayer1-${i}" onclick=playCardPlayer1(${i})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -100,7 +100,7 @@ function drawCardPlayer1() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShow" id="cardShow${i}" onclick=playCardPlayer1(${i})>
+            <div class="cardShow" id="cardShowPlayer1-${i}" onclick=playCardPlayer1(${i})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -120,16 +120,20 @@ function drawCardPlayer1() {
 
 function playCardPlayer1(id){
     // let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
+    
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
         updateStatusP1(`No Moves Left, Please End Turn`)
     }
+    // else if (cardElement) {
+    //     console.log('do nothing')
+    // }
     else {
         console.log(id)
-        $(`#cardShow${id}`).appendTo("#player1Board");
-        let cardId = document.getElementById(`#cardShow${id}`)
-        $(`#cardShow${id}`).attr('id',`id_new${id}`);
+        $(`#cardShowPlayer1-${id}`).appendTo("#player1Board");
+        let cardId = document.getElementById(`#cardShowPlayer1-${id}`)
+        $(`#cardShowPlayer1-${id}`).attr('id',`id_new${id}`);
         // cardsInHand
         actionsPlayer1--;
         let playerMovesInfo = document.getElementById('player1Moves')
@@ -160,7 +164,7 @@ function dealAndShowPlayer2() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShowPlayer2${i}" onclick=playCardPlayer2(${i})>
+        <div class="cardShow" id="cardShowPlayer2-${i}" onclick=playCardPlayer2(${i})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -184,9 +188,9 @@ function playCardPlayer2(id){
     }
     else {
         console.log(id)
-        $(`#cardShowPlayer2${id}`).appendTo("#player2Board");
-        let cardId = document.getElementById(`#cardShowPlayer2${id}`)
-        $(`#cardShowPlayer2${id}`).attr('id',`id_new${id}`);
+        $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
+        let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
+        $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
         // cardsInHand
         actionsPlayer2--;
         let playerMovesInfo = document.getElementById('player2Moves')
