@@ -241,6 +241,8 @@ function drawCardPlayer2() {
 function dealCards() {
     dealAndShowPlayer1()
     dealAndShowPlayer2()
+    let modal = document.getElementById("myModal");
+    modal.style.display = "none";
 }
 
 
@@ -258,3 +260,39 @@ function endTurn() {
     console.log(`Ending turn. ${currentPlayer} is up next`)
 } 
 
+// modal
+// Get the modal
+
+function modalStart() {
+    let modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    let btn = document.getElementById("myBtn");
+    
+    // Get the <span> element that closes the modal
+    let span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    // btn.onclick = function() {
+      modal.style.display = "block";
+    // }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    // // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+}
+
+
+window.onload = function() {
+    console.log('window load')
+    modalStart()
+  };

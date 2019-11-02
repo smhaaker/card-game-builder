@@ -3,7 +3,7 @@
 
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script type="text/javascript" src="../../src/cardframe.js"></script>
-        <script type="text/javascript" src="./js/script.js"></script>
+        <!-- <script type="text/javascript" src="./js/script.js"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
@@ -30,13 +30,37 @@
 <main>
 
     Playboard
-    <button onclick=dealCards()>Deal Cards</button><br/><br/>
+    <!-- <button onclick=dealCards()>Deal Cards</button><br/><br/> -->
     cards for player 1 goes here: <div id="player1Board"></div>
     <br/>
     <br/><br/><br/><br/><br/><br/>
 
     cards for player 1 goes here: <div id="player2Board"></div>
     <br/>
+   
+    <!-- Trigger/Open The Modal -->
+    <!-- <button id="myBtn">Open Modal</button> -->
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Modal Header</h2>
+        </div>
+        <div class="modal-body">
+          <p>Welcome to this card game, working on it so please hang in there. Please report bugs</p>
+          <p>push start button to deal cards to both players</p>
+          <p><button onclick=dealCards()>Start Game</button><br/><br/></p>
+        </div>
+        <div class="modal-footer">
+          <h3>Modal Footer</h3>
+        </div>
+      </div>
+    
+    </div>
 
 </main>
 
@@ -65,3 +89,5 @@
 </body>
 
 </html>
+
+<script type="text/javascript" src="./js/script.js"></script>
