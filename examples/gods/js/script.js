@@ -270,7 +270,7 @@ function modalStart() {
     let btn = document.getElementById("myBtn");
     
     // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("close")[0];
+    // let span = document.getElementsByClassName("close")[0];
     
     // When the user clicks the button, open the modal 
     // btn.onclick = function() {
@@ -278,16 +278,16 @@ function modalStart() {
     // }
     
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
+    //   modal.style.display = "none";
+    // }    span.onclick = function() {
+
     
     // // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
+    // window.onclick = function(event) {
+    //   if (event.target == modal) {
+    //     modal.style.display = "none";
+    //   }
+    // }
 
 }
 
