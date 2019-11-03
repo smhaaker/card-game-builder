@@ -195,12 +195,12 @@ function dealAndShowPlayer2() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShowPlayer2" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
+        <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDealt[i][0].id}" onclick=placeCardPlayer2(${cardsDealt[i][0].id})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
             </div>
-            <div class="valueSmall" id="valueSmall${i}">
+            <div class="valueSmallP2" id="valueSmall${i}">
                 ${cardsDealt[i][0].energy} <br/>
             </div>
         </div>`
@@ -208,6 +208,14 @@ function dealAndShowPlayer2() {
         // cardsOutput.innerHTML += cardsDealt[i][0].cardName
         // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
         // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
+    }
+    let className = document.getElementsByClassName('cardShowPlayer2');
+    let valueSmallP2 = document.getElementsByClassName('valueSmallP2');
+    for(let i=0; i<className.length; i++) { 
+        className[i].style.borderColor = cardBorderPlayer2;
+        console.log(valueSmallP2[i].style)
+        valueSmallP2[i].style.borderColor = cardBorderPlayer2;
+        console.log(cardsDealt[i][0].color)
     }
 }
 
@@ -219,7 +227,7 @@ function placeCardPlayer2(id){
         statusbarPlayer2.innerHTML = `No Moves Left, Please End Turn`
     }
     else {
-        console.log(id)
+        console.log("placing card: " + id)
         $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
         let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
         $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
@@ -232,6 +240,7 @@ function placeCardPlayer2(id){
         cardsInHandPlayer2--
         let playerMovesInfo = document.getElementById('player2Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+        
     }
 }
 
@@ -280,20 +289,28 @@ function drawCardPlayer2() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShowPlayer2" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
+            <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDealt[i][0].id}" onclick=placeCardPlayer2(${cardsDealt[i][0].id})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
                 </div>
-                  <div class="valueSmall" id="valueSmall${i}">
+                  <div class="valueSmallP2" id="valueSmall${i}">
                     ${cardsDealt[i][0].energy} <br/>
                 </div>
             </div>`
         }
+        
         actionsPlayer2--
         cardsInHandPlayer2++
         let playerMovesInfo = document.getElementById('player2Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+        let className = document.getElementsByClassName('cardShowPlayer2');
+        let valueSmallP2 = document.getElementsByClassName('valueSmallP2');
+        for(let i=0; i<className.length; i++) { 
+            className[i].style.borderColor = cardBorderPlayer2;
+            valueSmallP2[i].style.borderColor = cardBorderPlayer2;
+            // console.log(cardsDealt[i][0].color)
+        }
     }
 }
 
