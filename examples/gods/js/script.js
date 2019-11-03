@@ -91,10 +91,10 @@ function drawCardPlayer1() {
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
-        updateStatusP1(`No Moves Left, Please End Turn`)
+        updateStatus(`No Moves Left, Please End Turn`, 1)
     }
     else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
-        updateStatusP1(`Max Cards In Hand`)
+        updateStatus(`Max Cards In Hand`,1)
     }
     else {
         let cardsDealt = deal(shuffledPlayer1, 1, 1)
@@ -127,7 +127,7 @@ function placeCardPlayer1(id){
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
-        updateStatusP1(`No Moves Left, Please End Turn`)
+        updateStatus(`No Moves Left, Please End Turn`, 1)
     }
     // else if (cardElement) {
     //     console.log('do nothing')
@@ -141,10 +141,10 @@ function placeCardPlayer1(id){
         actionsPlayer1--;
         cardsInHandPlayer1--;
         let playerMovesInfo = document.getElementById('player1Moves')
-        let totalBlock = document.getElementById('block')
+        let totalBlock = document.getElementById('blockPlayer1')
         console.log(shuffledPlayer1[id].energy)
         totalCardsBlockPlayer1 += shuffledPlayer1[id].energy
-        totalBlock.innerHTML = totalCardsBlockPlayer1
+        totalBlock.innerHTML = `Total Block: ${totalCardsBlockPlayer1}`
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     }
 }
@@ -158,6 +158,11 @@ function updateStatusP1(message) {
 function updateStatusP2(message) {
     let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
     statusbarPlayer2.innerHTML = message
+}
+
+function updateStatus(message, playerNumber){
+    let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
+    statusbarPlayer.innerHTML = message
 }
 
 function dealAndShowPlayer2() {
@@ -220,10 +225,11 @@ function playCardPlayer2(id){
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
-        updateStatusP2(`No Moves Left, Please End Turn`)
+        updateStatus(`No Moves Left, Please End Turn`, 2)
     }
     else if (healthPlayer1 <= 0) {
         console.log('How about that, you won')
+        updateStatus(`How about that, you won`, 2)
     } 
     else {
         console.log(shuffledPlayer2[id])
@@ -232,7 +238,7 @@ function playCardPlayer2(id){
         if (healthPlayer1 <= 0){
             console.log('How about that, you won')
             healthPlayer1 = 0;
-            updateStatusP2(`How about that, you won`)
+            updateStatus(`How about that, you won`, 2)
         }
         let playerMovesInfo = document.getElementById('player2Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
@@ -247,10 +253,10 @@ function drawCardPlayer2() {
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
-        updateStatusP2(`No Moves Left, Please End Turn`)
+        updateStatus(`No Moves Left, Please End Turn`, 2)
     }
     else if (cardsInHandPlayer2 >= maxCardsInHandPlayer2){
-        updateStatusP2(`Max Cards In Hand`)
+        updateStatus(`Max Cards In Hand`, 2)
     }
     else {
         let cardsDealt = deal(shuffledPlayer2, 1, 1)
