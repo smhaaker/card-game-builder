@@ -6,7 +6,7 @@ let cardsLeftInDeckPlayer1 = 0;
 let cardsInHandPlayer1 = 0;
 const maxCardsInHandPlayer1 = 7;
 let totalCardsBlockPlayer1 = 0;
-
+let cardBorderPlayer1 = '#39CCCC'
 
 // player 2 Defs:
 let healthPlayer2 = 100;
@@ -16,6 +16,9 @@ let cardsLeftInDeckPlayer2 = 0;
 let cardsInHandPlayer2 = 0;
 const maxCardsInHandPlayer2 = 7;
 let totalCardsBlockPlayer2 = 0;
+let cardBorderPlayer2 = '#FF851B'
+
+
 
 let currentPlayer = 0;
 
@@ -23,11 +26,11 @@ let currentPlayer = 0;
 // Player 1 define deck
 // need to set url as standard in framework. 
 // also need to set health,,.. or at least swap out HP for health on display
-let zeus = createCardSet(2, "Zeus", 50, "red", ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancient-origins.net/sites/default/files/field/image/Unshakeable-Power-of-Zeus.jpg')
-let cassandra = createCardSet(4, "Cassandra", 5, "red", ['predict'], 'Cassandra predicts the future')
-let hera = createCardSet(4, "Hera", 15, "red", ['Mean'], 'Hera is so mean')
-let hades = createCardSet(4, "Hades", 25, "red", ['what does he do?'], 'of the underworld')
-let dionysius = createCardSet(4, "Dionysius", 69, "red", ['what does he do?'], 'God of the party')
+let zeus = createCardSet(2, "Zeus", 50, cardBorderPlayer1, ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancient-origins.net/sites/default/files/field/image/Unshakeable-Power-of-Zeus.jpg')
+let cassandra = createCardSet(4, "Cassandra", 5, cardBorderPlayer1, ['predict'], 'Cassandra predicts the future')
+let hera = createCardSet(4, "Hera", 15, cardBorderPlayer1, ['Mean'], 'Hera is so mean')
+let hades = createCardSet(4, "Hades", 25, cardBorderPlayer1, ['what does he do?'], 'of the underworld')
+let dionysius = createCardSet(4, "Dionysius", 69, cardBorderPlayer1, ['what does he do?'], 'God of the party')
 // We merge all the generated 
 let deckPlayer1 = mergeSets(zeus, cassandra, hera, hades, dionysius)
 console.log(deckPlayer1)
@@ -35,11 +38,11 @@ console.log(deckPlayer1)
 let shuffledPlayer1 = shuffle(deckPlayer1);
 
 // Player 2 define deck
-let jupiter = createCardSet(2, "jupiter", 50, "red", ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Jupiter-The-King-of-Gods.jpg')
-let apollo = createCardSet(4, "apollo", 5, "red", ['predict'], 'Cassandra predicts the future')
-let mars = createCardSet(4, "mars", 15, "red", ['Mean'], 'Hera is so mean', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Mars-The-God-of-War.jpg')
-let pluto = createCardSet(4, "pluto", 25, "red", ['what does he do?'], 'of the underworld', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Pluto-The-God-of-Underworld.jpg')
-let neptune = createCardSet(4, "neptune", 69, "red", ['what does he do?'], 'God of the party', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Neptune-The-Roman-God-of-Sea.jpg')
+let jupiter = createCardSet(2, "jupiter", 50, cardBorderPlayer2, ['thunderbolt'], 'Zeus is the king of the gods', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Jupiter-The-King-of-Gods.jpg')
+let apollo = createCardSet(4, "apollo", 5, cardBorderPlayer2, ['predict'], 'Cassandra predicts the future')
+let mars = createCardSet(4, "mars", 15, cardBorderPlayer2, ['Mean'], 'Hera is so mean', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Mars-The-God-of-War.jpg')
+let pluto = createCardSet(4, "pluto", 25, cardBorderPlayer2, ['what does he do?'], 'of the underworld', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Pluto-The-God-of-Underworld.jpg')
+let neptune = createCardSet(4, "neptune", 69, cardBorderPlayer2, ['what does he do?'], 'God of the party', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Neptune-The-Roman-God-of-Sea.jpg')
 // We merge all the generated 
 let deckPlayer2 = mergeSets(jupiter, apollo, mars, pluto, neptune)
 console.log(deckPlayer2)
@@ -62,8 +65,8 @@ function dealAndShowPlayer1() {
     let cardsOutput = document.getElementById('cardsInHandPlayer1')
     let cardsLeftInDeck = document.getElementById('player1deckcards')
     cardsLeftInDeck.innerHTML = shuffledPlayer1.length - cardsDealt.length
-
     cardsOutput.innerHTML = ''
+
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
@@ -77,9 +80,14 @@ function dealAndShowPlayer1() {
             </div>
         </div>`
         cardsInHandPlayer1++
-        // cardsOutput.innerHTML += cardsDealt[i][0].cardName
-        // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
-        // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
+    }
+    // sets color for card from defined defaults... But this sets it for the entire class
+    let className = document.getElementsByClassName('cardShow');
+    let valueSmallP1 = document.getElementsByClassName('valueSmall');
+    for(let i=0; i<className.length; i++) { 
+        className[i].style.borderColor = cardBorderPlayer1;
+        valueSmallP1[i].style.borderColor = cardBorderPlayer1;
+        // console.log(cardsDealt[i][0].color)
     }
 
 }
@@ -117,6 +125,13 @@ function drawCardPlayer1() {
         cardsInHandPlayer1++
         let playerMovesInfo = document.getElementById('player1Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+        let className = document.getElementsByClassName('cardShow');
+        let valueSmallP1 = document.getElementsByClassName('valueSmall');
+        for(let i=0; i<className.length; i++) { 
+            className[i].style.borderColor = cardBorderPlayer1;
+            valueSmallP1[i].style.borderColor = cardBorderPlayer1;
+            // console.log(cardsDealt[i][0].color)
+        }
     }
 }
 
@@ -149,17 +164,17 @@ function placeCardPlayer1(id){
     }
 }
 
-// Combine these two into one function parameters playerNumber, Message
-function updateStatusP1(message) {
-    let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
-    statusbarPlayer1.innerHTML = message
-}
+// function updateStatusP1(message) {
+//     let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
+//     statusbarPlayer1.innerHTML = message
+// }
 
-function updateStatusP2(message) {
-    let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
-    statusbarPlayer2.innerHTML = message
-}
+// function updateStatusP2(message) {
+//     let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
+//     statusbarPlayer2.innerHTML = message
+// }
 
+// Changes Status Message on Player Status Bar, Pass Arguments for Parameters of message and playernumber
 function updateStatus(message, playerNumber){
     let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
     statusbarPlayer.innerHTML = message
@@ -180,7 +195,7 @@ function dealAndShowPlayer2() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
+        <div class="cardShowPlayer2" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -265,7 +280,7 @@ function drawCardPlayer2() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShow" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
+            <div class="cardShowPlayer2" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
