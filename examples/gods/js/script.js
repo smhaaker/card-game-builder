@@ -1,6 +1,6 @@
 // player 1 Defs:
 let healthPlayer1 = 100;
-let actionsPlayer1 = 5;
+let actionsPlayer1 = 15;
 let dealCardsPlayer1 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer1 = 0;
 let cardsInHandPlayer1 = 0;
@@ -10,7 +10,7 @@ let totalCardsBlockPlayer1 = 0;
 
 // player 2 Defs:
 let healthPlayer2 = 100;
-let actionsPlayer2   = 5;
+let actionsPlayer2   = 15;
 let dealCardsPlayer2 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer2 = 0;
 let cardsInHandPlayer2 = 0;
@@ -139,6 +139,7 @@ function placeCardPlayer1(id){
         $(`#cardShowPlayer1-${id}`).attr('id',`id_new${id}`);
         // cardsInHand
         actionsPlayer1--;
+        cardsInHandPlayer1--;
         let playerMovesInfo = document.getElementById('player1Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     }
@@ -203,7 +204,8 @@ function placeCardPlayer2(id){
         // $(`#id_new${id}`).prop('onclick',null).off('click');
         $(`#id_new${id}`).attr("onclick",`playCardPlayer2("${id}")`);
         // cardsInHand
-        actionsPlayer2--;
+        actionsPlayer2--
+        cardsInHandPlayer2--
         let playerMovesInfo = document.getElementById('player2Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
     }
