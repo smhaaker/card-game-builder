@@ -1,6 +1,6 @@
 // player 1 Defs:
 let healthPlayer1 = 100;
-let actionsPlayer1 = 3;
+let actionsPlayer1 = 5;
 let dealCardsPlayer1 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer1 = 0;
 let cardsInHandPlayer1 = 0;
@@ -8,7 +8,7 @@ const maxCardsInHandPlayer1 = 7;
 
 // player 2 Defs:
 let healthPlayer2 = 100;
-let actionsPlayer2   = 3;
+let actionsPlayer2   = 5;
 let dealCardsPlayer2 = true; // if true, you are allowed to have cards dealt. Turns false on use up of actions.
 let cardsLeftInDeckPlayer2 = 0;
 let cardsInHandPlayer2 = 0;
@@ -64,7 +64,7 @@ function dealAndShowPlayer1() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShowPlayer1-${i}" onclick=playCardPlayer1(${i})>
+        <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -100,7 +100,7 @@ function drawCardPlayer1() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShow" id="cardShowPlayer1-${i}" onclick=playCardPlayer1(${i})>
+            <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -118,7 +118,7 @@ function drawCardPlayer1() {
 }
 
 
-function playCardPlayer1(id){
+function placeCardPlayer1(id){
     // let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
     
     if (actionsPlayer1 <= 0){
@@ -167,7 +167,7 @@ function dealAndShowPlayer2() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShowPlayer2-${i}" onclick=playCardPlayer2(${i})>
+        <div class="cardShow" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -184,7 +184,7 @@ function dealAndShowPlayer2() {
 }
 
 
-function playCardPlayer2(id){
+function placeCardPlayer2(id){
     let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
@@ -195,10 +195,40 @@ function playCardPlayer2(id){
         $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
         let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
         $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
+        // document.getElementById(`#id_new${id}`).onclick = function() { console.log('updated card onlickc');HideError(id); }
+        // document.getElementById(`#id_new${id}`).onclick = playCardPlayer2(id)
+        // $(`#id_new${id}`).prop('onclick',null).off('click');
+        $(`#id_new${id}`).attr("onclick",`playCardPlayer2("${id}")`);
         // cardsInHand
         actionsPlayer2--;
         let playerMovesInfo = document.getElementById('player2Moves')
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+    }
+}
+
+function playCardPlayer2(id){
+    console.log('playing card ' + id)
+    if (actionsPlayer2 <= 0){
+        console.log('no moves left!')
+        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
+        updateStatusP2(`No Moves Left, Please End Turn`)
+    }
+    else if (healthPlayer1 <= 0) {
+        console.log('How about that, you won')
+    } 
+    else {
+        console.log(shuffledPlayer2[id])
+        healthPlayer1 -= shuffledPlayer2[id].value 
+        actionsPlayer2--
+        if (healthPlayer1 <= 0){
+            console.log('How about that, you won')
+            healthPlayer1 = 0;
+            updateStatusP2(`How about that, you won`)
+        }
+        let playerMovesInfo = document.getElementById('player2Moves')
+        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+        let player1HealthInfo = document.getElementById('player1Health')
+        player1HealthInfo.innerHTML = `Health: ${healthPlayer1} <br/> `
     }
 }
 
@@ -220,7 +250,7 @@ function drawCardPlayer2() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShow" id="cardShowPlayer2-${i}" onclick=playCardPlayer2(${i})>
+            <div class="cardShow" id="cardShowPlayer2-${i}" onclick=placeCardPlayer2(${i})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
