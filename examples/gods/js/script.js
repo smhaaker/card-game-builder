@@ -5,6 +5,8 @@ let dealCardsPlayer1 = true; // if true, you are allowed to have cards dealt. Tu
 let cardsLeftInDeckPlayer1 = 0;
 let cardsInHandPlayer1 = 0;
 const maxCardsInHandPlayer1 = 7;
+let totalCardsBlockPlayer1 = 0;
+
 
 // player 2 Defs:
 let healthPlayer2 = 100;
@@ -13,6 +15,7 @@ let dealCardsPlayer2 = true; // if true, you are allowed to have cards dealt. Tu
 let cardsLeftInDeckPlayer2 = 0;
 let cardsInHandPlayer2 = 0;
 const maxCardsInHandPlayer2 = 7;
+let totalCardsBlockPlayer2 = 0;
 
 let currentPlayer = 0;
 
@@ -70,7 +73,7 @@ function dealAndShowPlayer1() {
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
             </div>
               <div class="valueSmall" id="valueSmall${i}">
-                ${cardsDealt[i][0].value} <br/>
+                ${cardsDealt[i][0].energy} <br/>
             </div>
         </div>`
         cardsInHandPlayer1++
@@ -106,7 +109,7 @@ function drawCardPlayer1() {
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
                 </div>
                   <div class="valueSmall" id="valueSmall${i}">
-                    ${cardsDealt[i][0].value} <br/>
+                    ${cardsDealt[i][0].energy} <br/>
                 </div>
             </div>`
         }
@@ -173,7 +176,7 @@ function dealAndShowPlayer2() {
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
             </div>
             <div class="valueSmall" id="valueSmall${i}">
-                ${cardsDealt[i][0].value} <br/>
+                ${cardsDealt[i][0].energy} <br/>
             </div>
         </div>`
         cardsInHandPlayer2++
@@ -218,7 +221,7 @@ function playCardPlayer2(id){
     } 
     else {
         console.log(shuffledPlayer2[id])
-        healthPlayer1 -= shuffledPlayer2[id].value 
+        healthPlayer1 -= shuffledPlayer2[id].energy 
         actionsPlayer2--
         if (healthPlayer1 <= 0){
             console.log('How about that, you won')
@@ -256,7 +259,7 @@ function drawCardPlayer2() {
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
                 </div>
                   <div class="valueSmall" id="valueSmall${i}">
-                    ${cardsDealt[i][0].value} <br/>
+                    ${cardsDealt[i][0].energy} <br/>
                 </div>
             </div>`
         }

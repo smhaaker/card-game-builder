@@ -32,7 +32,8 @@ let shuffled = cardframe.shuffle(deck);
 // console.log(shuffled)
 
 // dealing cards from deck shuffled to 4 players and two cards each
-let cardsDealt = cardframe.deal(shuffled, 4, 2)
+// fix bug in deal function... cant push undefined... 
+let cardsDealt = cardframe.deal(shuffled, 2, 4)
 
 // console.log("dealt cards: " + JSON.stringify(cardsDealt))
 console.log(cardsDealt)

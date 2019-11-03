@@ -48,14 +48,14 @@ function setAttributes(numberOfCards, options){
 
 // this is the one we use for adding cards. Some default settings some optional
 // creates a list of total attributes for card type use ...args for adding the last argumetns
-function createCardSet(amountOfCards, name, value, color, abilities, description, ...additional) {
+function createCardSet(amountOfCards, name, energy, color, abilities, description, ...additional) {
   let jsonArray = []
   for (let i = 0; i < amountOfCards; i++){
     let element = {
       // cards: {
         id: i,
         cardName: name,
-        value: value,
+        energy: energy,
         color: color,
         abilities: abilities,
         description: description,
@@ -182,9 +182,8 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
       for(let i=0;i<playersToDealTo;i++){
         newArr[i]=[];
       }
-
+      console.log(newArr)
     // console.log("amount of players:  " + newArr.length)
-    // console.log(newArr)
     let j = 0
     // console.log('deckToDealFrom ' + deckToDealFrom)
     // console.log('playersToDealTo ' + playersToDealTo)
@@ -192,28 +191,31 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
 
     for (let i = 0; i < cardsToDealTotal; i++){
       // console.log('testing picked: ' + JSON.stringify(deckToDealFrom[i].cardstatus.picked))
+      // console.log(deckToDealFrom.length)
       for (let k = 0; k < deckToDealFrom.length; k++){
         if(deckToDealFrom[k].cardstatus.picked === true){
           console.log('this card has already been picked')
          }
         else{
-          console.log('first index can be used: ' + k)
-          newArr[j].push(deckToDealFrom[k])
-          this.picked(deckToDealFrom[k], true)
-          break;
+          if (cardsToEachPlayer === 1){
+            console.log('first index can be used: ' + k)
+            newArr[j].push(deckToDealFrom[k]) 
+            this.picked(deckToDealFrom[k], true)
+            break;
+          }
+          else {
+            console.log('first index can be used: ' + k)
+            newArr[j].push(deckToDealFrom[k]) 
+            this.picked(deckToDealFrom[k], true)
+          }
         }
       }
-      // if(deckToDealFrom[i].cardstatus.picked === true){
-      //   console.log('this card has already been picked')
-      // }
-      // else {
-      //   // logic for deal next card in here
-      // }
         if (j > playersToDealTo-1) {
           j = 0;
+          console.log('J J J ')
         }
       // console.log(i)
-      // console.log(j)
+      console.log(j)
       // newArr[j].push(deckToDealFrom[i])
       j++
       // this.picked(deckToDealFrom[i], true)
