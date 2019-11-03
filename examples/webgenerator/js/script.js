@@ -47,7 +47,7 @@
                     Abilities: ${newCard[0].abilities}
                 </div>
                 <div id="value">
-                    ${newCard[0].value} <br/>
+                    ${newCard[0].energy} <br/>
                 </div>
             </div>`
         this.cardColor(newCard[0].color)
@@ -93,7 +93,7 @@
                 CardID: ${finaldeck[id].id}
 
                 <div class="valueSmall" id="valueSmall${id}">
-                    ${finaldeck[id].value} <br/>
+                    ${finaldeck[id].energy} <br/>
                 </div>
             </div>`
             this.cardColorSmall(id, finaldeck[id].color)

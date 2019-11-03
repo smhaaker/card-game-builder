@@ -141,6 +141,10 @@ function placeCardPlayer1(id){
         actionsPlayer1--;
         cardsInHandPlayer1--;
         let playerMovesInfo = document.getElementById('player1Moves')
+        let totalBlock = document.getElementById('block')
+        console.log(shuffledPlayer1[id].energy)
+        totalCardsBlockPlayer1 += shuffledPlayer1[id].energy
+        totalBlock.innerHTML = totalCardsBlockPlayer1
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     }
 }
