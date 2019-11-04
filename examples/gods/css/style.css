@@ -366,7 +366,7 @@ footer {
     /* margin-left: 1%;
     margin-right: 1%;
     margin-top: 1%;
-    height: 13vh;
+    height: 13vh; */
 }
 
 /* Remove */
@@ -390,3 +390,17 @@ footer {
 }
 
 
+.playBoardPlayers{
+    background-color: red;
+    height: 23vh;
+    padding-left: 2%;
+    text-align: center;
+}
+
+#playBoardplayer1{
+    border: 1px solid green;
+}
+
+#playBoardplayer2{
+    border: 1px solid black;
+}
