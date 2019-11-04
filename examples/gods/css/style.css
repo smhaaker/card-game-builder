@@ -398,9 +398,9 @@ footer {
 }
 
 #playBoardplayer1{
-    border: 1px solid green;
+    border: 1px solid red;
 }
 
 #playBoardplayer2{
-    border: 1px solid black;
+    border: 1px solid red;
 }
