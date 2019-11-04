@@ -7,6 +7,7 @@ let cardsInHandPlayer1 = 0;
 const maxCardsInHandPlayer1 = 7;
 let totalCardsBlockPlayer1 = 0;
 let cardBorderPlayer1 = '#39CCCC'
+let cardsDrawnPlayer1 = 0;
 
 // player 2 Defs:
 let healthPlayer2 = 100;
@@ -17,7 +18,7 @@ let cardsInHandPlayer2 = 0;
 const maxCardsInHandPlayer2 = 7;
 let totalCardsBlockPlayer2 = 0;
 let cardBorderPlayer2 = '#FF851B'
-
+let cardsDrawnPlayer2 = 0;
 
 
 let currentPlayer = 0;
@@ -194,8 +195,9 @@ function dealAndShowPlayer2() {
     cardsOutput.innerHTML = ''
     for (let i = 0; i < cardsDealt.length; i++)
     {
+        console.log(cardsOutput[i])
         cardsOutput.innerHTML += `
-        <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDealt[i][0].id}" onclick=placeCardPlayer2(${cardsDealt[i][0].id})>
+        <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDrawnPlayer2}" onclick=placeCardPlayer2(${cardsDrawnPlayer2})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -205,6 +207,7 @@ function dealAndShowPlayer2() {
             </div>
         </div>`
         cardsInHandPlayer2++
+        cardsDrawnPlayer2++
         // cardsOutput.innerHTML += cardsDealt[i][0].cardName
         // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
         // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
@@ -228,6 +231,7 @@ function placeCardPlayer2(id){
     }
     else {
         console.log("placing card: " + id)
+        console.log(shuffledPlayer2[id])
         $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
         let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
         $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
@@ -245,7 +249,7 @@ function placeCardPlayer2(id){
 }
 
 function playCardPlayer2(id){
-    console.log('playing card ' + id)
+    console.log('playing card: ' + id)
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
@@ -289,7 +293,7 @@ function drawCardPlayer2() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDealt[i][0].id}" onclick=placeCardPlayer2(${cardsDealt[i][0].id})>
+            <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDrawnPlayer2}" onclick=placeCardPlayer2(${cardsDrawnPlayer2})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -299,7 +303,7 @@ function drawCardPlayer2() {
                 </div>
             </div>`
         }
-        
+        cardsDrawnPlayer2++ // this is a temproary fix to assing play number on the card... Need a better solution for this
         actionsPlayer2--
         cardsInHandPlayer2++
         let playerMovesInfo = document.getElementById('player2Moves')
@@ -372,4 +376,4 @@ function modalStart() {
 window.onload = function() {
     console.log('window load')
     modalStart()
-  };
+};
