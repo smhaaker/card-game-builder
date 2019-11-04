@@ -165,16 +165,6 @@ function placeCardPlayer1(id){
     }
 }
 
-// function updateStatusP1(message) {
-//     let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
-//     statusbarPlayer1.innerHTML = message
-// }
-
-// function updateStatusP2(message) {
-//     let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
-//     statusbarPlayer2.innerHTML = message
-// }
-
 // Changes Status Message on Player Status Bar, Pass Arguments for Parameters of message and playernumber
 function updateStatus(message, playerNumber){
     let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
@@ -231,7 +221,8 @@ function placeCardPlayer2(id){
     }
     else {
         console.log("placing card: " + id)
-        console.log(shuffledPlayer2[id])
+        // console.log(shuffledPlayer2[id])
+        // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
         $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
         let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
         $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
@@ -250,6 +241,7 @@ function placeCardPlayer2(id){
 
 function playCardPlayer2(id){
     console.log('playing card: ' + id)
+    // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
@@ -304,6 +296,7 @@ function drawCardPlayer2() {
             </div>`
         }
         cardsDrawnPlayer2++ // this is a temproary fix to assing play number on the card... Need a better solution for this
+        // reset cardsDrawn on shhuffle? 
         actionsPlayer2--
         cardsInHandPlayer2++
         let playerMovesInfo = document.getElementById('player2Moves')
