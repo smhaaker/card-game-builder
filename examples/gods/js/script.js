@@ -94,47 +94,7 @@ function dealAndShowPlayer1() {
 }
 
 
-// this function works but deals the first card of the complete deck instead of the new deck... Need to fix this
-function drawCardPlayer1() {
-    let cardsOutput = document.getElementById('cardsInHandPlayer1')
-    if (actionsPlayer1 <= 0){
-        console.log('no moves left!')
-        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
-        updateStatus(`No Moves Left, Please End Turn`, 1)
-    }
-    else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
-        updateStatus(`Max Cards In Hand`,1)
-    }
-    else {
-        let cardsDealt = deal(shuffledPlayer1, 1, 1)
-        console.log(cardsDealt)
 
-        for (let i = 0; i < cardsDealt.length; i++)
-        {
-            cardsOutput.innerHTML += `
-            <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
-                <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
-                <div class="cardImgDivSmallContainer">
-                    <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
-                </div>
-                  <div class="valueSmall" id="valueSmall${i}">
-                    ${cardsDealt[i][0].energy} <br/>
-                </div>
-            </div>`
-        }
-        actionsPlayer1--
-        cardsInHandPlayer1++
-        let playerMovesInfo = document.getElementById('player1Moves')
-        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
-        let className = document.getElementsByClassName('cardShow');
-        let valueSmallP1 = document.getElementsByClassName('valueSmall');
-        for(let i=0; i<className.length; i++) { 
-            className[i].style.borderColor = cardBorderPlayer1;
-            valueSmallP1[i].style.borderColor = cardBorderPlayer1;
-            // console.log(cardsDealt[i][0].color)
-        }
-    }
-}
 
 
 function placeCardPlayer1(id){
@@ -206,9 +166,8 @@ function dealAndShowPlayer2() {
     let valueSmallP2 = document.getElementsByClassName('valueSmallP2');
     for(let i=0; i<className.length; i++) { 
         className[i].style.borderColor = cardBorderPlayer2;
-        console.log(valueSmallP2[i].style)
         valueSmallP2[i].style.borderColor = cardBorderPlayer2;
-        console.log(cardsDealt[i][0].color)
+        // console.log(cardsDealt[i][0].color)
     }
 }
 
@@ -241,10 +200,8 @@ function placeCardPlayer2(id){
 
 function playCardPlayer2(id){
     console.log('playing card: ' + id)
-    // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
-        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
         updateStatus(`No Moves Left, Please End Turn`, 2)
     }
     else if (healthPlayer1 <= 0) {
@@ -256,7 +213,6 @@ function playCardPlayer2(id){
         healthPlayer1 -= shuffledPlayer2[id].energy 
         actionsPlayer2--
         if (healthPlayer1 <= 0){
-            console.log('How about that, you won')
             healthPlayer1 = 0;
             updateStatus(`How about that, you won`, 2)
         }
@@ -264,6 +220,48 @@ function playCardPlayer2(id){
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
         let player1HealthInfo = document.getElementById('player1Health')
         player1HealthInfo.innerHTML = `Health: ${healthPlayer1} <br/> `
+    }
+}
+
+// this function works but deals the first card of the complete deck instead of the new deck... Need to fix this
+function drawCardPlayer1() {
+    let cardsOutput = document.getElementById('cardsInHandPlayer1')
+    if (actionsPlayer1 <= 0){
+        console.log('no moves left!')
+        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
+        updateStatus(`No Moves Left, Please End Turn`, 1)
+    }
+    else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
+        updateStatus(`Max Cards In Hand`,1)
+    }
+    else {
+        let cardsDealt = deal(shuffledPlayer1, 1, 1)
+        console.log(cardsDealt)
+
+        for (let i = 0; i < cardsDealt.length; i++)
+        {
+            cardsOutput.innerHTML += `
+            <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
+                <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
+                <div class="cardImgDivSmallContainer">
+                    <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
+                </div>
+                  <div class="valueSmall" id="valueSmall${i}">
+                    ${cardsDealt[i][0].energy} <br/>
+                </div>
+            </div>`
+        }
+        actionsPlayer1--
+        cardsInHandPlayer1++
+        let playerMovesInfo = document.getElementById('player1Moves')
+        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+        let className = document.getElementsByClassName('cardShow');
+        let valueSmallP1 = document.getElementsByClassName('valueSmall');
+        for(let i=0; i<className.length; i++) { 
+            className[i].style.borderColor = cardBorderPlayer1;
+            valueSmallP1[i].style.borderColor = cardBorderPlayer1;
+            // console.log(cardsDealt[i][0].color)
+        }
     }
 }
 
@@ -281,7 +279,6 @@ function drawCardPlayer2() {
     else {
         let cardsDealt = deal(shuffledPlayer2, 1, 1)
         console.log(cardsDealt)
-
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
@@ -311,7 +308,6 @@ function drawCardPlayer2() {
     }
 }
 
-
 function dealCards() {
     dealAndShowPlayer1()
     dealAndShowPlayer2()
@@ -326,10 +322,14 @@ function endTurn() {
     if (currentPlayer === 0) {
         console.log(`Current player is ${currentPlayer}`)
         currentPlayer = 1
+        updateStatus('Your turn there buddy', 1)
+        updateStatus('Turn Ended', 2)
     }
     else {
         console.log(`Current player is ${currentPlayer}`)
         currentPlayer = 0
+        updateStatus('Your turn there buddy', 2)
+        updateStatus('Turn Ended', 1)
     }
     console.log(`Ending turn. ${currentPlayer} is up next`)
 } 
@@ -362,7 +362,6 @@ function modalStart() {
     //     modal.style.display = "none";
     //   }
     // }
-
 }
 
 
