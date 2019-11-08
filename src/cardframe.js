@@ -183,12 +183,7 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
         newArr[i]=[];
       }
       console.log(newArr)
-    // console.log("amount of players:  " + newArr.length)
     let j = 0
-    // console.log('deckToDealFrom ' + deckToDealFrom)
-    // console.log('playersToDealTo ' + playersToDealTo)
-    // console.log('cardsToDeal ' + cardsToDealTotal)
-
     for (let i = 0; i < cardsToDealTotal; i++){
       // console.log('testing picked: ' + JSON.stringify(deckToDealFrom[i].cardstatus.picked))
       // console.log(deckToDealFrom.length)

@@ -58,11 +58,11 @@ function dealAndShowPlayer1() {
     let cardsDealt = deal(shuffledPlayer1, 5, 1)
     console.log(cardsDealt)
 
-    
-    let playerHealthInfo = document.getElementById('player1Health')
-    playerHealthInfo.innerHTML = `Health ${healthPlayer1}`
-    let playerMovesInfo = document.getElementById('player1Moves')
-    playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+    updatePlayerStats(1, healthPlayer1, actionsPlayer1) 
+    // let playerHealthInfo = document.getElementById('player1Health')
+    // playerHealthInfo.innerHTML = `Health ${healthPlayer1}`
+    // let playerMovesInfo = document.getElementById('player1Moves')
+    // playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     let cardsOutput = document.getElementById('cardsInHandPlayer1')
     let cardsLeftInDeck = document.getElementById('player1deckcards')
     cardsLeftInDeck.innerHTML = shuffledPlayer1.length - cardsDealt.length
@@ -131,17 +131,24 @@ function updateStatus(message, playerNumber){
     statusbarPlayer.innerHTML = message
 }
 
+//playerHealth, player2Moves, playerBlock
+function updatePlayerStats(playerNumber, playerHealth, player2Moves) {
+    let playerHealthInfo = document.getElementById(`player${playerNumber}Health`)
+    playerHealthInfo.innerHTML = `Health: ${healthPlayer2}`
+    let playerMovesInfo = document.getElementById(`player${playerNumber}Moves`)
+    playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+}
+
 function dealAndShowPlayer2() {
     let cardsDealt = deal(shuffledPlayer2, 5, 1)
     console.log(cardsDealt)   
         
-    let playerHealthInfo = document.getElementById('player2Health')
-    playerHealthInfo.innerHTML = `Health: ${healthPlayer2}`
-    let playerMovesInfo = document.getElementById('player2Moves')
-    playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+    updatePlayerStats(2, healthPlayer2, actionsPlayer2)
+
     let cardsOutput = document.getElementById('cardsInHandPlayer2')
     let cardsLeftInDeck = document.getElementById('player2deckcards')
-    cardsLeftInDeck.innerHTML = shuffledPlayer2.length - cardsDealt.length
+    cardsLeftInDeckPlayer1 = shuffledPlayer2.length - cardsDealt.length
+    cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
     cardsOutput.innerHTML = ''
     for (let i = 0; i < cardsDealt.length; i++)
     {
@@ -257,6 +264,9 @@ function drawCardPlayer1() {
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
         let className = document.getElementsByClassName('cardShow');
         let valueSmallP1 = document.getElementsByClassName('valueSmall');
+        let cardsLeftInDeck = document.getElementById('player1deckcards')
+        cardsLeftInDeckPlayer1 = cardsLeftInDeckPlayer1 - cardsDealt.length
+        cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
         for(let i=0; i<className.length; i++) { 
             className[i].style.borderColor = cardBorderPlayer1;
             valueSmallP1[i].style.borderColor = cardBorderPlayer1;
@@ -324,18 +334,17 @@ function endTurn() {
         currentPlayer = 1
         updateStatus('Your turn there buddy', 1)
         updateStatus('Turn Ended', 2)
+        actionsPlayer1 = 5
     }
     else {
         console.log(`Current player is ${currentPlayer}`)
         currentPlayer = 0
         updateStatus('Your turn there buddy', 2)
         updateStatus('Turn Ended', 1)
+        actionsPlayer2 = 5
     }
     console.log(`Ending turn. ${currentPlayer} is up next`)
 } 
-
-// modal
-// Get the modal
 
 function modalStart() {
     let modal = document.getElementById("myModal");
