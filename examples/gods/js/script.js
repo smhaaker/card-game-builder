@@ -131,12 +131,12 @@ function updateStatus(message, playerNumber){
     statusbarPlayer.innerHTML = message
 }
 
-//playerHealth, player2Moves, playerBlock
-function updatePlayerStats(playerNumber, playerHealth, player2Moves) {
+//, player2Moves, playerBlock
+function updatePlayerStats(playerNumber, playerHealth, playerMoves) {
     let playerHealthInfo = document.getElementById(`player${playerNumber}Health`)
-    playerHealthInfo.innerHTML = `Health: ${healthPlayer2}`
+    playerHealthInfo.innerHTML = `Health: ${playerHealth}`
     let playerMovesInfo = document.getElementById(`player${playerNumber}Moves`)
-    playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+    playerMovesInfo.innerHTML = `Actions: ${playerMoves}`
 }
 
 function dealAndShowPlayer2() {
