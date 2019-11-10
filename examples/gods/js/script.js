@@ -20,8 +20,7 @@ let totalCardsBlockPlayer2 = 0;
 let cardBorderPlayer2 = '#FF851B'
 let cardsDrawnPlayer2 = 0;
 
-
-let currentPlayer = 0;
+let currentPlayer = 1;
 
 
 // Player 1 define deck
@@ -50,19 +49,12 @@ console.log(deckPlayer2)
 
 let shuffledPlayer2 = shuffle(deckPlayer2);
 
-
-// dealAndShowPlayer1()
-// console.log(shuffled)
-
 function dealAndShowPlayer1() {
     let cardsDealt = deal(shuffledPlayer1, 5, 1)
     console.log(cardsDealt)
 
     updatePlayerStats(1, healthPlayer1, actionsPlayer1) 
-    // let playerHealthInfo = document.getElementById('player1Health')
-    // playerHealthInfo.innerHTML = `Health ${healthPlayer1}`
-    // let playerMovesInfo = document.getElementById('player1Moves')
-    // playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+
     let cardsOutput = document.getElementById('cardsInHandPlayer1')
     let cardsLeftInDeck = document.getElementById('player1deckcards')
     cardsLeftInDeck.innerHTML = shuffledPlayer1.length - cardsDealt.length
@@ -94,20 +86,11 @@ function dealAndShowPlayer1() {
 }
 
 
-
-
-
 function placeCardPlayer1(id){
-    // let statusbarPlayer1 = document.getElementById('player1StatusBarText') // fix this to a general status update
-    
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
-        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
         updateStatus(`No Moves Left, Please End Turn`, 1)
     }
-    // else if (cardElement) {
-    //     console.log('do nothing')
-    // }
     else {
         console.log(id)
         $(`#cardShowPlayer1-${id}`).appendTo("#player1Board");
@@ -123,20 +106,6 @@ function placeCardPlayer1(id){
         totalBlock.innerHTML = `Total Block: ${totalCardsBlockPlayer1}`
         playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     }
-}
-
-// Changes Status Message on Player Status Bar, Pass Arguments for Parameters of message and playernumber
-function updateStatus(message, playerNumber){
-    let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
-    statusbarPlayer.innerHTML = message
-}
-
-//, player2Moves, playerBlock
-function updatePlayerStats(playerNumber, playerHealth, playerMoves) {
-    let playerHealthInfo = document.getElementById(`player${playerNumber}Health`)
-    playerHealthInfo.innerHTML = `Health: ${playerHealth}`
-    let playerMovesInfo = document.getElementById(`player${playerNumber}Moves`)
-    playerMovesInfo.innerHTML = `Actions: ${playerMoves}`
 }
 
 function dealAndShowPlayer2() {
@@ -181,11 +150,6 @@ function dealAndShowPlayer2() {
     }
 }
 
-function updateStatus(message, playerNumber){
-    let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
-    statusbarPlayer.innerHTML = message
-}
-
 function placeCardPlayer2(id){
     if (actionsPlayer2 <= 0){
         updateStatus(`No Moves Left, Please End Turn`, 2)
@@ -207,16 +171,14 @@ function placeCardPlayer2(id){
 function playCardPlayer2(id){
     console.log('playing card: ' + id)
     if (actionsPlayer2 <= 0){
-        console.log('no moves left!')
         updateStatus(`No Moves Left, Please End Turn`, 2)
     }
     else if (healthPlayer1 <= 0) {
-        console.log('How about that, you won')
         updateStatus(`How about that, you won`, 2)
     } 
     else {
         console.log(shuffledPlayer2[id])
-        healthPlayer1 -= shuffledPlayer2[id].energy 
+        healthPlayer1 -= shuffledPlayer2[id].energy
         actionsPlayer2--
         if (healthPlayer1 <= 0){
             healthPlayer1 = 0;
@@ -224,10 +186,6 @@ function playCardPlayer2(id){
         }
         updatePlayerStats(2, healthPlayer2, actionsPlayer2)
         updatePlayerStats(1, healthPlayer1, actionsPlayer1)
-        // let playerMovesInfo = document.getElementById('player2Moves')
-        // playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
-        // let player1HealthInfo = document.getElementById('player1Health')
-        // player1HealthInfo.innerHTML = `Health: ${healthPlayer1} <br/> `
     }
 }
 
@@ -236,7 +194,6 @@ function drawCardPlayer1() {
     let cardsOutput = document.getElementById('cardsInHandPlayer1')
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
-        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
         updateStatus(`No Moves Left, Please End Turn`, 1)
     }
     else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
@@ -261,8 +218,8 @@ function drawCardPlayer1() {
         }
         actionsPlayer1--
         cardsInHandPlayer1++
-        let playerMovesInfo = document.getElementById('player1Moves')
-        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+
         let className = document.getElementsByClassName('cardShow');
         let valueSmallP1 = document.getElementsByClassName('valueSmall');
         let cardsLeftInDeck = document.getElementById('player1deckcards')
@@ -303,12 +260,12 @@ function drawCardPlayer2() {
                 </div>
             </div>`
         }
-        cardsDrawnPlayer2++ // this is a temproary fix to assing play number on the card... Need a better solution for this
-        // reset cardsDrawn on shhuffle? 
+        cardsDrawnPlayer2++ 
         actionsPlayer2--
         cardsInHandPlayer2++
-        let playerMovesInfo = document.getElementById('player2Moves')
-        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+
+        updatePlayerStats(2, healthPlayer2, actionsPlayer2)
+
         let className = document.getElementsByClassName('cardShowPlayer2');
         let valueSmallP2 = document.getElementsByClassName('valueSmallP2');
         for(let i=0; i<className.length; i++) { 
@@ -326,54 +283,45 @@ function dealCards() {
     modal.style.display = "none";
 }
 
-
 function endTurn() {
-    // resets next users actions to 3. Leaves current to 0. 
-    // works on button end turn... 
-    if (currentPlayer === 0) {
+    if (currentPlayer === 1) {
         console.log(`Current player is ${currentPlayer}`)
-        currentPlayer = 1
+        currentPlayer = 2
         updateStatus('Your turn there buddy', 1)
         updateStatus('Turn Ended', 2)
         actionsPlayer1 = 5
     }
     else {
         console.log(`Current player is ${currentPlayer}`)
-        currentPlayer = 0
+        currentPlayer = 1
         updateStatus('Your turn there buddy', 2)
         updateStatus('Turn Ended', 1)
         actionsPlayer2 = 5
     }
+    updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+    updatePlayerStats(2, healthPlayer2, actionsPlayer2)
     console.log(`Ending turn. ${currentPlayer} is up next`)
 } 
 
-function modalStart() {
-    let modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    let btn = document.getElementById("myBtn");
-    
-    // Get the <span> element that closes the modal
-    // let span = document.getElementsByClassName("close")[0];
-    
-    // When the user clicks the button, open the modal 
-    // btn.onclick = function() {
-      modal.style.display = "block";
-    // }
-    
-    // When the user clicks on <span> (x), close the modal
-    //   modal.style.display = "none";
-    // }    span.onclick = function() {
-
-    
-    // // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = "none";
-    //   }
-    // }
+// UpdateFunctions
+function updateStatus(message, playerNumber){
+    let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
+    statusbarPlayer.innerHTML = message
 }
 
+//, player2Moves, playerBlock
+function updatePlayerStats(playerNumber, playerHealth, playerMoves) {
+    let playerHealthInfo = document.getElementById(`player${playerNumber}Health`)
+    playerHealthInfo.innerHTML = `Health: ${playerHealth}`
+    let playerMovesInfo = document.getElementById(`player${playerNumber}Moves`)
+    playerMovesInfo.innerHTML = `Actions: ${playerMoves}`
+}
+
+// Set up and load Modal
+function modalStart() {
+    let modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
 
 window.onload = function() {
     console.log('window load')
