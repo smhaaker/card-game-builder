@@ -145,11 +145,14 @@ function dealAndShowPlayer2() {
         
     updatePlayerStats(2, healthPlayer2, actionsPlayer2)
 
-    let cardsOutput = document.getElementById('cardsInHandPlayer2')
+    // make this a function to reuse
     let cardsLeftInDeck = document.getElementById('player2deckcards')
-    cardsLeftInDeckPlayer1 = shuffledPlayer2.length - cardsDealt.length
+    cardsLeftInDeckPlayer1 = shuffledPlayer1.length - cardsDealt.length
     cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
+    
+    let cardsOutput = document.getElementById('cardsInHandPlayer2')
     cardsOutput.innerHTML = ''
+
     for (let i = 0; i < cardsDealt.length; i++)
     {
         console.log(cardsOutput[i])
@@ -178,30 +181,26 @@ function dealAndShowPlayer2() {
     }
 }
 
+function updateStatus(message, playerNumber){
+    let statusbarPlayer = document.getElementById(`player${playerNumber}StatusBarText`)
+    statusbarPlayer.innerHTML = message
+}
 
 function placeCardPlayer2(id){
-    let statusbarPlayer2 = document.getElementById('player2StatusBarText') // fix this to a general status update
     if (actionsPlayer2 <= 0){
-        console.log('no moves left!')
-        statusbarPlayer2.innerHTML = `No Moves Left, Please End Turn`
+        updateStatus(`No Moves Left, Please End Turn`, 2)
     }
     else {
         console.log("placing card: " + id)
         // console.log(shuffledPlayer2[id])
         // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
         $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
-        let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
+        // let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
         $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
-        // document.getElementById(`#id_new${id}`).onclick = function() { console.log('updated card onlickc');HideError(id); }
-        // document.getElementById(`#id_new${id}`).onclick = playCardPlayer2(id)
-        // $(`#id_new${id}`).prop('onclick',null).off('click');
         $(`#id_new${id}`).attr("onclick",`playCardPlayer2("${id}")`);
-        // cardsInHand
         actionsPlayer2--
         cardsInHandPlayer2--
-        let playerMovesInfo = document.getElementById('player2Moves')
-        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
-        
+        updatePlayerStats(2, healthPlayer2, actionsPlayer2)
     }
 }
 
@@ -223,10 +222,12 @@ function playCardPlayer2(id){
             healthPlayer1 = 0;
             updateStatus(`How about that, you won`, 2)
         }
-        let playerMovesInfo = document.getElementById('player2Moves')
-        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
-        let player1HealthInfo = document.getElementById('player1Health')
-        player1HealthInfo.innerHTML = `Health: ${healthPlayer1} <br/> `
+        updatePlayerStats(2, healthPlayer2, actionsPlayer2)
+        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+        // let playerMovesInfo = document.getElementById('player2Moves')
+        // playerMovesInfo.innerHTML = `Actions: ${actionsPlayer2}`
+        // let player1HealthInfo = document.getElementById('player1Health')
+        // player1HealthInfo.innerHTML = `Health: ${healthPlayer1} <br/> `
     }
 }
 
