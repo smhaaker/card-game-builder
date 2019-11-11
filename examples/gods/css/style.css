@@ -421,3 +421,24 @@ footer {
 #playBoardplayer2{
     border: 1px solid red;
 }
+
+.cardShow:hover .cardInfo{
+    visibility: visible;
+}
+
+.cardInfo {
+    background-color: wheat;
+    padding: 10px;
+    border: 7px solid #1C6EA4;
+    visibility: visible;
+    /* visibility: hidden; */
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 120%;
+    left: 10%;
+    color: black;
+  }

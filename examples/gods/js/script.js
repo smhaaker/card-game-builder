@@ -31,8 +31,11 @@ let cassandra = createCardSet(4, "Cassandra", 5, cardBorderPlayer1, ['predict'],
 let hera = createCardSet(4, "Hera", 15, cardBorderPlayer1, ['Mean'], 'Hera is so mean')
 let hades = createCardSet(4, "Hades", 25, cardBorderPlayer1, ['what does he do?'], 'of the underworld')
 let dionysius = createCardSet(4, "Dionysius", 69, cardBorderPlayer1, ['what does he do?'], 'God of the party')
+// healing god
+let asclepius  = createCardSet(4, "Asclepius", 5, cardBorderPlayer1, ['what does he do?'], 'God of healing', 'Urlgoeshere', 'health: +5')
+
 // We merge all the generated 
-let deckPlayer1 = mergeSets(zeus, cassandra, hera, hades, dionysius)
+let deckPlayer1 = mergeSets(zeus, cassandra, hera, hades, dionysius, asclepius)
 console.log(deckPlayer1)
 
 let shuffledPlayer1 = shuffle(deckPlayer1);
@@ -43,8 +46,12 @@ let apollo = createCardSet(4, "apollo", 5, cardBorderPlayer2, ['predict'], 'Cass
 let mars = createCardSet(4, "mars", 15, cardBorderPlayer2, ['Mean'], 'Hera is so mean', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Mars-The-God-of-War.jpg')
 let pluto = createCardSet(4, "pluto", 25, cardBorderPlayer2, ['what does he do?'], 'of the underworld', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Pluto-The-God-of-Underworld.jpg')
 let neptune = createCardSet(4, "neptune", 69, cardBorderPlayer2, ['what does he do?'], 'God of the party', 'https://www.ancienthistorylists.com/wp-content/uploads/2017/09/Neptune-The-Roman-God-of-Sea.jpg')
+// healing god
+let vejovis  = createCardSet(4, "Vejovis", 5, cardBorderPlayer1, ['what does he do?'], 'God of healing', 'Urlgoeshere', 'health: +5')
+
+
 // We merge all the generated 
-let deckPlayer2 = mergeSets(jupiter, apollo, mars, pluto, neptune)
+let deckPlayer2 = mergeSets(jupiter, apollo, mars, pluto, neptune, vejovis)
 console.log(deckPlayer2)
 
 let shuffledPlayer2 = shuffle(deckPlayer2);
@@ -64,6 +71,7 @@ function dealAndShowPlayer1() {
     {
         cardsOutput.innerHTML += `
         <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
+            
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -71,6 +79,13 @@ function dealAndShowPlayer1() {
               <div class="valueSmall" id="valueSmall${i}">
                 ${cardsDealt[i][0].energy} <br/>
             </div>
+
+            <div class="cardInfo">
+                ${cardsDealt[i][0].cardName}<br/>
+                ${cardsDealt[i][0].description}<br/>
+                Deals ${cardsDealt[i][0].energy} damage<br/>
+            </div>
+
         </div>`
         cardsInHandPlayer1++
     }
