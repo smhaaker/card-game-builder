@@ -426,12 +426,18 @@ footer {
     visibility: visible;
 }
 
+.cardShowPlayer2:hover .cardInfoPlayer2{
+    visibility: visible;
+}
+
+
+
 .cardInfo {
     background-color: wheat;
     padding: 10px;
     border: 7px solid #1C6EA4;
-    visibility: visible;
-    /* visibility: hidden; */
+    /* visibility: visible; */
+    visibility: hidden;
     width: 120px;
     color: #fff;
     text-align: center;
@@ -442,3 +448,20 @@ footer {
     left: 10%;
     color: black;
   }
+
+.cardInfoPlayer2 {
+    background-color: wheat;
+    padding: 10px;
+    border: 7px solid #1C6EA4;
+    /* visibility: visible; */
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: -75%;
+    left: 10%;
+    color: black;
+}

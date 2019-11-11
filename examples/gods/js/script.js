@@ -56,6 +56,10 @@ console.log(deckPlayer2)
 
 let shuffledPlayer2 = shuffle(deckPlayer2);
 
+function cardDealLoop(playerNumber) {
+
+}
+
 function dealAndShowPlayer1() {
     let cardsDealt = deal(shuffledPlayer1, 5, 1)
     console.log(cardsDealt)
@@ -84,6 +88,7 @@ function dealAndShowPlayer1() {
                 ${cardsDealt[i][0].cardName}<br/>
                 ${cardsDealt[i][0].description}<br/>
                 Deals ${cardsDealt[i][0].energy} damage<br/>
+                ${cardsDealt[i][0].abilities} </br>
             </div>
 
         </div>`
@@ -103,23 +108,52 @@ function dealAndShowPlayer1() {
 
 function placeCardPlayer1(id){
     if (actionsPlayer1 <= 0){
-        console.log('no moves left!')
         updateStatus(`No Moves Left, Please End Turn`, 1)
     }
     else {
-        console.log(id)
+        console.log("placing card: " + id)
+        // console.log(shuffledPlayer2[id])
+        // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
         $(`#cardShowPlayer1-${id}`).appendTo("#player1Board");
-        let cardId = document.getElementById(`#cardShowPlayer1-${id}`)
+        // let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
         $(`#cardShowPlayer1-${id}`).attr('id',`id_new${id}`);
-        // cardsInHand
-        actionsPlayer1--;
-        cardsInHandPlayer1--;
-        let playerMovesInfo = document.getElementById('player1Moves')
-        let totalBlock = document.getElementById('blockPlayer1')
-        console.log(shuffledPlayer1[id].energy)
-        totalCardsBlockPlayer1 += shuffledPlayer1[id].energy
-        totalBlock.innerHTML = `Total Block: ${totalCardsBlockPlayer1}`
-        playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+        $(`#id_new${id}`).attr("onclick",`playCardPlayer1("${id}")`);
+        actionsPlayer1--
+        cardsInHandPlayer1--
+        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+
+
+        // console.log(id)
+        // $(`#cardShowPlayer1-${id}`).appendTo("#player1Board");
+        // let cardId = document.getElementById(`#cardShowPlayer1-${id}`)
+        // $(`#cardShowPlayer1-${id}`).attr('id',`id_new${id}`);
+        // // cardsInHand
+        // actionsPlayer1--;
+        // cardsInHandPlayer1--;
+        // let playerMovesInfo = document.getElementById('player1Moves')
+        // let totalBlock = document.getElementById('blockPlayer1')
+        // console.log(shuffledPlayer1[id].energy)
+        // totalCardsBlockPlayer1 += shuffledPlayer1[id].energy
+        // totalBlock.innerHTML = `Total Block: ${totalCardsBlockPlayer1}`
+        // playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
+    }
+}
+
+function placeCardPlayer2(id){
+    if (actionsPlayer2 <= 0){
+        updateStatus(`No Moves Left, Please End Turn`, 2)
+    }
+    else {
+        console.log("placing card: " + id)
+        // console.log(shuffledPlayer2[id])
+        // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
+        $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
+        // let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
+        $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
+        $(`#id_new${id}`).attr("onclick",`playCardPlayer2("${id}")`);
+        actionsPlayer2--
+        cardsInHandPlayer2--
+        updatePlayerStats(2, healthPlayer2, actionsPlayer2)
     }
 }
 
@@ -149,12 +183,17 @@ function dealAndShowPlayer2() {
             <div class="valueSmallP2" id="valueSmall${i}">
                 ${cardsDealt[i][0].energy} <br/>
             </div>
+
+            <div class="cardInfoPlayer2">
+                ${cardsDealt[i][0].cardName}<br/>
+                ${cardsDealt[i][0].description}<br/>
+                Deals ${cardsDealt[i][0].energy} damage<br/>
+                ${cardsDealt[i][0].abilities} </br>
+            </div>
+
         </div>`
         cardsInHandPlayer2++
         cardsDrawnPlayer2++
-        // cardsOutput.innerHTML += cardsDealt[i][0].cardName
-        // <div id="descSmall">Desc: ${cardsDealt[i][0].description}</div>
-        // <div id="abilitiesSmall">Abilities: ${cardsDealt[i][0].abilities}</div>
     }
     let className = document.getElementsByClassName('cardShowPlayer2');
     let valueSmallP2 = document.getElementsByClassName('valueSmallP2');
@@ -165,21 +204,24 @@ function dealAndShowPlayer2() {
     }
 }
 
-function placeCardPlayer2(id){
-    if (actionsPlayer2 <= 0){
-        updateStatus(`No Moves Left, Please End Turn`, 2)
+function playCardPlayer1(id){
+    console.log('playing card: ' + id)
+    if (actionsPlayer1 <= 0){
+        updateStatus(`No Moves Left, Please End Turn`, 1)
     }
+    else if (healthPlayer2 <= 0) {
+        updateStatus(`How about that, you won`, 1)
+    } 
     else {
-        console.log("placing card: " + id)
-        // console.log(shuffledPlayer2[id])
-        // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
-        $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
-        // let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
-        $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
-        $(`#id_new${id}`).attr("onclick",`playCardPlayer2("${id}")`);
-        actionsPlayer2--
-        cardsInHandPlayer2--
+        console.log(shuffledPlayer1[id])
+        healthPlayer2 -= shuffledPlayer1[id].energy
+        actionsPlayer1--
+        if (healthPlayer2 <= 0){
+            healthPlayer2 = 0;
+            updateStatus(`How about that, you won`, 2)
+        }
         updatePlayerStats(2, healthPlayer2, actionsPlayer2)
+        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
     }
 }
 
@@ -229,6 +271,11 @@ function drawCardPlayer1() {
                   <div class="valueSmall" id="valueSmall${i}">
                     ${cardsDealt[i][0].energy} <br/>
                 </div>
+                <div class="cardInfo">
+                    ${cardsDealt[i][0].cardName}<br/>
+                    ${cardsDealt[i][0].description}<br/>
+                    Deals ${cardsDealt[i][0].energy} damage<br/>
+                </div>
             </div>`
         }
         actionsPlayer1--
@@ -272,6 +319,11 @@ function drawCardPlayer2() {
                 </div>
                   <div class="valueSmallP2" id="valueSmall${i}">
                     ${cardsDealt[i][0].energy} <br/>
+                </div>
+                <div class="cardInfoPlayer2">
+                    ${cardsDealt[i][0].cardName}<br/>
+                    ${cardsDealt[i][0].description}<br/>
+                    Deals ${cardsDealt[i][0].energy} damage<br/>
                 </div>
             </div>`
         }
