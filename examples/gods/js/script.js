@@ -21,7 +21,7 @@ let cardBorderPlayer2 = '#FF851B'
 let cardsDrawnPlayer2 = 0;
 
 let currentPlayer = 1;
-
+let cardsPlayed = []
 
 // Player 1 define deck
 // need to set url as standard in framework. 
@@ -74,7 +74,7 @@ function dealAndShowPlayer1() {
     for (let i = 0; i < cardsDealt.length; i++)
     {
         cardsOutput.innerHTML += `
-        <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
+        <div class="cardShowPlayer1" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
             
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
@@ -84,7 +84,7 @@ function dealAndShowPlayer1() {
                 ${cardsDealt[i][0].energy} <br/>
             </div>
 
-            <div class="cardInfo">
+            <div class="cardInfoPlayer1">
                 ${cardsDealt[i][0].cardName}<br/>
                 ${cardsDealt[i][0].description}<br/>
                 Deals ${cardsDealt[i][0].energy} damage<br/>
@@ -95,7 +95,7 @@ function dealAndShowPlayer1() {
         cardsInHandPlayer1++
     }
     // sets color for card from defined defaults... But this sets it for the entire class
-    let className = document.getElementsByClassName('cardShow');
+    let className = document.getElementsByClassName('cardShowPlayer1');
     let valueSmallP1 = document.getElementsByClassName('valueSmall');
     for(let i=0; i<className.length; i++) { 
         className[i].style.borderColor = cardBorderPlayer1;
@@ -116,8 +116,8 @@ function placeCardPlayer1(id){
         // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
         $(`#cardShowPlayer1-${id}`).appendTo("#player1Board");
         // let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
-        $(`#cardShowPlayer1-${id}`).attr('id',`id_new${id}`);
-        $(`#id_new${id}`).attr("onclick",`playCardPlayer1("${id}")`);
+        $(`#cardShowPlayer1-${id}`).attr('id',`id_newPlayer1-${id}`);
+        $(`#id_newPlayer1-${id}`).attr("onclick",`playCardPlayer1("${id}")`);
         actionsPlayer1--
         cardsInHandPlayer1--
         updatePlayerStats(1, healthPlayer1, actionsPlayer1)
@@ -149,8 +149,8 @@ function placeCardPlayer2(id){
         // console.log('playing card: ' + JSON.stringify(shuffledPlayer2[id].id))
         $(`#cardShowPlayer2-${id}`).appendTo("#player2Board");
         // let cardId = document.getElementById(`#cardShowPlayer2-${id}`)
-        $(`#cardShowPlayer2-${id}`).attr('id',`id_new${id}`);
-        $(`#id_new${id}`).attr("onclick",`playCardPlayer2("${id}")`);
+        $(`#cardShowPlayer2-${id}`).attr('id',`id_newPlayer2-${id}`);
+        $(`#id_newPlayer2-${id}`).attr("onclick",`playCardPlayer2("${id}")`);
         actionsPlayer2--
         cardsInHandPlayer2--
         updatePlayerStats(2, healthPlayer2, actionsPlayer2)
@@ -213,15 +213,25 @@ function playCardPlayer1(id){
         updateStatus(`How about that, you won`, 1)
     } 
     else {
-        console.log(shuffledPlayer1[id])
-        healthPlayer2 -= shuffledPlayer1[id].energy
-        actionsPlayer1--
-        if (healthPlayer2 <= 0){
-            healthPlayer2 = 0;
-            updateStatus(`How about that, you won`, 2)
+        if(cardsPlayed.includes(shuffledPlayer1[id].id))
+        {
+            console.log('this card already played')
+            updateStatus(`This card already played`, 1)
         }
-        updatePlayerStats(2, healthPlayer2, actionsPlayer2)
-        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+        else{
+            console.log(shuffledPlayer1[id])
+            healthPlayer2 -= shuffledPlayer1[id].energy
+            actionsPlayer1--
+            if (healthPlayer2 <= 0){
+                healthPlayer2 = 0;
+                updateStatus(`How about that, you won`, 2)
+            }
+            updatePlayerStats(2, healthPlayer2, actionsPlayer2)
+            updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+            cardsPlayed.push(shuffledPlayer1[id].id)
+            console.log(cardsPlayed)
+            // document.getElementById("id_new"+).style.borderColor = "lightblue";
+        }
     }
 }
 
@@ -234,15 +244,25 @@ function playCardPlayer2(id){
         updateStatus(`How about that, you won`, 2)
     } 
     else {
-        console.log(shuffledPlayer2[id])
-        healthPlayer1 -= shuffledPlayer2[id].energy
-        actionsPlayer2--
-        if (healthPlayer1 <= 0){
-            healthPlayer1 = 0;
-            updateStatus(`How about that, you won`, 2)
+        if(cardsPlayed.includes(shuffledPlayer2[id].id))
+        {
+            console.log('this card already played')
+            updateStatus(`This card already played`, 2)
         }
-        updatePlayerStats(2, healthPlayer2, actionsPlayer2)
-        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+        else{
+            console.log(shuffledPlayer2[id])
+            healthPlayer1 -= shuffledPlayer2[id].energy
+            actionsPlayer2--
+            if (healthPlayer1 <= 0){
+                healthPlayer1 = 0;
+                updateStatus(`How about that, you won`, 2)
+            }
+            updatePlayerStats(2, healthPlayer2, actionsPlayer2)
+            updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+            cardsPlayed.push(shuffledPlayer2[id].id)
+            console.log(cardsPlayed)
+    
+        }
     }
 }
 
@@ -263,15 +283,15 @@ function drawCardPlayer1() {
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShow" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
+            <div class="cardShowPlayer1" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
                 </div>
-                  <div class="valueSmall" id="valueSmall${i}">
+                  <div class="valueSmallP1" id="valueSmall${i}">
                     ${cardsDealt[i][0].energy} <br/>
                 </div>
-                <div class="cardInfo">
+                <div class="cardInfoPlayer1">
                     ${cardsDealt[i][0].cardName}<br/>
                     ${cardsDealt[i][0].description}<br/>
                     Deals ${cardsDealt[i][0].energy} damage<br/>
@@ -282,8 +302,8 @@ function drawCardPlayer1() {
         cardsInHandPlayer1++
         updatePlayerStats(1, healthPlayer1, actionsPlayer1)
 
-        let className = document.getElementsByClassName('cardShow');
-        let valueSmallP1 = document.getElementsByClassName('valueSmall');
+        let className = document.getElementsByClassName('cardShowPlayer1');
+        let valueSmallP1 = document.getElementsByClassName('valueSmallP1');
         let cardsLeftInDeck = document.getElementById('player1deckcards')
         cardsLeftInDeckPlayer1 = cardsLeftInDeckPlayer1 - cardsDealt.length
         cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
@@ -294,6 +314,55 @@ function drawCardPlayer1() {
         }
     }
 }
+
+// function drawCardPlayer1() {
+//     let cardsOutput = document.getElementById('cardsInHandPlayer1')
+//     console.log(cardsInHandPlayer1)
+//     if (actionsPlayer1 <= 0){
+//         console.log('no moves left!')
+//         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
+//         updateStatus(`No Moves Left, Please End Turn`, 1)
+//     }
+//     else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
+//         updateStatus(`Max Cards In Hand`, 1)
+//     }
+//     else {
+//         let cardsDealt = deal(shuffledPlayer1, 1, 1)
+//         console.log(cardsDealt)
+//         for (let i = 0; i < cardsDealt.length; i++)
+//         {
+//             cardsOutput.innerHTML += `
+//             <div class="cardShowPlayer1" id="cardShowPlayer1-${cardsDrawnPlayer1}" onclick=placeCardPlayer1(${cardsDrawnPlayer1})>
+//                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
+//                 <div class="cardImgDivSmallContainer">
+//                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
+//                 </div>
+//                   <div class="valueSmallP1" id="valueSmall${i}">
+//                     ${cardsDealt[i][0].energy} <br/>
+//                 </div>
+//                 <div class="cardInfoPlayer1">
+//                     ${cardsDealt[i][0].cardName}<br/>
+//                     ${cardsDealt[i][0].description}<br/>
+//                     Deals ${cardsDealt[i][0].energy} damage<br/>
+//                 </div>
+//             </div>`
+//         }
+//         cardsDrawnPlayer1++ 
+//         actionsPlayer1--
+//         cardsInHandPlayer1++
+
+//         updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+
+//         let className = document.getElementsByClassName('cardShowPlayer1');
+//         let valueSmallP1 = document.getElementsByClassName('valueSmallP1');
+//         for(let i=0; i<className.length; i++) { 
+//             className[i].style.borderColor = cardBorderPlayer1;
+//             valueSmallP1[i].style.borderColor = cardBorderPlayer1;
+//             // console.log(cardsDealt[i][0].color)
+//         }
+        
+//     }
+// }
 
 function drawCardPlayer2() {
     let cardsOutput = document.getElementById('cardsInHandPlayer2')
@@ -351,6 +420,7 @@ function dealCards() {
 }
 
 function endTurn() {
+    cardsPlayed.splice(0,cardsPlayed.length)
     if (currentPlayer === 1) {
         console.log(`Current player is ${currentPlayer}`)
         currentPlayer = 2

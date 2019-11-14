@@ -80,7 +80,7 @@ header {
     height: 13vh;
     float: left;
 }
-.cardShow{
+.cardShowPlayer1{
     position: relative;
     font-size: 1em;
     line-height: 1.5;
@@ -97,7 +97,7 @@ header {
     height: 13vh;
     float: left;
 }
-.cardShow:hover{
+.cardShowPlayer1:hover{
     -moz-box-shadow: 5px 5px 0px #999;
     -webkit-box-shadow: 5px 5px 0px #999;
     box-shadow: 5px 5px 0px #999;
@@ -147,7 +147,7 @@ header {
     box-shadow: 5px 5px 0px #999;
     top: -10px;
 }
-.valueSmall {
+.valueSmallP1 {
     border-left: 5px solid black;
     border-top: 5px solid black;
     border-radius: 10px 0px 0px 0px;
@@ -185,7 +185,7 @@ header {
 }
 
 
-.valueSmall{
+.valueSmallP1{
     border-left: 5px solid black;
     border-top: 5px solid black;
     border-radius: 10px 0px 0px 0px;
@@ -422,7 +422,7 @@ footer {
     border: 1px solid red;
 }
 
-.cardShow:hover .cardInfo{
+.cardShowPlayer1:hover .cardInfoPlayer1{
     visibility: visible;
 }
 
@@ -432,7 +432,7 @@ footer {
 
 
 
-.cardInfo {
+.cardInfoPlayer1 {
     background-color: wheat;
     padding: 10px;
     border: 7px solid #1C6EA4;
