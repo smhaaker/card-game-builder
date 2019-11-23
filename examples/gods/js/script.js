@@ -9,6 +9,7 @@ let totalCardsBlockPlayer1 = 0;
 let cardBorderPlayer1 = '#39CCCC'
 let cardsDrawnPlayer1 = 0;
 
+
 // player 2 Defs:
 let healthPlayer2 = 100;
 let actionsPlayer2   = 15;
@@ -19,6 +20,7 @@ const maxCardsInHandPlayer2 = 7;
 let totalCardsBlockPlayer2 = 0;
 let cardBorderPlayer2 = '#FF851B'
 let cardsDrawnPlayer2 = 0;
+
 
 let currentPlayer = 1;
 let cardsPlayed = []
@@ -62,25 +64,28 @@ function cardDealLoop(playerNumber) {
 
 function dealAndShowPlayer1() {
     let cardsDealt = deal(shuffledPlayer1, 5, 1)
-    console.log(cardsDealt)
+    console.log(cardsDealt)   
+        
+    updatePlayerStats(1, healthPlayer1, actionsPlayer1)
 
-    updatePlayerStats(1, healthPlayer1, actionsPlayer1) 
-
-    let cardsOutput = document.getElementById('cardsInHandPlayer1')
+    // make this a function to reuse
     let cardsLeftInDeck = document.getElementById('player1deckcards')
-    cardsLeftInDeck.innerHTML = shuffledPlayer1.length - cardsDealt.length
+    cardsLeftInDeckPlayer1 = shuffledPlayer1.length - cardsDealt.length
+    cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
+    
+    let cardsOutput = document.getElementById('cardsInHandPlayer1')
     cardsOutput.innerHTML = ''
 
     for (let i = 0; i < cardsDealt.length; i++)
     {
+        console.log(cardsOutput[i])
         cardsOutput.innerHTML += `
-        <div class="cardShowPlayer1" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
-            
+        <div class="cardShowPlayer1" id="cardShowPlayer1-${cardsDrawnPlayer1}" onclick=placeCardPlayer1(${cardsDrawnPlayer1})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
                 <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
             </div>
-              <div class="valueSmall" id="valueSmall${i}">
+            <div class="valueSmallP1" id="valueSmall${i}">
                 ${cardsDealt[i][0].energy} <br/>
             </div>
 
@@ -93,17 +98,17 @@ function dealAndShowPlayer1() {
 
         </div>`
         cardsInHandPlayer1++
+        cardsDrawnPlayer1++
     }
-    // sets color for card from defined defaults... But this sets it for the entire class
     let className = document.getElementsByClassName('cardShowPlayer1');
-    let valueSmallP1 = document.getElementsByClassName('valueSmall');
+    let valueSmallP1 = document.getElementsByClassName('valueSmallP1');
     for(let i=0; i<className.length; i++) { 
         className[i].style.borderColor = cardBorderPlayer1;
         valueSmallP1[i].style.borderColor = cardBorderPlayer1;
         // console.log(cardsDealt[i][0].color)
     }
-
 }
+
 
 
 function placeCardPlayer1(id){
@@ -165,8 +170,8 @@ function dealAndShowPlayer2() {
 
     // make this a function to reuse
     let cardsLeftInDeck = document.getElementById('player2deckcards')
-    cardsLeftInDeckPlayer1 = shuffledPlayer1.length - cardsDealt.length
-    cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
+    cardsLeftInDeckPlayer2 = shuffledPlayer2.length - cardsDealt.length
+    cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer2
     
     let cardsOutput = document.getElementById('cardsInHandPlayer2')
     cardsOutput.innerHTML = ''
@@ -266,24 +271,26 @@ function playCardPlayer2(id){
     }
 }
 
-// this function works but deals the first card of the complete deck instead of the new deck... Need to fix this
 function drawCardPlayer1() {
     let cardsOutput = document.getElementById('cardsInHandPlayer1')
+    let cardsLeftInDeck = document.getElementById('player1deckcards')
+    
+    console.log(cardsInHandPlayer1)
     if (actionsPlayer1 <= 0){
         console.log('no moves left!')
+        // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
         updateStatus(`No Moves Left, Please End Turn`, 1)
     }
     else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
-        updateStatus(`Max Cards In Hand`,1)
+        updateStatus(`Max Cards In Hand`, 1)
     }
     else {
         let cardsDealt = deal(shuffledPlayer1, 1, 1)
         console.log(cardsDealt)
-
         for (let i = 0; i < cardsDealt.length; i++)
         {
             cardsOutput.innerHTML += `
-            <div class="cardShowPlayer1" id="cardShowPlayer1-${i}" onclick=placeCardPlayer1(${i})>
+            <div class="cardShowPlayer1" id="cardShowPlayer1-${cardsDrawnPlayer1}" onclick=placeCardPlayer1(${cardsDrawnPlayer1})>
                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
                 <div class="cardImgDivSmallContainer">
                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
@@ -298,15 +305,18 @@ function drawCardPlayer1() {
                 </div>
             </div>`
         }
+        
+        // make count change function
+        cardsLeftInDeckPlayer1--
+        cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
+        cardsDrawnPlayer1++ 
         actionsPlayer1--
         cardsInHandPlayer1++
-        updatePlayerStats(1, healthPlayer1, actionsPlayer1)
+
+        updatePlayerStats(1, healthPlayer2, actionsPlayer2)
 
         let className = document.getElementsByClassName('cardShowPlayer1');
         let valueSmallP1 = document.getElementsByClassName('valueSmallP1');
-        let cardsLeftInDeck = document.getElementById('player1deckcards')
-        cardsLeftInDeckPlayer1 = cardsLeftInDeckPlayer1 - cardsDealt.length
-        cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer1
         for(let i=0; i<className.length; i++) { 
             className[i].style.borderColor = cardBorderPlayer1;
             valueSmallP1[i].style.borderColor = cardBorderPlayer1;
@@ -315,57 +325,10 @@ function drawCardPlayer1() {
     }
 }
 
-// function drawCardPlayer1() {
-//     let cardsOutput = document.getElementById('cardsInHandPlayer1')
-//     console.log(cardsInHandPlayer1)
-//     if (actionsPlayer1 <= 0){
-//         console.log('no moves left!')
-//         // statusbarPlayer1.innerHTML = `No Moves Left, Please End Turn`
-//         updateStatus(`No Moves Left, Please End Turn`, 1)
-//     }
-//     else if (cardsInHandPlayer1 >= maxCardsInHandPlayer1){
-//         updateStatus(`Max Cards In Hand`, 1)
-//     }
-//     else {
-//         let cardsDealt = deal(shuffledPlayer1, 1, 1)
-//         console.log(cardsDealt)
-//         for (let i = 0; i < cardsDealt.length; i++)
-//         {
-//             cardsOutput.innerHTML += `
-//             <div class="cardShowPlayer1" id="cardShowPlayer1-${cardsDrawnPlayer1}" onclick=placeCardPlayer1(${cardsDrawnPlayer1})>
-//                 <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
-//                 <div class="cardImgDivSmallContainer">
-//                     <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
-//                 </div>
-//                   <div class="valueSmallP1" id="valueSmall${i}">
-//                     ${cardsDealt[i][0].energy} <br/>
-//                 </div>
-//                 <div class="cardInfoPlayer1">
-//                     ${cardsDealt[i][0].cardName}<br/>
-//                     ${cardsDealt[i][0].description}<br/>
-//                     Deals ${cardsDealt[i][0].energy} damage<br/>
-//                 </div>
-//             </div>`
-//         }
-//         cardsDrawnPlayer1++ 
-//         actionsPlayer1--
-//         cardsInHandPlayer1++
-
-//         updatePlayerStats(1, healthPlayer1, actionsPlayer1)
-
-//         let className = document.getElementsByClassName('cardShowPlayer1');
-//         let valueSmallP1 = document.getElementsByClassName('valueSmallP1');
-//         for(let i=0; i<className.length; i++) { 
-//             className[i].style.borderColor = cardBorderPlayer1;
-//             valueSmallP1[i].style.borderColor = cardBorderPlayer1;
-//             // console.log(cardsDealt[i][0].color)
-//         }
-        
-//     }
-// }
-
 function drawCardPlayer2() {
     let cardsOutput = document.getElementById('cardsInHandPlayer2')
+    let cardsLeftInDeck = document.getElementById('player2deckcards')
+
     console.log(cardsInHandPlayer2)
     if (actionsPlayer2 <= 0){
         console.log('no moves left!')
@@ -396,6 +359,8 @@ function drawCardPlayer2() {
                 </div>
             </div>`
         }
+        cardsLeftInDeckPlayer2--
+        cardsLeftInDeck.innerHTML = cardsLeftInDeckPlayer2
         cardsDrawnPlayer2++ 
         actionsPlayer2--
         cardsInHandPlayer2++
