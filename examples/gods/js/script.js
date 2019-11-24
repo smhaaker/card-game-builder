@@ -126,21 +126,6 @@ function placeCardPlayer1(id){
         actionsPlayer1--
         cardsInHandPlayer1--
         updatePlayerStats(1, healthPlayer1, actionsPlayer1)
-
-
-        // console.log(id)
-        // $(`#cardShowPlayer1-${id}`).appendTo("#player1Board");
-        // let cardId = document.getElementById(`#cardShowPlayer1-${id}`)
-        // $(`#cardShowPlayer1-${id}`).attr('id',`id_new${id}`);
-        // // cardsInHand
-        // actionsPlayer1--;
-        // cardsInHandPlayer1--;
-        // let playerMovesInfo = document.getElementById('player1Moves')
-        // let totalBlock = document.getElementById('blockPlayer1')
-        // console.log(shuffledPlayer1[id].energy)
-        // totalCardsBlockPlayer1 += shuffledPlayer1[id].energy
-        // totalBlock.innerHTML = `Total Block: ${totalCardsBlockPlayer1}`
-        // playerMovesInfo.innerHTML = `Actions: ${actionsPlayer1}`
     }
 }
 
@@ -235,7 +220,19 @@ function playCardPlayer1(id){
             updatePlayerStats(1, healthPlayer1, actionsPlayer1)
             cardsPlayed.push(shuffledPlayer1[id].id)
             console.log(cardsPlayed)
-            // document.getElementById("id_new"+).style.borderColor = "lightblue";
+
+            // change color of card to gray.. 
+            console.log(id)
+            // let className = document.getElementsByClassName('cardShowPlayer1');
+
+            let className = document.getElementById('id_newPlayer1-'+id)
+            let valueSmallP1 = document.getElementById('valueSmall'+id)
+            // let valueSmallP1 = document.getElementsByClassName('valueSmall'+id);
+    
+                className.style.borderColor = 'gray';
+                valueSmallP1.style.borderColor = 'gray';
+                // console.log(cardsDealt[i][0].color)
+ 
         }
     }
 }
