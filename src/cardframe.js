@@ -268,3 +268,146 @@ module.exports = {
   assignPlayers: assignPlayers,
   playerCards: playerCards
 }
+
+
+// remember objects if copied have the same reference... 
+
+
+// let userCardName = 'spikes'
+// let usercardCount = 10
+// let userCardStuff = 'hello'
+
+// function create(...args){
+//   const card = {
+
+//     inplay: false,
+//     played: (card, input = true) => card.inplay = input  // hmm maybe not arrow? 
+//   }
+
+//   for (let i = 0; i < args.length; i++){
+//     card[args[i]] = args[2]
+//     console.log(i)
+//   }
+//   // const card = {
+//   //   [args[0]]: args[1],
+//   //   [args[2]]: null
+//   // }
+//   return card
+// }
+
+// let createed = create(userCardName, usercardCount, userCardStuff)
+// console.log(createed)
+// console.log(createed.spikes)
+// createed.played(createed)
+// console.log(createed)
+// createed.played(createed, false)
+// console.log(createed)
+
+
+// also use object destructuring. if it works somewhere. on the nested objects. 
+
+
+// let userCardName = 'spikes'
+// let usercardCount = 33
+// let userCardStuff = 'hello'
+
+// function create(...args){
+//   console.log(args)
+//   let card = {
+//     inplay: false,
+//     played() {
+//       this.inplay = true
+//     }
+//     // played: (input = true) => this.inplay = input  // hmm maybe not arrow? 
+//   }
+
+//     for (let i = 0; i < args.length; i++){
+//       card[args[i]] = args[2]
+//       console.log(i)
+//     }
+
+//   // const card = {
+//   //   [args[0]]: args[1],
+//   //   [args[2]]: null
+//   // }
+//   return card
+// }
+
+// function createCards(CardAmounts) {
+//   let arr = []
+//   for (let i = 0; i < CardAmounts; i++) {
+//     let newCard = {...createed}
+//      add ID here as well based on the ITerator... Or we can do that on merge I guess. 
+//     arr.push(newCard)
+//   }
+//   return arr
+// }
+
+// let createed = create(userCardName, usercardCount, userCardStuff)
+// console.log(createed)
+// // console.log(createed.spikes)
+// // createed.played()
+// // console.log(createed[3].played)
+// // createed[3].played(false)
+// console.log(createed)
+// // createed[3].played(createed[3], false)
+// // console.log(createed)
+// let deck = createCards(10)
+// console.log(deck)
+// console.log(deck[2])
+// deck[2].played()
+// console.log(deck[2])
+// console.log(deck[3])
+
+
+
+// let userCardName = 'spikes'
+// let usercardCount = 33
+// let userCardStuff = 'hello'
+
+// function create(...args){
+//   console.log(args)
+//   let card = {
+//     inplay: false,
+//     played() {
+//       this.inplay = true
+//     }
+//     // played: (input = true) => this.inplay = input  // hmm maybe not arrow? 
+//   }
+
+//     for (let i = 0; i < args.length; i++){
+//       card[args[i]] = args[2]
+//       console.log(i)
+//     }
+
+//   // const card = {
+//   //   [args[0]]: args[1],
+//   //   [args[2]]: null
+//   // }
+//   return card
+// }
+
+// function createCards(CardAmounts) {
+//   let arr = []
+//   for (let i = 0; i < CardAmounts; i++) {
+//     let newCard = {...createed}
+//     arr.push(newCard)
+//   }
+//   return arr
+// }
+
+// let createed = create(userCardName, usercardCount, userCardStuff)
+// console.log(createed)
+// // console.log(createed.spikes)
+// // createed.played()
+// // console.log(createed[3].played)
+// // createed[3].played(false)
+// console.log(createed)
+// // createed[3].played(createed[3], false)
+// // console.log(createed)
+// let deck = createCards(10)
+// console.log(deck)
+// console.log(deck[2])
+// deck[2].played()
+// console.log(deck[2])
+// console.log(deck[3])
