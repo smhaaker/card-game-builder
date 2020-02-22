@@ -1,57 +1,33 @@
 // import the library
-let cardframe = require('./src/cardframe');
-console.log('====================================')
+let cardframe = require("./src/cardframe");
+console.log("====================================");
 // output cardFrame api functions
-console.log(cardframe)
-console.log('====================================')
+// console.log(cardframe)
+console.log("====================================");
 
-let userCardName = 'cardname'
-let description = 'power'
-let power = 'spikes'
+let passArr = ["name", "steffen", "color", "blue", "hp", 12];
 
-const create = (amountOfCards, ...args) => {
-  const arr = []
-    for (let i =0; i< amountOfCards; i++) {
+let created3 = cardframe.createCardSet(3, ...passArr);
+// played(created3[2]);
+console.log(created3);
 
-      // some default arguments 
-      let card = {
-        inplay: false,
-        removed: false,
-        groupID: null 
-      }
+let created2 = cardframe.createCardSet(2, "name", "zeus", "color", "white", "hp", 10);
+console.log(created2);
+// played(created2[1]);
+// removed(created2[0]);
+console.log(created2);
 
-      for (let j = 0; j < args.length; j+=2){
-        card[args[j]] = args[j+1]
-      }
-      card.id = i
-      arr.push(card)
-    }
+let jsonTest = { name: "steffen", color: "white" };
+let jsonCreated = cardframe.createCardSet(2, jsonTest);
+console.log(jsonCreated);
+// played(jsonCreated[1])
 
-  return arr
-}
+console.log(jsonCreated)
+let deck = cardframe.mergeSets(created3, created2, jsonCreated)
+// console.log(deck)
+cardframe.picked(deck[6])
+cardframe.played(deck[6])
 
-// sets card to played
-const played = (card, input = true) => {
-  return card.inplay = input 
-}
+// deck[6].status.inplay = true
 
-const removed = (card, input = true) => {
-  return card.inplay = input 
-}
-
-
-// let createed = create(5, userCardName, 'masterCard', description, power)
-// console.log(createed)
-// played(createed[2])
-// console.log(createed)
-
-// let passArr = ['name', 'steffen', 'color', 'blue', 'hp', 12]
-// let created3 = create(3, ...passArr)
-// played(created3[2])
-// console.log(created3)
-
-let created2 = create(2, 'name', 'zeus', 'color', 'white', 'hp', 10)
-console.log(created2)
-played(created2[1])
-removed(created2[0])
-console.log(created2)
+console.log(deck)
