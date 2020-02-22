@@ -207,12 +207,12 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
         if (cardsToEachPlayer === 1) {
           console.log("first index can be used: " + k);
           newArr[j].push(deckToDealFrom[k]);
-          this.picked(deckToDealFrom[k], true);
+          picked(deckToDealFrom[k], true);
           break;
         } else {
           console.log("first index can be used: " + k);
           newArr[j].push(deckToDealFrom[k]);
-          this.picked(deckToDealFrom[k], true);
+          picked(deckToDealFrom[k], true);
         }
       }
     }
