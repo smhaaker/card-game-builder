@@ -20,14 +20,27 @@ console.log(created2);
 let jsonTest = { name: "steffen", color: "white" };
 let jsonCreated = cardframe.createCardSet(2, jsonTest);
 console.log(jsonCreated);
-// played(jsonCreated[1])
 
 console.log(jsonCreated)
+
+// merge all cards into a deck
 let deck = cardframe.mergeSets(created3, created2, jsonCreated)
 // console.log(deck)
-cardframe.picked(deck[6])
-cardframe.played(deck[6])
 
-// deck[6].status.inplay = true
+// change status of a card:
+// cardframe.picked(deck[6])
+// cardframe.played(deck[6])
+
+// console.log(deck[3])
+
+console.log("====================================");
 
 console.log(deck)
+let shuffled = cardframe.shuffle(deck)
+console.log("====================================");
+
+console.log(shuffled)
+
+// let cardsDealt = cardframe.deal(shuffled, 3, 1)
+
+// console.log(cardsDealt[0])
