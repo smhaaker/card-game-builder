@@ -38,15 +38,10 @@ let shuffled = cardframe.shuffle(deck)
 console.log("====================================");
 console.log(shuffled)
 
+// You can directly change the status of a card as needed by accessing the methods, picked, played, removed. etc
 cardframe.played(shuffled[2])
 // clean cards above to match each other. 
 console.log(shuffled)
-
-
-
-
-// You can directly change the status of a card as needed by accessing the methods, picked, played, removed. etc
-
 
 
 
