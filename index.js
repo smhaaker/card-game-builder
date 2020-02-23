@@ -1,31 +1,56 @@
 // import the library
 let cardframe = require("./src/cardframe");
 console.log("====================================");
-// output cardFrame api functions
-// console.log(cardframe)
+
+/* 
+  Create Cards in one of the three following ways:
+  1. Passing all elements in as arguments, 
+  2. Passing an array of values in to the createCardSet function
+  3. Passing an object directly in - Recommended
+  First argument is the amount of cards to create, You can create 2 empty cards by doing createCardSet(2)
+*/
+
+// only arguments
+let onlyArguments = cardframe.createCardSet(2, "name", "Zeus", "color", "blue", "hp", 10);
+console.log(onlyArguments);
+
+// arguments in array
+let passArr = ["name", "Zeus", "color", "blue", "hp", 10];
+let passingArray = cardframe.createCardSet(3, ...passArr);
+console.log(passingArray);
+
+// an object
+let jsonObject = { name: "Zeus", color: "blue", hp: 10 };
+let jsonPass = cardframe.createCardSet(2, jsonObject);
+console.log(jsonPass);
+
+/* 
+  Merge cards into deck by passing the created cards as arguments
+*/
+let deck = cardframe.mergeSets(onlyArguments, passingArray, jsonPass)
+console.log(deck)
 console.log("====================================");
 
-let passArr = ["name", "steffen", "color", "blue", "hp", 12];
+/* 
+  Shuffle the deck
+*/
+let shuffled = cardframe.shuffle(deck)
+console.log("====================================");
+console.log(shuffled)
 
-let created3 = cardframe.createCardSet(3, ...passArr);
-// played(created3[2]);
-console.log(created3);
+cardframe.played(shuffled[2])
+// clean cards above to match each other. 
+console.log(shuffled)
 
-let created2 = cardframe.createCardSet(2, "name", "zeus", "color", "white", "hp", 10);
-console.log(created2);
-// played(created2[1]);
-// removed(created2[0]);
-console.log(created2);
 
-let jsonTest = { name: "steffen", color: "white" };
-let jsonCreated = cardframe.createCardSet(2, jsonTest);
-console.log(jsonCreated);
 
-console.log(jsonCreated)
 
-// merge all cards into a deck
-let deck = cardframe.mergeSets(created3, created2, jsonCreated)
-// console.log(deck)
+// You can directly change the status of a card as needed by accessing the methods, picked, played, removed. etc
+
+
+
+
+
 
 // change status of a card:
 // cardframe.picked(deck[6])
@@ -33,13 +58,6 @@ let deck = cardframe.mergeSets(created3, created2, jsonCreated)
 
 // console.log(deck[3])
 
-console.log("====================================");
-
-console.log(deck)
-let shuffled = cardframe.shuffle(deck)
-console.log("====================================");
-
-console.log(shuffled)
 
 // let cardsDealt = cardframe.deal(shuffled, 3, 1)
 
