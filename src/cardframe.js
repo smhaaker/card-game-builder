@@ -30,37 +30,11 @@ function setupGame(
   };
 }
 
-/**
- * Creating list of powers of the card
- * @param {Array} options - array or object of powers
- * @returns {Array}
- */
-function createPowers(options) {
-  return options;
-}
-
-/**
- * Creating list of colors of the cards in deck
- * @param {Array} options - array or object of colors
- * @returns {Array}
- */
-function createColors(options) {
-  return options;
-}
-
-// setting attributes
-function setAttributes(numberOfCards, options) {
-  // if(!options.teamId) return console.log('teamId required');
-  if (!numberOfCards) return console.log("numberOfCards required");
-  // console.log(numberOfCards)
-  options = options || null;
-  // console.log(options)
-}
-
 const createCardSet = (amountOfCards, ...args) => {
   let card;
   const arr = [];
-  let status = { // default statuses to use. 
+  let status = {
+    // default statuses to use.
     inplay: false,
     picked: false,
     discarded: false,
@@ -69,10 +43,10 @@ const createCardSet = (amountOfCards, ...args) => {
   for (let i = 0; i < amountOfCards; i++) {
     if (args.length === 1) {
       // check if an object is passed instead of arguments.
-      card = Object.assign({ status: {...status} }, ...args);
+      card = Object.assign({ status: { ...status } }, ...args);
     } else {
       card = {
-        status: {...status}
+        status: { ...status }
       };
 
       for (let j = 0; j < args.length; j += 2) {
@@ -95,80 +69,27 @@ function mergeSets() {
   if (arguments) {
     completeSet = arguments[0];
     for (let i = 0; i < arguments.length; i++) {
-      for (let j = 0; j < arguments[i].length; j++) {
+      for (const card of arguments[i]) {
+        card.status.groupID = i;
         totalLength++;
       }
     }
-    arguments[0][0].status.groupID = 0
   } else {
-    throw {message: 'no input'}
+    throw { message: "no input" };
   }
   for (let i = 1; i < arguments.length; i++) {
-    arguments[i][0].status.groupID = i
+    for (const card of arguments[i]) {
+      card.status.groupID = i;
+    }
+    // for (let j = 0; j < arguments[i].length; j++) {
+    //   arguments[i][j].status.groupID = i
+    // }
     completeSet = completeSet.concat(arguments[i]);
   }
   for (let i = 0; i < totalLength; i++) {
     completeSet[i].id = i;
   }
   return completeSet;
-}
-
-// card play functions
-// runs a check to see if card has been played, discarded or just in hand
-function checkCardPlayable(cardID) {
-  if (cardID.status.picked == true || cardID.status.discarded) {
-    // console.log('card is not playable')
-    return false;
-  } else {
-    // console.log('card is playable')
-    return true;
-  }
-}
-
-
-// sets true or false if card is in play
-// need to clean these to make sure picked / inplay are set differently
-const picked = (cardID, status = true) => {
-  if (checkCardPlayable(cardID)) {
-    return (cardID.status.picked = status);
-  } else {
-    return cardID.status.picked;
-  }
-}
-
-// discard card
-function discard(cardID, status) {
-  return (cardID.status.discarded = status);
-}
-
-// // sets card to played
-const played = (card, input = true) => {
-  return (card.status.inplay = input);
-};
-
-// const removed = (card, input = true) => {
-//   return (card.status.removed = input);
-// };
-
-
-// returns a new deck of discarded cards to be reshuffled
-function discardedDeck(deckToCheck) {
-  let newArr = [];
-  for (let i = 0; i < deckToCheck.length; i++) {
-    if (deckToCheck[i].status.discarded == true) {
-      console.log(i);
-      newArr.push(deckToCheck[i]);
-      // update to set status discarded to false on returned deck as well.
-    }
-  }
-  return newArr;
-}
-
-// extra functions for testing
-// this is how we utilize unimited arguments
-function manyArgs() {
-  for (var i = 0; i < arguments.length; ++i) console.log(arguments[i]);
-  console.log(arguments);
 }
 
 // returns input deck reshuffled
@@ -189,6 +110,68 @@ function reshuffle(deckToReshuffle) {
   // discarded can be reshuffled. anything else cannot.
 }
 
+
+
+// card play functions
+// runs a check to see if card has been played, discarded or just in hand
+function checkCardPlayable(cardID) {
+  if (cardID.status.picked == true || cardID.status.discarded) {
+    // console.log('card is not playable')
+    return false;
+  } else {
+    // console.log('card is playable')
+    return true;
+  }
+}
+
+// sets true or false if card is in play
+// need to clean these to make sure picked / inplay are set differently
+const picked = (cardID, status = true) => {
+  if (checkCardPlayable(cardID)) {
+    return (cardID.status.picked = status);
+  } else {
+    return cardID.status.picked;
+  }
+};
+
+// discard card
+function discard(cardID, status) {
+  return (cardID.status.discarded = status);
+}
+
+// // sets card to played
+const played = (card, input = true) => {
+  return (card.status.inplay = input);
+};
+
+// const removed = (card, input = true) => {
+//   return (card.status.removed = input);
+// };
+
+// setting attributes
+function setAttributes(numberOfCards, options) {
+  if (!numberOfCards) return console.log("numberOfCards required");
+  // console.log(numberOfCards)
+  options = options || null;
+  // console.log(options)
+}
+
+// returns a new deck of discarded cards to be reshuffled
+function discardedDeck(deckToCheck) {
+  let newArr = [];
+  for (let i = 0; i < deckToCheck.length; i++) {
+    if (deckToCheck[i].status.discarded == true) {
+      console.log(i);
+      newArr.push(deckToCheck[i]);
+      // update to set status discarded to false on returned deck as well.
+    }
+  }
+  return newArr;
+}
+
+// FIX DEAL FUNCTION
+
+// deal function needs a cleaning up.
 function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   let cardsToDealTotal = cardsToEachPlayer * playersToDealTo;
   let newArr = [];
@@ -207,18 +190,18 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
         if (cardsToEachPlayer === 1) {
           console.log("first index can be used: " + k);
           newArr[j].push(deckToDealFrom[k]);
-          this.picked(deckToDealFrom[k], true);
+          picked(deckToDealFrom[k], true);
           break;
         } else {
           console.log("first index can be used: " + k);
           newArr[j].push(deckToDealFrom[k]);
-          this.picked(deckToDealFrom[k], true);
+          picked(deckToDealFrom[k], true);
         }
       }
     }
     if (j > playersToDealTo - 1) {
       j = 0;
-      console.log("J J J ");
+      // console.log("J J J ");
     }
     // console.log(i)
     console.log(j);
@@ -252,27 +235,17 @@ function playerCards(playerID, cardsDealtName) {
   return cardArr;
 }
 
-// we should also assign cards deck to player in a function.
-
-// also some sort stats
-
 // exports
 module.exports = {
-  // create,
   setupGame,
-  // createDeck: createDeck,
   setAttributes,
   createCardSet,
-  createPowers,
-  createColors,
   mergeSets,
-  // dealCards: dealCards,
-  manyArgs,
+  shuffle,
   picked,
   played,
   discard,
   discardedDeck,
-  shuffle,
   reshuffle,
   deal,
   assignPlayers,
@@ -280,4 +253,3 @@ module.exports = {
 };
 
 // todos. finish refactor.
-// create. do we add a status nested?

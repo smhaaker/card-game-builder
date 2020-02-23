@@ -83,7 +83,7 @@ function dealAndShowPlayer1() {
         <div class="cardShowPlayer1" id="cardShowPlayer1-${cardsDrawnPlayer1}" onclick=placeCardPlayer1(${cardsDrawnPlayer1})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
-                <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
+                <img class="cardImgDivSmall" src='${cardsDealt[i][0]}' alt="image">
             </div>
             <div class="valueSmallP1" id="valueSmall${i}">
                 ${cardsDealt[i][0].energy} <br/>
@@ -168,7 +168,7 @@ function dealAndShowPlayer2() {
         <div class="cardShowPlayer2" id="cardShowPlayer2-${cardsDrawnPlayer2}" onclick=placeCardPlayer2(${cardsDrawnPlayer2})>
             <div id="nameCenterSmall">${cardsDealt[i][0].cardName}</div>
             <div class="cardImgDivSmallContainer">
-                <img class="cardImgDivSmall" src='${cardsDealt[i][0].additional[0]}' alt="image">
+                <img class="cardImgDivSmall" src='${cardsDealt[i][0]}' alt="image">
             </div>
             <div class="valueSmallP2" id="valueSmall${i}">
                 ${cardsDealt[i][0].energy} <br/>
