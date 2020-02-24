@@ -104,6 +104,10 @@ function shuffle(deckToShuffle) {
   return deckToShuffle;
 }
 
+
+
+////////
+
 // will reshuffle either the player deck or community deck
 function reshuffle(deckToReshuffle) {
   // check if cards are in play or discarded or picked...
@@ -168,6 +172,30 @@ function discardedDeck(deckToCheck) {
   }
   return newArr;
 }
+
+// card options
+// use the card to alter, which value to alter, which action, and by which number
+const operation = (card, input, action, number) => {
+  // console.log(card[input] * multiplier)
+  if (action === 'add') {
+    card[input] = card[input] + number
+  }
+  else if (action === 'subtract') {
+    card[input] = card[input] - number
+  }
+  else if (action === 'multiply') {
+    card[input] = card[input] * number
+  }
+  else if (action === 'divide') {
+    card[input] = card[input] / number
+  }
+  else {
+    return
+  }
+} 
+
+
+
 
 // FIX DEAL FUNCTION
 
@@ -246,6 +274,7 @@ module.exports = {
   played,
   discard,
   discardedDeck,
+  operation,
   reshuffle,
   deal,
   assignPlayers,

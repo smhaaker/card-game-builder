@@ -11,16 +11,16 @@ console.log("====================================");
 */
 
 // only arguments
-let onlyArguments = cardframe.createCardSet(2, "name", "Zeus", "color", "blue", "hp", 10);
+let onlyArguments = cardframe.createCardSet(2, "name", "Zeus", "color", "blue", "hp", 10, "health", 100);
 console.log(onlyArguments);
 
 // arguments in array
-let passArr = ["name", "Zeus", "color", "blue", "hp", 10];
+let passArr = ["name", "Zeus", "color", "blue", "hp", 10, "health", 100];
 let passingArray = cardframe.createCardSet(3, ...passArr);
 console.log(passingArray);
 
 // an object
-let jsonObject = { name: "Zeus", color: "blue", hp: 10 };
+let jsonObject = { name: "Zeus", color: "blue", hp: 10, health: 100};
 let jsonPass = cardframe.createCardSet(2, jsonObject);
 console.log(jsonPass);
 
@@ -44,6 +44,18 @@ cardframe.played(shuffled[2])
 console.log(shuffled)
 
 
+
+// simple multiplier 
+// pass the card, the key, the action and the number to use
+cardframe.operation(shuffled[2], 'hp', 'add', 3);
+console.log(shuffled)
+console.log(shuffled[2])
+cardframe.operation(shuffled[2], 'hp', 'multiply', 3);
+console.log(shuffled[2])
+cardframe.operation(shuffled[2], 'hp', 'subtract', 3);
+console.log(shuffled[2])
+cardframe.operation(shuffled[2], 'hp', 'divide', 3);
+console.log(shuffled[2])
 
 
 
