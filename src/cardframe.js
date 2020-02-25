@@ -30,6 +30,8 @@ function setupGame(
   };
 }
 
+
+// create set of cards, all of one type. To be merged later
 const createCardSet = (amountOfCards, ...args) => {
   let card;
   const arr = [];
@@ -38,14 +40,17 @@ const createCardSet = (amountOfCards, ...args) => {
     inplay: false,
     picked: false,
     discarded: false,
-    groupID: null // this is set later
+    exhausted: false,
+    faceUp: false
+    // groupID: null // this is set later
   };
   for (let i = 0; i < amountOfCards; i++) {
     if (args.length === 1) {
       // check if an object is passed instead of arguments.
-      card = Object.assign({ status: { ...status } }, ...args);
+      card = Object.assign({ groupID: null , status: { ...status } }, ...args);
     } else {
       card = {
+        groupID: null,
         status: { ...status }
       };
 
@@ -70,7 +75,7 @@ function mergeSets() {
     completeSet = arguments[0];
     for (let i = 0; i < arguments.length; i++) {
       for (const card of arguments[i]) {
-        card.status.groupID = i;
+        card.groupID = i;
         totalLength++;
       }
     }
@@ -79,7 +84,7 @@ function mergeSets() {
   }
   for (let i = 1; i < arguments.length; i++) {
     for (const card of arguments[i]) {
-      card.status.groupID = i;
+      card.groupID = i;
     }
     // for (let j = 0; j < arguments[i].length; j++) {
     //   arguments[i][j].status.groupID = i
@@ -104,8 +109,6 @@ function shuffle(deckToShuffle) {
   return deckToShuffle;
 }
 
-
-
 ////////
 
 // will reshuffle either the player deck or community deck
@@ -113,8 +116,6 @@ function reshuffle(deckToReshuffle) {
   // check if cards are in play or discarded or picked...
   // discarded can be reshuffled. anything else cannot.
 }
-
-
 
 // card play functions
 // runs a check to see if card has been played, discarded or just in hand
@@ -177,28 +178,22 @@ function discardedDeck(deckToCheck) {
 // use the card to alter, which value to alter, which action, and by which number
 const operation = (card, input, action, number) => {
   // console.log(card[input] * multiplier)
-  if (action === 'add') {
-    card[input] = card[input] + number
+  action = action.toLowerCase()
+  if (action === "add") {
+    card[input] = card[input] + number;
+  } else if (action === "subtract") {
+    card[input] = card[input] - number;
+  } else if (action === "multiply") {
+    card[input] = card[input] * number;
+  } else if (action === "divide") {
+    card[input] = card[input] / number;
+  } else {
+    return;
   }
-  else if (action === 'subtract') {
-    card[input] = card[input] - number
-  }
-  else if (action === 'multiply') {
-    card[input] = card[input] * number
-  }
-  else if (action === 'divide') {
-    card[input] = card[input] / number
-  }
-  else {
-    return
-  }
-} 
-
-
+};
 
 
 // FIX DEAL FUNCTION
-
 // deal function needs a cleaning up.
 function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   let cardsToDealTotal = cardsToEachPlayer * playersToDealTo;
