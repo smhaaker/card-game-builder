@@ -149,9 +149,7 @@ const played = (card, input = true) => {
   return (card.status.inplay = input);
 };
 
-// const removed = (card, input = true) => {
-//   return (card.status.removed = input);
-// };
+
 
 // setting attributes
 function setAttributes(numberOfCards, options) {

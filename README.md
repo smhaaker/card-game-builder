@@ -12,8 +12,13 @@ Import however you need.
 * mergeSets: merges given sets of cards
 * shuffle: shuffles the merged set
 * deal: deals amount of cards to given players
+* operation: alter card stats with mathematical operation
+* picked: change picked status between true / false
+* discard: change discarded status between true / false
+* played: change inplay status between true / false
 * checkCardPlayable: returns true if the card has status of playable
 * playerCards: checks cards of specific player
+
 
 ## Todo / requests
 * Documentation
