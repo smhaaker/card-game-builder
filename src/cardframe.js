@@ -30,7 +30,6 @@ function setupGame(
   };
 }
 
-
 // create set of cards, all of one type. To be merged later
 const createCardSet = (amountOfCards, ...args) => {
   let card;
@@ -47,7 +46,7 @@ const createCardSet = (amountOfCards, ...args) => {
   for (let i = 0; i < amountOfCards; i++) {
     if (args.length === 1) {
       // check if an object is passed instead of arguments.
-      card = Object.assign({ groupID: null , status: { ...status } }, ...args);
+      card = Object.assign({ groupID: null, status: { ...status } }, ...args);
     } else {
       card = {
         groupID: null,
@@ -146,10 +145,28 @@ function discard(cardID, status) {
 
 // // sets card to played
 const played = (card, input = true) => {
-  return (card.status.inplay = input);
+  card.status.inplay = input;
 };
 
+const faceUp = (card, input = true) => {
+  card.status.faceUp = input;
+};
 
+const exhaust = (card, input = true) => {
+  card.status.exhaust = input;
+};
+
+const resetStatus = card => {
+  // console.log(card.status)
+  card.status = {
+    inplay: false,
+    picked: false,
+    discarded: false,
+    exhausted: false,
+    faceUp: false
+  };
+  // return card.status.exhaust = false
+};
 
 // setting attributes
 function setAttributes(numberOfCards, options) {
@@ -176,7 +193,7 @@ function discardedDeck(deckToCheck) {
 // use the card to alter, which value to alter, which action, and by which number
 const operation = (card, input, action, number) => {
   // console.log(card[input] * multiplier)
-  action = action.toLowerCase()
+  action = action.toLowerCase();
   if (action === "add") {
     card[input] = card[input] + number;
   } else if (action === "subtract") {
@@ -189,7 +206,6 @@ const operation = (card, input, action, number) => {
     return;
   }
 };
-
 
 // FIX DEAL FUNCTION
 // deal function needs a cleaning up.
@@ -266,6 +282,9 @@ module.exports = {
   picked,
   played,
   discard,
+  faceUp,
+  exhaust,
+  resetStatus,
   discardedDeck,
   operation,
   reshuffle,
