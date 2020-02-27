@@ -68,6 +68,9 @@ console.log(shuffled[2])
 console.log("====================================");
 cardframe.resetStatus(shuffled[2])
 console.log(shuffled[2])
+cardframe.exhaust(shuffled[2])
+console.log(shuffled[2])
+
 // change status of a card:
 // cardframe.picked(deck[6])
 // cardframe.played(deck[6])

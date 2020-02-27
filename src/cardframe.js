@@ -153,7 +153,7 @@ const faceUp = (card, input = true) => {
 };
 
 const exhaust = (card, input = true) => {
-  card.status.exhaust = input;
+  card.status.exhausted = input;
 };
 
 const resetStatus = card => {
