@@ -128,6 +128,8 @@ function checkCardPlayable(cardID) {
   }
 }
 
+
+// Status functions
 // sets true or false if card is in play
 // need to clean these to make sure picked / inplay are set differently
 const picked = (cardID, status = true) => {
@@ -156,6 +158,8 @@ const exhaust = (card, input = true) => {
   card.status.exhausted = input;
 };
 
+
+// call to reset all statuses
 const resetStatus = card => {
   // console.log(card.status)
   card.status = {
@@ -167,6 +171,10 @@ const resetStatus = card => {
   };
   // return card.status.exhaust = false
 };
+
+
+
+
 
 // setting attributes
 function setAttributes(numberOfCards, options) {
@@ -210,8 +218,13 @@ const operation = (card, input, action, number) => {
 // FIX DEAL FUNCTION
 // deal function needs a cleaning up.
 function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
+  if (arguments.length === 0) {
+    throw {message: 'no arguments'}
+  }
   let cardsToDealTotal = cardsToEachPlayer * playersToDealTo;
+  console.log(cardsToDealTotal)
   let newArr = [];
+  // setting up 2d array for players to store cards
   for (let i = 0; i < playersToDealTo; i++) {
     newArr[i] = [];
   }
@@ -221,21 +234,26 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
     // console.log('testing picked: ' + JSON.stringify(deckToDealFrom[i].status.picked))
     // console.log(deckToDealFrom.length)
     for (let k = 0; k < deckToDealFrom.length; k++) {
-      if (deckToDealFrom[k].status.picked === true) {
-        console.log("this card has already been picked");
-      } else {
-        if (cardsToEachPlayer === 1) {
-          console.log("first index can be used: " + k);
-          newArr[j].push(deckToDealFrom[k]);
-          picked(deckToDealFrom[k], true);
-          break;
-        } else {
-          console.log("first index can be used: " + k);
-          newArr[j].push(deckToDealFrom[k]);
-          picked(deckToDealFrom[k], true);
-        }
-      }
-    }
+    //   if (deckToDealFrom[k].status.picked === true) {
+    //     console.log("this card has already been picked");
+    //   } else {
+    //     if (cardsToEachPlayer === 1) {
+    //       console.log("first index can be used: " + k);
+    //       newArr[j].push(deckToDealFrom[k]);
+    //       picked(deckToDealFrom[k], true);
+    //       break;
+    //     } else {
+    //       console.log("first index can be used: " + k);
+    //       newArr[j].push(deckToDealFrom[k]);
+    //       picked(deckToDealFrom[k], true);
+    //     }
+    //   }
+    console.log('cards....')
+    console.log(deckToDealFrom[k])
+    // newArr[j].push(deckToDealFrom[k]);  
+    // newArr[j].push('a card');  
+      newArr[0].push(deckToDealFrom[k])
+  }
     if (j > playersToDealTo - 1) {
       j = 0;
       // console.log("J J J ");
@@ -246,7 +264,7 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
     j++;
     // this.picked(deckToDealFrom[i], true)
   }
-  //   console.log(newArr)
+    console.log(newArr)
   return newArr;
 }
 
