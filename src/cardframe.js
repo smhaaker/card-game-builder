@@ -215,7 +215,7 @@ const operation = (card, input, action, number) => {
   }
 };
 
-// FIX DEAL FUNCTION
+// Refactor this.
 // deal function needs a cleaning up.
 function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   if (arguments.length === 0) {
