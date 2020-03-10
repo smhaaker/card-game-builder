@@ -1,0 +1,27 @@
+{
+  "name": "card-game-builder",
+  "version": "1.0.0",
+  "description": "Very early commit to get going.\r Intent is to create a framework to prototype card-builder games such as netrunner / star realms\r index.js is just an example file of usage",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smhaaker/card-game-builder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smhaaker/card-game-builder/issues"
+  },
+  "homepage": "https://github.com/smhaaker/card-game-builder#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1"
+  }
+}
