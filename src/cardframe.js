@@ -50,7 +50,7 @@ const createCardSet = (amountOfCards, ...args) => {
     } else {
       card = {
         groupID: null,
-        status: { ...status }
+        status: { ...status },
       };
 
       for (let j = 0; j < args.length; j += 2) {
@@ -194,8 +194,6 @@ const operation = (card, input, action, number) => {
     card[input] *= number;
   } else if (action === 'divide') {
     card[input] /= number;
-  } else {
-    return;
   }
 };
 
@@ -205,52 +203,68 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   if (arguments.length === 0) {
     throw { message: 'no arguments' };
   }
-  const cardsToDealTotal = cardsToEachPlayer * playersToDealTo;
-  console.log(cardsToDealTotal);
-  const newArr = [];
+  const totalCards = cardsToEachPlayer * playersToDealTo;
+  console.log(`Deal ${totalCards} total`);
+
   // setting up 2d array for players to store cards
+  const newArr = [];
   for (let i = 0; i < playersToDealTo; i++) {
     newArr[i] = [];
   }
+  console.log('new array is');
   console.log(newArr);
-  let j = 0;
-  for (let i = 0; i < cardsToDealTotal; i++) {
-    // console.log('testing picked: ' + JSON.stringify(deckToDealFrom[i].status.picked))
-    // console.log(deckToDealFrom.length)
-    for (let k = 0; k < deckToDealFrom.length; k++) {
-      //   if (deckToDealFrom[k].status.picked === true) {
-      //     console.log("this card has already been picked");
-      //   } else {
-      //     if (cardsToEachPlayer === 1) {
-      //       console.log("first index can be used: " + k);
-      //       newArr[j].push(deckToDealFrom[k]);
-      //       picked(deckToDealFrom[k], true);
-      //       break;
-      //     } else {
-      //       console.log("first index can be used: " + k);
-      //       newArr[j].push(deckToDealFrom[k]);
-      //       picked(deckToDealFrom[k], true);
-      //     }
-      //   }
-      console.log('cards....');
-      console.log(deckToDealFrom[k]);
-      // newArr[j].push(deckToDealFrom[k]);
-      // newArr[j].push('a card');
-      newArr[0].push(deckToDealFrom[k]);
-    }
-    if (j > playersToDealTo - 1) {
-      j = 0;
-      // console.log("J J J ");
-    }
-    // console.log(i)
-    console.log(j);
-    // newArr[j].push(deckToDealFrom[i])
-    j++;
-    // this.picked(deckToDealFrom[i], true)
-  }
-  console.log(newArr);
-  return newArr;
 }
+
+// function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
+//   if (arguments.length === 0) {
+//     throw { message: 'no arguments' };
+//   }
+//   const cardsToDealTotal = cardsToEachPlayer * playersToDealTo;
+//   console.log(cardsToDealTotal);
+//   const newArr = [];
+//   // setting up 2d array for players to store cards
+//   for (let i = 0; i < playersToDealTo; i++) {
+//     newArr[i] = [];
+//   }
+//   console.log(newArr);
+//   let j = 0;
+//   for (let i = 0; i < cardsToDealTotal; i++) {
+//     console.log('testing picked: ' + JSON.stringify(deckToDealFrom[i].status.picked))
+//     console.log(deckToDealFrom.length)
+//     for (let k = 0; k < deckToDealFrom.length; k++) {
+//         // if (deckToDealFrom[k].status.picked === true) {
+//         //   console.log("this card has already been picked");
+//         // } else {
+//         //   if (cardsToEachPlayer === 1) {
+//         //     console.log("first index can be used: " + k);
+//         //     newArr[j].push(deckToDealFrom[k]);
+//         //     picked(deckToDealFrom[k], true);
+//         //     break;
+//         //   } else {
+//         //     console.log("first index can be used: " + k);
+//         //     newArr[j].push(deckToDealFrom[k]);
+//         //     picked(deckToDealFrom[k], true);
+//         //   }
+//         // }
+//       console.log('cards....');
+//       console.log(deckToDealFrom[k]);
+//       // newArr[j].push(deckToDealFrom[k]);
+//       // newArr[j].push('a card');
+//       newArr[0].push(deckToDealFrom[k]);
+//     }
+//     if (j > playersToDealTo - 1) {
+//       j = 0;
+//       // console.log("J J J ");
+//     }
+//     // console.log(i)
+//     console.log(j);
+//     // newArr[j].push(deckToDealFrom[i])
+//     j++;
+//     // this.picked(deckToDealFrom[i], true)
+//   }
+//   // console.log(newArr);
+//   return newArr;
+// }
 
 // assigned passed name to a player id.
 function assignPlayers(...args) {
