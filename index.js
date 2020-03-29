@@ -40,6 +40,7 @@ const jsonObject = {
 };
 const jsonPass = cardframe.createCardSet(2, jsonObject);
 console.log(jsonPass);
+console.log('====================================');
 
 /*
   Merge cards into deck by passing the created cards as arguments
@@ -51,63 +52,57 @@ console.log('====================================');
 /*
   Shuffle the deck
 */
-const shuffled = cardframe.shuffle(deck);
-console.log('====================================');
-console.log(shuffled);
+// const shuffled = cardframe.shuffle(deck);
+// console.log('====================================');
+// console.log(shuffled);
 
-/* You can directly change the status of a card as needed by accessing
- the methods, picked, played, removed. etc
-*/
-cardframe.played(shuffled[2]);
-// clean cards above to match each other.
-console.log(shuffled);
+// /* You can directly change the status of a card as needed by accessing
+//  the methods, picked, played, removed. etc
+// */
+// cardframe.played(shuffled[2]);
+// // clean cards above to match each other.
+// console.log(shuffled);
 
 // simple operator
 // pass the card, the key, the action and the number to use
-cardframe.operation(shuffled[2], 'hp', 'add', 3);
-console.log(shuffled);
-console.log(shuffled[2]);
-console.log('====================================');
-cardframe.operation(shuffled[2], 'hp', 'multiply', 3);
-console.log(shuffled[2]);
-cardframe.operation(shuffled[2], 'hp', 'subtract', 3);
-console.log(shuffled[2]);
-cardframe.operation(shuffled[2], 'hp', 'divide', 3);
-console.log(shuffled[2]);
+// cardframe.operation(shuffled[2], 'hp', 'add', 3);
+// console.log(shuffled);
+// console.log(shuffled[2]);
+// console.log('====================================');
+// cardframe.operation(shuffled[2], 'hp', 'multiply', 3);
+// console.log(shuffled[2]);
+// cardframe.operation(shuffled[2], 'hp', 'subtract', 3);
+// console.log(shuffled[2]);
+// cardframe.operation(shuffled[2], 'hp', 'divide', 3);
+// console.log(shuffled[2]);
 
-console.log('====================================');
-cardframe.faceUp(shuffled[2]);
-console.log(shuffled[2]);
+// console.log('====================================');
+// cardframe.faceUp(shuffled[2]);
+// console.log(shuffled[2]);
 
-console.log('====================================');
-cardframe.exhaust(shuffled[2]);
-console.log(shuffled[2]);
-console.log('====================================');
-cardframe.resetStatus(shuffled[2]);
-console.log(shuffled[2]);
-cardframe.exhaust(shuffled[2]);
-console.log(shuffled[2]);
-cardframe.operation(shuffled[2], 'hp', 'divide', 3);
-console.log(shuffled[2]);
-cardframe.picked(shuffled[2]);
-console.log(shuffled[2]);
-cardframe.picked(shuffled[2], false);
-console.log(shuffled[2]);
+// console.log('====================================');
+// cardframe.exhaust(shuffled[2]);
+// console.log(shuffled[2]);
+// console.log('====================================');
+// cardframe.resetStatus(shuffled[2]);
+// console.log(shuffled[2]);
+// cardframe.exhaust(shuffled[2]);
+// console.log(shuffled[2]);
+// cardframe.operation(shuffled[2], 'hp', 'divide', 3);
+// console.log(shuffled[2]);
+// cardframe.picked(shuffled[2]);
+// console.log(shuffled[2]);
+// cardframe.picked(shuffled[2], false);
+// console.log(shuffled[2]);
 // change status of a card:
 // cardframe.picked(deck[6])
 // cardframe.played(deck[6])
-<<<<<<< HEAD
-console.log('====================================');
+// console.log('====================================');
 
-cardframe.deal(shuffled, 2, 2);
-
-// console.log(deck[3])
-
-=======
 // cardframe.deal(shuffled, 2, 2);
+
 // console.log(deck[3])
 
->>>>>>> b5f8eaa5815bf98bb6bc5ceb0c7486bc4fbb33f1
 // let cardsDealt = cardframe.deal(shuffled, 3, 1)
 
 // console.log(cardsDealt[0])

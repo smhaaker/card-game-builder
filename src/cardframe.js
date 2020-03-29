@@ -71,7 +71,8 @@ function mergeSets(...args) {
     // completeset = arguments[0].concat(arguments[1])
   }
   if (args) {
-    completeSet = args[0];
+    // completeSet = args[0];
+    [completeSet] = args;
     for (let i = 0; i < args.length; i++) {
       for (const card of args[i]) {
         card.groupID = i;
