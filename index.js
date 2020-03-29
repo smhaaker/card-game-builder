@@ -97,12 +97,3 @@ console.log('====================================');
 // change status of a card:
 // cardframe.picked(deck[6])
 // cardframe.played(deck[6])
-// console.log('====================================');
-
-// cardframe.deal(shuffled, 2, 2);
-
-// console.log(deck[3])
-
-// let cardsDealt = cardframe.deal(shuffled, 3, 1)
-
-// console.log(cardsDealt[0])
