@@ -52,48 +52,61 @@ console.log('====================================');
 /*
   Shuffle the deck
 */
-// const shuffled = cardframe.shuffle(deck);
-// console.log('====================================');
-// console.log(shuffled);
+const shuffled = cardframe.shuffle(deck);
+console.log('====================================');
+console.log(shuffled);
 
-// /* You can directly change the status of a card as needed by accessing
-//  the methods, picked, played, removed. etc
-// */
-// cardframe.played(shuffled[2]);
-// // clean cards above to match each other.
-// console.log(shuffled);
+/* You can directly change the status of a card as needed by accessing
+ the methods, picked, played, removed. etc
+*/
+cardframe.played(shuffled[2]);
+// clean cards above to match each other.
+console.log(shuffled);
 
 // simple operator
 // pass the card, the key, the action and the number to use
-// cardframe.operation(shuffled[2], 'hp', 'add', 3);
-// console.log(shuffled);
-// console.log(shuffled[2]);
-// console.log('====================================');
-// cardframe.operation(shuffled[2], 'hp', 'multiply', 3);
-// console.log(shuffled[2]);
-// cardframe.operation(shuffled[2], 'hp', 'subtract', 3);
-// console.log(shuffled[2]);
-// cardframe.operation(shuffled[2], 'hp', 'divide', 3);
-// console.log(shuffled[2]);
+cardframe.operation(shuffled[2], 'hp', 'add', 3);
+console.log(shuffled);
+console.log(shuffled[2]);
+console.log('====================================');
+cardframe.operation(shuffled[2], 'hp', 'multiply', 3);
+console.log(shuffled[2]);
+cardframe.operation(shuffled[2], 'hp', 'subtract', 3);
+console.log(shuffled[2]);
+cardframe.operation(shuffled[2], 'hp', 'divide', 3);
+console.log(shuffled[2]);
 
-// console.log('====================================');
-// cardframe.faceUp(shuffled[2]);
-// console.log(shuffled[2]);
+console.log('====================================');
+cardframe.faceUp(shuffled[2]);
+console.log(shuffled[2]);
 
-// console.log('====================================');
-// cardframe.exhaust(shuffled[2]);
-// console.log(shuffled[2]);
-// console.log('====================================');
-// cardframe.resetStatus(shuffled[2]);
-// console.log(shuffled[2]);
-// cardframe.exhaust(shuffled[2]);
-// console.log(shuffled[2]);
-// cardframe.operation(shuffled[2], 'hp', 'divide', 3);
-// console.log(shuffled[2]);
-// cardframe.picked(shuffled[2]);
-// console.log(shuffled[2]);
-// cardframe.picked(shuffled[2], false);
-// console.log(shuffled[2]);
+console.log('====================================');
+cardframe.exhaust(shuffled[2]);
+console.log(shuffled[2]);
+console.log('====================================');
+cardframe.resetStatus(shuffled[2]);
+console.log(shuffled[2]);
+cardframe.exhaust(shuffled[2]);
+console.log(shuffled[2]);
+cardframe.operation(shuffled[2], 'hp', 'divide', 3);
+console.log(shuffled[2]);
+cardframe.picked(shuffled[2]);
+console.log(shuffled[2]);
+cardframe.picked(shuffled[2], false);
+console.log(shuffled[2]);
 // change status of a card:
 // cardframe.picked(deck[6])
 // cardframe.played(deck[6])
+cardframe.discard(shuffled[0]);
+
+cardframe.discard(shuffled[1]);
+
+// let newDeck;
+console.log('====================================');
+
+console.log(shuffled);
+console.log('====================================');
+
+// a new deck of all the discarded cards
+const newDeck = cardframe.discardedDeck(shuffled, false);
+console.log(newDeck);
