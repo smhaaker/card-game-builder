@@ -169,19 +169,6 @@ const resetStatus = (card) => {
   // return card.status.exhaust = false
 };
 
-// returns a new deck of discarded cards to be reshuffled
-function discardedDeck(deckToCheck) {
-  const newArr = [];
-  for (let i = 0; i < deckToCheck.length; i++) {
-    if (deckToCheck[i].status.discarded === true) {
-      console.log(i);
-      newArr.push(deckToCheck[i]);
-      // update to set status discarded to false on returned deck as well.
-    }
-  }
-  return newArr;
-}
-
 // card options
 // use the card to alter, which value to alter, which action, and by which number
 const operation = (card, input, action, number) => {
@@ -197,6 +184,24 @@ const operation = (card, input, action, number) => {
     card[input] /= number;
   }
 };
+
+
+// returns a new deck of discarded cards to be reshuffled
+// default resets status all cards of new deck. Use reset = false in order to keep status of card
+const discardedDeck = (deckToCheck, reset = true) => {
+  const newArr = [];
+  for (let i = 0; i < deckToCheck.length; i++) {
+    if (deckToCheck[i].status.discarded === true) {
+      if (reset) {
+        resetStatus(deckToCheck[i])
+      }
+      newArr.push(deckToCheck[i]);
+
+    }
+  }
+  return newArr;
+}
+
 
 // Refactor this.
 // deal function needs a cleaning up.
