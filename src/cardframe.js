@@ -185,7 +185,6 @@ const operation = (card, input, action, number) => {
   }
 };
 
-
 // returns a new deck of discarded cards to be reshuffled
 // default resets status all cards of new deck. Use reset = false in order to keep status of card
 const discardedDeck = (deckToCheck, reset = true) => {
