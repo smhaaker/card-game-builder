@@ -11,15 +11,14 @@ console.log('====================================')
 let config = cardframe.setupGame('Old Greek People', 2, 1, 4, 'Greek Mythology Throwdown')
 
 // Define a list of colors to use. Passes as an array
-let colors = cardframe.createColors(['red', 'white', 'blue'])
 
 // Creating sets of cards from our options.
 // Amoung of cards, name, value, color / faction, powers, more stuff
-let zeus = cardframe.createCardSet(2, "Zeus", 5, colors[1], ['thunderbolt'], 'Zeus is the king of the gods')
-let cassandra = cardframe.createCardSet(4, "Cassandra", 5, colors[1], ['predict'], 'Cassandra predicts the future')
-let hera = cardframe.createCardSet(4, "Hera", 5, colors[1], ['Mean'], 'Hera is so mean')
-let hades = cardframe.createCardSet(4, "Hades", 5, colors[1], ['what does he do?'], 'of the underworld')
-let dionysius = cardframe.createCardSet(4, "Dionysius", 5, colors[1], ['what does he do?'], 'God of the party')
+let zeus = cardframe.createCardSet(2, "Zeus", 5, 'red', ['thunderbolt'], 'Zeus is the king of the gods')
+let cassandra = cardframe.createCardSet(4, "Cassandra", 5, 'white', ['predict'], 'Cassandra predicts the future')
+let hera = cardframe.createCardSet(4, "Hera", 5, 'blue', ['Mean'], 'Hera is so mean')
+let hades = cardframe.createCardSet(4, "Hades", 5, 'green', ['what does he do?'], 'of the underworld')
+let dionysius = cardframe.createCardSet(4, "Dionysius", 5, 'yello', ['what does he do?'], 'God of the party')
 // We merge all the generated 
 let deck = cardframe.mergeSets(zeus, cassandra, hera, hades, dionysius)
 console.log(deck)
