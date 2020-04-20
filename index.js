@@ -48,7 +48,7 @@ console.log('====================================');
 const deck = cardframe.mergeSets(onlyArguments, passingArray, jsonPass);
 console.log(deck);
 console.log('====================================');
-deck[1].operations.greet();
+// deck[1].operations.greet();
 
 
 
@@ -104,11 +104,15 @@ console.log(shuffled[2]);
 const cardsDealt = cardframe.deal(shuffled, 2, 1);
 console.log(cardsDealt);
 
-cardframe.discard(shuffled[0]);
+// cardframe.discard(shuffled[0]);
 
-cardframe.discard(shuffled[1]);
+// cardframe.discard(shuffled[1]);
 
 shuffled[1].operations.greet();
+shuffled[1].operations.discard();
+
+console.log(shuffled[1]);
+console.log(shuffled[0]);
 
 // console.log('====================================');
 
