@@ -28,7 +28,7 @@ console.log(onlyArguments);
 
 // arguments in array
 const passArr = ['name', 'Zeus', 'color', 'red', 'hp', 10, 'health', 100];
-const passingArray = cardframe.createCardSet(3, ...passArr);
+const passingArray = cardframe.createCardSet(1, ...passArr);
 console.log(passingArray);
 
 // an object
@@ -48,6 +48,9 @@ console.log('====================================');
 const deck = cardframe.mergeSets(onlyArguments, passingArray, jsonPass);
 console.log(deck);
 console.log('====================================');
+deck[1].operations.greet();
+
+
 
 /*
   Shuffle the deck
@@ -97,15 +100,17 @@ console.log(shuffled[2]);
 // change status of a card:
 // cardframe.picked(deck[6])
 // cardframe.played(deck[6])
+console.log('====================================');
 
 const cardsDealt = cardframe.deal(shuffled, 2, 1);
-console.log(cardsDealt);
+// console.log(cardsDealt);
 
 cardframe.discard(shuffled[0]);
 
 cardframe.discard(shuffled[1]);
 
-
+console.log(shuffled)
+shuffled[1].operations.greet();
 
 // console.log('====================================');
 
