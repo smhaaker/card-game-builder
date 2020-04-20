@@ -100,10 +100,9 @@ console.log(shuffled[2]);
 // change status of a card:
 // cardframe.picked(deck[6])
 // cardframe.played(deck[6])
-console.log('====================================');
 
 const cardsDealt = cardframe.deal(shuffled, 2, 1);
-// console.log(cardsDealt);
+console.log(cardsDealt);
 
 cardframe.discard(shuffled[0]);
 
