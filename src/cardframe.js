@@ -43,14 +43,20 @@ const createCardSet = (amountOfCards, ...args) => {
     faceUp: false,
     // groupID: null // this is set later
   };
+  const operations = {
+    greet: () => {
+      console.log(`opject function working for card ${JSON.stringify(card.id)}`);
+    },
+  };
   for (let i = 0; i < amountOfCards; i++) {
     if (args.length === 1) {
       // check if an object is passed instead of arguments.
-      card = Object.assign({ groupID: null, status: { ...status } }, ...args);
+      card = Object.assign({ groupID: null, status: { ...status }, operations: { ...operations }}, ...args);
     } else {
       card = {
         groupID: null,
         status: { ...status },
+        operations: { ...operations },
       };
 
       for (let j = 0; j < args.length; j += 2) {
