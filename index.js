@@ -108,7 +108,6 @@ cardframe.discard(shuffled[0]);
 
 cardframe.discard(shuffled[1]);
 
-console.log(shuffled)
 shuffled[1].operations.greet();
 
 // console.log('====================================');
