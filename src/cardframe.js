@@ -47,11 +47,20 @@ const createCardSet = (amountOfCards, ...args) => {
     greet: () => {
       console.log(`opject function working for card ${JSON.stringify(card.id)}`);
     },
+
+    discard: () => {
+      console.log(`opject function working for card ${JSON.stringify(card.id)}`);
+      card.status.discarded = true;
+    },
   };
   for (let i = 0; i < amountOfCards; i++) {
     if (args.length === 1) {
       // check if an object is passed instead of arguments.
-      card = Object.assign({ groupID: null, status: { ...status }, operations: { ...operations }}, ...args);
+      card = Object.assign({
+        groupID: null,
+        status: { ...status },
+        operations: { ...operations },
+      }, ...args);
     } else {
       card = {
         groupID: null,
@@ -68,6 +77,7 @@ const createCardSet = (amountOfCards, ...args) => {
   }
   return arr;
 };
+
 
 // merges sets of cards and assigned card ID's
 function mergeSets(...args) {
@@ -92,9 +102,6 @@ function mergeSets(...args) {
     for (const card of args[i]) {
       card.groupID = i;
     }
-    // for (let j = 0; j < arguments[i].length; j++) {
-    //   arguments[i][j].status.groupID = i
-    // }
     completeSet = completeSet.concat(args[i]);
   }
   for (let i = 0; i < totalLength; i++) {
