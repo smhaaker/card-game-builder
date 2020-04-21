@@ -2,7 +2,6 @@
 const cardframe = require('./src/cardframe');
 
 console.log('====================================');
-
 /*
   Create Cards in one of the three following ways:
   1. Passing all elements in as arguments,
@@ -28,7 +27,7 @@ console.log(onlyArguments);
 
 // arguments in array
 const passArr = ['name', 'Zeus', 'color', 'red', 'hp', 10, 'health', 100];
-const passingArray = cardframe.createCardSet(1, ...passArr);
+const passingArray = cardframe.createCardSet(3, ...passArr);
 console.log(passingArray);
 
 // an object
@@ -45,11 +44,12 @@ console.log('====================================');
 /*
   Merge cards into deck by passing the created cards as arguments
 */
+console.log('====================================');
+console.log('== Initial Deck ==');
+
 const deck = cardframe.mergeSets(onlyArguments, passingArray, jsonPass);
 console.log(deck);
 console.log('====================================');
-// deck[1].operations.greet();
-
 
 
 /*
@@ -57,68 +57,74 @@ console.log('====================================');
 */
 const shuffled = cardframe.shuffle(deck);
 console.log('====================================');
+console.log('== Shuffled Deck ==');
 console.log(shuffled);
+console.log('====================================');
+console.log('== Single Card in Shuffled Deck ==');
+console.log(shuffled[2]);
+
 
 /* You can directly change the status of a card as needed by accessing
  the methods, picked, played, removed. etc
 */
-cardframe.played(shuffled[2]);
-// clean cards above to match each other.
-console.log(shuffled);
-
-// simple operator
-// pass the card, the key, the action and the number to use
-cardframe.operation(shuffled[2], 'hp', 'add', 3);
-console.log(shuffled);
-console.log(shuffled[2]);
 console.log('====================================');
+console.log('== Single Card shows played ==');
+cardframe.played(shuffled[2]);
+console.log(shuffled[2]);
+
+/*  simple operator
+    pass the card, the key, the action and the number to use
+*/
+console.log('====================================');
+console.log('== Single Card operator to hp ==');
+console.log('=== add ==');
+cardframe.operation(shuffled[2], 'hp', 'add', 3);
+console.log(shuffled[2]);
+
+console.log('=== multiply ==');
 cardframe.operation(shuffled[2], 'hp', 'multiply', 3);
 console.log(shuffled[2]);
+
+console.log('=== subtract ==');
 cardframe.operation(shuffled[2], 'hp', 'subtract', 3);
 console.log(shuffled[2]);
+
+console.log('=== divide ==');
 cardframe.operation(shuffled[2], 'hp', 'divide', 3);
 console.log(shuffled[2]);
 
-console.log('====================================');
-cardframe.faceUp(shuffled[2]);
-console.log(shuffled[2]);
+// dealing 2 cards to 2 players
+cardframe.deal(shuffled, 2, 2);
 
-console.log('====================================');
-cardframe.exhaust(shuffled[2]);
-console.log(shuffled[2]);
-console.log('====================================');
-cardframe.resetStatus(shuffled[2]);
-console.log(shuffled[2]);
-cardframe.exhaust(shuffled[2]);
-console.log(shuffled[2]);
-cardframe.operation(shuffled[2], 'hp', 'divide', 3);
-console.log(shuffled[2]);
-cardframe.picked(shuffled[2]);
-console.log(shuffled[2]);
-cardframe.picked(shuffled[2], false);
-console.log(shuffled[2]);
-// change status of a card:
-// cardframe.picked(deck[6])
-// cardframe.played(deck[6])
 
-const cardsDealt = cardframe.deal(shuffled, 2, 1);
-console.log(cardsDealt);
 
+
+
+
+
+
+
+
+
+
+
+// // discarding cards to reset and put in new deck
 // cardframe.discard(shuffled[0]);
-
 // cardframe.discard(shuffled[1]);
+// cardframe.discard(shuffled[2]);
+// cardframe.discard(shuffled[3]);
 
-shuffled[1].operations.greet();
-shuffled[1].operations.discard();
+// console.log('== before resetStatus==');
+// cardframe.picked(shuffled[1]);
+// cardframe.played(shuffled[1]);
+// console.log(shuffled[1]);
+// console.log('== after resetStatus==');
+// cardframe.resetStatus(shuffled[1]);
+// console.log(shuffled[1]);
 
-console.log(shuffled[1]);
-console.log(shuffled[0]);
 
 // console.log('====================================');
-
-// console.log(shuffled);
-// console.log('====================================');
-
-// // a new deck of all the discarded cards
-// const newDeck = cardframe.discardedDeck(shuffled, false);
+// console.log('deck of discarded cards:')
+// // // a new deck of all the discarded cards
+// const newDeck = cardframe.discardedDeck(shuffled, true);
 // console.log(newDeck);

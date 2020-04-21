@@ -41,17 +41,6 @@ const createCardSet = (amountOfCards, ...args) => {
     discarded: false,
     exhausted: false,
     faceUp: false,
-    // groupID: null // this is set later
-  };
-  const operations = {
-    greet: () => {
-      console.log(`opject function working for card ${JSON.stringify(card.id)}`);
-    },
-
-    discard: () => {
-      console.log(`opject function working for card ${JSON.stringify(card.id)}`);
-      card.status.discarded = true;
-    },
   };
   for (let i = 0; i < amountOfCards; i++) {
     if (args.length === 1) {
@@ -59,13 +48,11 @@ const createCardSet = (amountOfCards, ...args) => {
       card = Object.assign({
         groupID: null,
         status: { ...status },
-        operations: { ...operations },
       }, ...args);
     } else {
       card = {
         groupID: null,
         status: { ...status },
-        operations: { ...operations },
       };
 
       for (let j = 0; j < args.length; j += 2) {
@@ -147,11 +134,12 @@ function checkCardPlayable(cardID) {
 //   return cardID.status.picked;
 // };
 
+
 const picked = (card, input = true) => {
   card.status.picked = input;
 };
 
-// discard card
+// // discard card
 const discard = (card, input = true) => {
   card.status.discarded = input;
 };
@@ -325,3 +313,5 @@ module.exports = {
   assignPlayers,
   playerCards,
 };
+
+// Need to add deal and reshuffle next. 
