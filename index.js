@@ -93,16 +93,83 @@ console.log('=== divide ==');
 cardframe.operation(shuffled[2], 'hp', 'divide', 3);
 console.log(shuffled[2]);
 
-// dealing 2 cards to 2 players
-cardframe.deal(shuffled, 2, 2);
+
+console.log('====================================');
+console.log('== Status Changes ==');
+console.log('=== Play Card ==');
+cardframe.played(shuffled[1]);
+
+
+console.log('=== Dicard Card ==');
+cardframe.discard(shuffled[1]);
+console.log(shuffled[2]);
+
+// cardframe.checkCardPlayable(shuffled[1]);
+
+
+console.log('=== Pick Card ==');
+cardframe.picked(shuffled[2]);
+// cardframe.checkCardPlayable(shuffled[2]);
+console.log(shuffled[2]);
+
+console.log('=== Reset Card ==');
+cardframe.resetStatus(shuffled[2]);
+cardframe.resetStatus(shuffled[1]);
+
+console.log(shuffled[2]);
+
+// const player1 = cardframe.setupPlayer('Steffen')
+// console.log(player1)
+
+console.log('====================================');
+
+// setting up player and playerprofiles. 
+const players = cardframe.assignPlayers('Steffen', 'Mike');
+console.log(players);
+console.log(typeof players);
+console.log(players[0]);
+
+console.log('====================================');
+console.log('====Dealing Cards====');
+
+// dealing 1 cards to our players
+// console.log(shuffled.length);
+cardframe.deal(shuffled, players, 1);
+console.log('====================================');
+
+
+// dealing more cards to our players.
+
+cardframe.deal(shuffled, players, 1);
+
+console.log('=====Dealing more cards=====');
+
+
+cardframe.deal(shuffled, players, 1);
 
 
 
+console.log('=== Play Card ==');
+cardframe.playedFromPlayerArray(players[0], players[0].details.cards[1]); // this works. 
+// but lets clean up the way of looking at this. maybe just pass the ID
+// console.log(shuffled) // as we see proof here that matching id is updated in shuffled as well. so we should then remove it from the player array. 
+
+console.log('===== Checking players player 1=====');
+console.log(players[0].details.name);
+console.log(players[0].details.cards);
 
 
+// console.log('===== Checking players  player 2=====');
+// console.log(players[1].details.name);
+// console.log(players[1].details.cards);
+
+// console.log('====================================');
+
+// cardframe.removeCardPlayer(players[0], players[0].details.cards[1])
 
 
-
+// // console.log(`player1 / card 1: ${JSON.stringify(playersandCards[players[0].id][0])}`);
+// console.log('====================================');
 
 
 
@@ -114,17 +181,11 @@ cardframe.deal(shuffled, 2, 2);
 // cardframe.discard(shuffled[2]);
 // cardframe.discard(shuffled[3]);
 
-// console.log('== before resetStatus==');
-// cardframe.picked(shuffled[1]);
-// cardframe.played(shuffled[1]);
-// console.log(shuffled[1]);
-// console.log('== after resetStatus==');
-// cardframe.resetStatus(shuffled[1]);
-// console.log(shuffled[1]);
-
-
 // console.log('====================================');
-// console.log('deck of discarded cards:')
-// // // a new deck of all the discarded cards
+// console.log('=== deck of discarded cards: ===')
+// // a new deck of all the discarded cards
 // const newDeck = cardframe.discardedDeck(shuffled, true);
 // console.log(newDeck);
+
+// console.log('====================================');
+
