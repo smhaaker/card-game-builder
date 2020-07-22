@@ -147,45 +147,18 @@ console.log('=====Dealing more cards=====');
 
 cardframe.deal(shuffled, players, 1);
 
-
-
 console.log('=== Play Card ==');
-cardframe.playedFromPlayerArray(players[0], players[0].details.cards[1]); // this works. 
+cardframe.playedFromPlayer(players[0], players[0].details.cards[1]); // this works.
 // but lets clean up the way of looking at this. maybe just pass the ID
 // console.log(shuffled) // as we see proof here that matching id is updated in shuffled as well. so we should then remove it from the player array. 
 
-console.log('===== Checking players player 1=====');
+console.log('===== Checking players player 1 =====');
+// console.log(players[0]);
+
 console.log(players[0].details.name);
 console.log(players[0].details.cards);
 
-
-// console.log('===== Checking players  player 2=====');
-// console.log(players[1].details.name);
-// console.log(players[1].details.cards);
-
-// console.log('====================================');
-
-// cardframe.removeCardPlayer(players[0], players[0].details.cards[1])
-
-
-// // console.log(`player1 / card 1: ${JSON.stringify(playersandCards[players[0].id][0])}`);
-// console.log('====================================');
-
-
-
-
-
-// // discarding cards to reset and put in new deck
-// cardframe.discard(shuffled[0]);
-// cardframe.discard(shuffled[1]);
-// cardframe.discard(shuffled[2]);
-// cardframe.discard(shuffled[3]);
-
-// console.log('====================================');
-// console.log('=== deck of discarded cards: ===')
-// // a new deck of all the discarded cards
-// const newDeck = cardframe.discardedDeck(shuffled, true);
-// console.log(newDeck);
-
-// console.log('====================================');
+console.log('===== Checking players player 2 =====');
+console.log(players[1].details.name);
+console.log(players[1].details.cards);
 
