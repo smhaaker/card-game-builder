@@ -122,7 +122,7 @@ function checkCardPlayable(cardID) {
     throw { message: 'Card cannot be played' };
     // return false;
   }
-  console.log('card is playable')
+  console.log('card is playable');
   return true;
 }
 
@@ -149,7 +149,7 @@ const played = (card, input = true) => {
   card.status.inplay = input;
 };
 
-const playedFromPlayerArray = (playerInput, card, input = true) => {
+const playedFromPlayer = (playerInput, card, input = true) => {
   card.status.inplay = input;
   removeCardPlayer(playerInput, card);
 };
@@ -209,8 +209,11 @@ const discardedDeck = (deckToCheck, reset = true) => {
 };
 
 
-// Refactor this.
 // deal function needs a cleaning up.
+// need a rule to separate cards based on which deck they come from. 
+// So we have for instance playercards go into one section of the players cards and ability cards go into another. 
+// if you have two decks, might alter this in the pushCardToPLayer function. Then we will need to alter all the status change functions as well. 
+
 function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   if (arguments.length === 0) {
     throw { message: 'no arguments' };
@@ -220,12 +223,12 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   if (totalCards > deckToDealFrom.length) {
     throw { message: 'no that many cards in deck, deal fewer or reshuffle deck' };
   }
-  // also error check for cards which are not already picked. 
+  // also error check for cards which are not already picked.
   // setting up 2d array for players to store cards
-  const newArr = [];
-  for (let i = 0; i < playersToDealTo.length; i++) {
-    newArr[i] = [];
-  }
+  // const newArr = [];
+  // for (let i = 0; i < playersToDealTo.length; i++) {
+  //   newArr[i] = [];
+  // }
 
   let j = 0;
 
@@ -239,7 +242,7 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
       } else {
         console.log('you can use this card');
         pushCardToPlayer(playersToDealTo[j], deckToDealFrom[k]);
-        newArr[j].push(deckToDealFrom[k]);
+        // newArr[j].push(deckToDealFrom[k]);
         picked(deckToDealFrom[k], true);
         break;
       }
@@ -252,12 +255,12 @@ function deal(deckToDealFrom, playersToDealTo, cardsToEachPlayer) {
   }
   // console.log('Dealt Cards Are:');
   // console.log(newArr);
-  return newArr; // not sure we need to return the array here. 
+  // return newArr; // not sure we need to return the array here. 
 }
 
 // setupPlayer sets up player with id, name and cards array
 const setupPlayer = (name) => {
-  let cards = [];
+  const cards = [];
   const player = {
     name,
     cards,
@@ -287,27 +290,29 @@ function playerCards(playerID, cardsDealtName) {
   return cardArr;
 }
 
-const pushCardToPlayer = (playerInput, cardToPush) => {
+// clean this up and move up
+function pushCardToPlayer(playerInput, cardToPush) {
   // console.log(cardToPush)
+  // we need to set a new subarray under cards here for cardtype.
   playerInput.details.cards.push(cardToPush);
+  // console.log(cardType);
   // console.log('console.log from pushcardtoplayer');
   // console.log(playerInput.details);
 };
 
+// clean this up and move up
 const removeCardPlayer = (playerInput, cardToSplice) => {
   console.log(' from removeCardFrom PLayer')
-  console.log(playerInput)
-  // console.log(playerInput.details.cards)
-  console.log(cardToSplice)
+  console.log(playerInput);
+  console.log(cardToSplice);
 
-const index = playerInput.details.cards.indexOf(cardToSplice);
-console.log(index)
-if (index > -1) {
-  playerInput.details.cards.splice(index, 1);
-console.log('splicing')
-}
-
-}
+  const index = playerInput.details.cards.indexOf(cardToSplice);
+  console.log(index);
+  if (index > -1) {
+    playerInput.details.cards.splice(index, 1);
+    console.log('splicing');
+  }
+};
 
 // exports
 module.exports = {
@@ -317,7 +322,7 @@ module.exports = {
   shuffle,
   picked,
   played,
-  playedFromPlayerArray,
+  playedFromPlayer,
   discard,
   faceUp,
   exhaust,
@@ -333,4 +338,6 @@ module.exports = {
   removeCardPlayer,
 };
 
-// we need to consider how to update the cards to discarded etc now that we are storing cards in player array. 
+/* we need to consider how to update the cards to discarded etc 
+  now that we are storing cards in player array.
+*/
